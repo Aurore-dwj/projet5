@@ -1,0 +1,15 @@
+h1, h2{
+	color: #760001;
+}
+
+.jumbotron{
+	background: url("../images/moto.jpg")no-repeat;
+	 background-size: cover;
+	 height: 672px;
+
+}
+
+.titre{
+	    margin-left: -100px;
+	
+}
