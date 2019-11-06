@@ -1,0 +1,10 @@
+{
+    "name": "blog/xjr",
+    "require": {},
+	"autoload": {
+		"psr-4" : {
+		"OpenClass\\" : "models",
+		"Control\\" : "controllers"
+		}
+	}
+}

@@ -2,6 +2,11 @@ h1, h2{
 	color: #760001;
 }
 
+#bonjSession{
+	font-size: 18px;
+	color: #760001;
+}
+
 .jumbotron{
 	background: url("../images/moto.jpg")no-repeat;
 	 background-size: cover;
@@ -12,4 +17,8 @@ h1, h2{
 .titre{
 	    margin-left: -100px;
 	
+}
+
+.btn-group-lg > .btn, .btn-lg{
+	margin-top: 160px;
 }
