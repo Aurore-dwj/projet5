@@ -1,8 +1,19 @@
 <?php $title = 'Accueil'; ?>
 <?php ob_start();?>
-  
-    <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
-  <span id="bonjSession">Bonjour</span>
+
+<nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
+  <?php
+  if(isset($_SESSION['pseudo']))
+  {
+    ?>
+    <span id="bonjSession">Bonjour <?= $_SESSION['pseudo'];?></span>
+    <?php
+  }else{
+    ?> 
+    <span id="bonjSession">Bonjour</span><?php
+  }
+  ?>
+
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -12,15 +23,36 @@
       <li class="nav-item active">
         <a class="nav-link" href="#"><span><i class="fa fa-home"></i> Accueil <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Météo</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="index.php?action=displConnexion">Connexion</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="index.php?action=displFormulContact">Créer un compte</a>
-      </li>
+      <?php
+      if(isset($_SESSION['pseudo']))
+      {
+        ?>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Météo</a>
+        </li>
+        <?php
+        if($_SESSION['droits'] == 1){ ?>
+          <li class="nav-item">
+            <a class="nav-link" href="index.php?action=adminViewConnect">Admin</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.php?action=deconnexion">Déconnexion</a>
+          </li>
+          <?php
+        }
+        ?>
+        <?php
+      }else{
+        ?>
+        <li class="nav-item">
+          <a class="nav-link" href="index.php?action=displConnexion">Connexion</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.php?action=displFormulContact">Créer un compte</a>
+        </li>
+        <?php
+      }
+      ?> 
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
@@ -34,7 +66,7 @@
   <!-- Main jumbotron for a primary marketing message or call to action -->
   <div class="jumbotron">
     <div class="container">
-      
+
       <h1 class="titre">Yam 1300XJR une bécane de légende...</h1>
       <h5 class="titre">Ce gros roaster au catalogue Yamaha depuis plus de 20 ans méritait bien un petit blog...</h5>
       <p><a class="btn btn-secondary btn-lg" href="#" role="button">Dernier article publié</a></p>

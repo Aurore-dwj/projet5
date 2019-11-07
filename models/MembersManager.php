@@ -8,15 +8,7 @@ use OpenClass\Manager;
 
 class MembersManager extends Manager
 {
-	public function getConnect($pseudo)//récupère les information relative à la connexion de l'utilisateur inscrit en db
-	{
-		$db = $this->dbConnect();
-		$req = $db->prepare('SELECT id, motdepasse, droits FROM membres WHERE pseudo = :pseudo');
-		$req->execute(array('pseudo' =>$pseudo));
-		$connect = $req->fetch();
-		return $connect;
-	}
-
+	
 	public function insertMembre($pseudo, $mail, $mdp)//insertion infos nouveau membre en db
 	{
 		$db = $this->dbConnect();
@@ -33,5 +25,24 @@ class MembersManager extends Manager
                $reqmail->execute(array($mail));
            	   $mailexist = $reqmail->rowCount();
                return $mailexist;
+	}
+
+	public function getConnect($pseudo)//récupère les information relative à la connexion de l'utilisateur inscrit en db
+	{
+		$db = $this->dbConnect();
+		$req = $db->prepare('SELECT id, motdepasse, droits FROM membres WHERE pseudo = :pseudo');
+		$req->execute(array('pseudo' =>$pseudo));
+		$connect = $req->fetch();
+		return $connect;
+	}
+
+	public function remember($pseudo,$mdp)
+	{
+
+		$requser = $bdd->prepare("SELECT * FROM membres WHERE mail = ? AND motdepasse = ?");
+   		$req->execute(array($_COOKIE['pseudo'], $_COOKIE['mdp']));
+   		$usercook = $req->rowCount();
+   		return $usercook;
+
 	}
 }
