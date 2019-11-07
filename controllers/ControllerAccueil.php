@@ -3,9 +3,7 @@ namespace Control;
 require 'vendor/autoload.php';
 
 
-use OpenClass\{ArticlesManager, CommentsManager, Manager, MembersManager};
-
-class ControllerAccueil extends Manager
+class ControllerAccueil
 {
 
 	public function pageAccueil() // affichage page d'accueil

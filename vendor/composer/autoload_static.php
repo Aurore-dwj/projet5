@@ -29,7 +29,8 @@ class ComposerStaticInit63b8627868abf0dc947a2f2e51859e1e
     );
 
     public static $classMap = array (
-        'Control\\Frontend' => __DIR__ . '/../..' . '/controllers/ControllerAccueil.php',
+        'Control\\ControllerAccueil' => __DIR__ . '/../..' . '/controllers/ControllerAccueil.php',
+        'Control\\ControllerUser' => __DIR__ . '/../..' . '/controllers/ControllerUser.php',
         'OpenClass\\ArticlesManager' => __DIR__ . '/../..' . '/models/ArticlesManager.php',
         'OpenClass\\CommentsManager' => __DIR__ . '/../..' . '/models/CommentsManager.php',
         'OpenClass\\Manager' => __DIR__ . '/../..' . '/models/Manager.php',

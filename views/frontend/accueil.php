@@ -16,10 +16,10 @@
         <a class="nav-link" href="#">Météo</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">Connexion</a>
+        <a class="nav-link" href="index.php?action=displConnexion">Connexion</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">Créer un compte</a>
+        <a class="nav-link" href="index.php?action=displFormulContact">Créer un compte</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">

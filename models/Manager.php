@@ -1,6 +1,5 @@
 <?php
 namespace OpenClass;
-
 require 'vendor/autoload.php';
 
 
@@ -10,7 +9,7 @@ class Manager
 	{
 		try
 		{
-			$db = new PDO('mysql:host=localhost;dbname=projet5;charset=utf8', 'root', '');
+			$db = new \PDO('mysql:host=localhost;dbname=projet5;charset=utf8', 'root', '');
 			return $db;
 		}
 		catch (Exception $e)
