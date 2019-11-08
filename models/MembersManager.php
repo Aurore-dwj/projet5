@@ -45,4 +45,11 @@ class MembersManager extends Manager
    		return $usercook;
 
 	}
+
+	//public function displayProfil()
+	//{
+
+		
+
+	//}
 }

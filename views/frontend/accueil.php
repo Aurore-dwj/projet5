@@ -21,7 +21,7 @@
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#"><span><i class="fa fa-home"></i> Accueil <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="index.php"><span><i class="fa fa-home"></i> Accueil <span class="sr-only">(current)</span></a>
       </li>
       <?php
       if(isset($_SESSION['pseudo']))
@@ -29,6 +29,9 @@
         ?>
         <li class="nav-item">
           <a class="nav-link" href="#">Météo</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.php?action=affProfil">Profil</a>
         </li>
         <?php
         if($_SESSION['droits'] == 1){ ?>

@@ -77,7 +77,24 @@ try {
       $nouveldeconnex=$deconnex->deconnexion();
       return $nouveldeconnex;
       } 
-    } 
+    }
+
+    if (isset($_GET['action'])) { //affiche page ajout modif photo profil
+      if ($_GET['action'] == 'displFotoProfil') {
+        $display = new ControllerUser();
+        $fotoprofil = $display->displFotoProfil();
+        return $fotoprofil;
+      }       
+    }
+
+    if (isset($_GET['action'])) { //affiche profil
+      if ($_GET['action'] == 'affProfil') {
+      $profil = new ControllerUser(); 
+      $aff = $profil->affProfil();
+      return $aff;
+        
+      }       
+    }  
 
 
 

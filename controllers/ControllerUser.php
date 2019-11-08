@@ -95,5 +95,17 @@ class ControllerUser
 		header("Location: index.php"); 
 	}
 
+	public function displFotoProfil() //affiche page changt photo profil
+	{
+		require('views/frontend/profilView.php');
+	}
+
+	public function affProfil()
+	{
+		
+
+		require('views/frontend/afficheProfilView.php');
+	}
+
 
 }
