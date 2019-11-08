@@ -56,5 +56,30 @@ class MembersManager extends Manager
 	   
 	}
 
-	
+	public function infoPseudo($newpseudo)
+	{
+		$db = $this->dbConnect();
+		$insertpseudo = $db->prepare("UPDATE membres SET pseudo = ? WHERE id = ?");
+        $insertpseudo->execute(array($newpseudo, $_SESSION['id']));
+     	return $insertpseudo;
+	}
+
+	public function infoMail($newmail)
+	{
+		$db = $this->dbConnect();
+		$insertmail = $db->prepare("UPDATE membres SET mail = ? WHERE id = ?");
+        $insertmail->execute(array($newmail, $_SESSION['id']));
+     	return $insertmail;
+	}
+
+	public function infoMdp($newmdp)
+	{
+		$db = $this->dbConnect();
+		$insertmdp = $db->prepare("UPDATE membres SET motdepasse = ? WHERE id = ?");
+        $insertmdp->execute(array($newmdp, $_SESSION['id']));
+     	return $insertmdp;
+	}
+
+
+
 }

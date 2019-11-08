@@ -92,16 +92,23 @@ try {
        if(isset($_SESSION['id'])) {
         $all = new ControllerUser();
         $user = $all->updateInfos();
-      
-           //if(isset($_POST['newpseudo']) AND !empty($_POST['newpseudo']) AND $_POST['newpseudo'] != $userinfos['pseudo']) {
-            // $newpseudo = htmlspecialchars($_POST['newpseudo']);
-
-          // }
-
-        
-       } 
-      }
-    }
+          if(isset($_POST['newpseudo']) AND !empty($_POST['newpseudo']) AND $_POST['newpseudo'] != $user['pseudo']) {
+            $newpseudo = htmlspecialchars($_POST['newpseudo']);
+            $controlleruser = new ControllerUser();
+            $userpseudo = $controlleruser->updatePseudo($newpseudo);
+            }
+            if(isset($_POST['newmail']) AND !empty($_POST['newmail']) AND $_POST['newmail'] != $user['mail']) {
+              $newmail = htmlspecialchars($_POST['newmail']);
+              $controlleruser = new ControllerUser();
+              $usermail = $controlleruser->updateMail($newmail);
+              }
+              if(isset($_POST['newmdp']) AND !empty($_POST['newmdp']) AND $_POST['newmdp'] != $user['motdepasse']) {
+                $controlleruser = new ControllerUser();
+                $usermdp = $controlleruser->updateMdp($newmdp);
+              }
+            } 
+          }
+        }
 
     if (isset($_GET['action'])) { //affiche profil (A SECURISER!)
       if ($_GET['action'] == 'affProfil') {

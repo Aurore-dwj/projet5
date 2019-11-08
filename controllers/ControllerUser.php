@@ -20,7 +20,7 @@ class ControllerUser
 
 		$mdp = password_hash($_POST['mdp'], PASSWORD_DEFAULT);
 
-		$testOk = $test->testMail($mail);
+		$testOk = $test->testMail($mail);// test pour ne pas avoir de mail en doublon
 
 		if($testOk == 0) {
 			$newMembre = $membre->insertMembre($pseudo, $mail, $mdp);
@@ -111,9 +111,38 @@ class ControllerUser
 		$allinfos = $infosmembre->infosProfil();
 		
 		require('views/frontend/profilView.php');
-	
+	}
+
+	public function updatePseudo($newpseudo)
+	{
+		$infosmembre = new MembersManager();
+		$pseudoinfos = $infosmembre->infoPseudo($newpseudo);
+		header("Location: index.php");
 
 	}
+
+	public function updateMail($newmail)
+	{
+		$infosmembre = new MembersManager();
+		$mailinfos = $infosmembre->infoMail($newmail);
+		$testOk = $mailinfos->testMail($mail);
+			if($testOk == 0) {// test pour ne pas avoir de mail en doublon
+			header("Location: index.php");
+			}
+
+	}
+
+	public function updateMdp($newmdp)
+	{
+		$infosmembre = new MembersManager();
+        $newmdp = password_hash($_POST['newmdp'], PASSWORD_DEFAULT);
+		$infosmembre = new MembersManager();
+		$mdpinfos = $infosmembre->infoMdp($newmdp);
+	
+		header("Location: index.php");
+
+	}
+
 
 
 }
