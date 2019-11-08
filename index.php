@@ -18,7 +18,7 @@ try {
       if ($_GET['action'] == 'displFormulContact') {
       $display = new ControllerUser();
       $contact = $display->displFormulContact();
-      return $contact;
+    
       }     
     }
 
@@ -26,7 +26,7 @@ try {
       if ($_GET['action'] == 'displConnexion') {
         $display = new ControllerUser();
         $contact = $display->displConnexion();
-        return $contact;
+       
       }       
     }
 
@@ -75,23 +75,39 @@ try {
       if ($_GET['action'] == 'deconnexion') {
       $deconnex = new ControllerUser();
       $nouveldeconnex=$deconnex->deconnexion();
-      return $nouveldeconnex;
+      
       } 
     }
 
-    if (isset($_GET['action'])) { //affiche page ajout modif photo profil
+    /*if (isset($_GET['action'])) { 
       if ($_GET['action'] == 'displFotoProfil') {
         $display = new ControllerUser();
         $fotoprofil = $display->displFotoProfil();
-        return $fotoprofil;
+      
       }       
+    }*/
+
+    if (isset($_GET['action'])) {//affiche page édit et update infos (A SECURISER!)
+      if ($_GET['action'] == 'updateInfos') {
+       if(isset($_SESSION['id'])) {
+        $all = new ControllerUser();
+        $user = $all->updateInfos();
+      
+           //if(isset($_POST['newpseudo']) AND !empty($_POST['newpseudo']) AND $_POST['newpseudo'] != $userinfos['pseudo']) {
+            // $newpseudo = htmlspecialchars($_POST['newpseudo']);
+
+          // }
+
+        
+       } 
+      }
     }
 
-    if (isset($_GET['action'])) { //affiche profil
+    if (isset($_GET['action'])) { //affiche profil (A SECURISER!)
       if ($_GET['action'] == 'affProfil') {
       $profil = new ControllerUser(); 
       $aff = $profil->affProfil();
-      return $aff;
+    
         
       }       
     }  
@@ -105,7 +121,7 @@ try {
 
     $vue = new ControllerAccueil();
     $accueil = $vue->pageAccueil();
-    return $accueil;
+    
   }
 
 }catch(Exception $e) { 	

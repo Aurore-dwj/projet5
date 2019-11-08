@@ -22,9 +22,9 @@ class MembersManager extends Manager
 	{
 		$db = $this->dbConnect();
 		 $reqmail = $db->prepare("SELECT * FROM membres WHERE mail = ?");
-               $reqmail->execute(array($mail));
-           	   $mailexist = $reqmail->rowCount();
-               return $mailexist;
+         $reqmail->execute(array($mail));
+         $mailexist = $reqmail->rowCount();
+         return $mailexist;
 	}
 
 	public function getConnect($pseudo)//récupère les information relative à la connexion de l'utilisateur inscrit en db
@@ -36,20 +36,25 @@ class MembersManager extends Manager
 		return $connect;
 	}
 
-	public function remember($pseudo,$mdp)
+	public function remember($pseudo,$mdp) // fonction se souvenir de moi
 	{
-
-		$requser = $bdd->prepare("SELECT * FROM membres WHERE mail = ? AND motdepasse = ?");
-   		$req->execute(array($_COOKIE['pseudo'], $_COOKIE['mdp']));
+		$db = $this->dbConnect();
+		$requser = $db->prepare("SELECT * FROM membres WHERE pseudo = ? AND motdepasse = ?");
+   		$req->execute(array($_COOKIE['pseudo'], $_COOKIE['motdepasse']));
    		$usercook = $req->rowCount();
    		return $usercook;
 
 	}
 
-	//public function displayProfil()
-	//{
+	public function infosProfil()
+	{
+		$db = $this->dbConnect();	
+		$requser = $db->prepare("SELECT * FROM membres WHERE id = ?");
+	   	$requser->execute(array($_SESSION['id']));
+	   	$allinfos = $requser->fetch();
+	   	return $allinfos;
+	   
+	}
 
-		
-
-	//}
+	
 }

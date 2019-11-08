@@ -52,9 +52,9 @@ class ControllerUser
 					setcookie('pseudo',$pseudo,time()+365*24*3600,null,null,false,true);//chargement des cookies pseudo et mdp
 					setcookie('mdp',$mdp,time()+365*24*3600,null,null,false,true);
 				}
-				if(!isset($_SESSION['id']) AND isset($_COOKIE['pseudo'],$_COOKIE['mdp']) AND !empty($_COOKIE['pseudo']) AND !empty($_COOKIE['mdp'])) {//si pas de session mais cookies pseudo et mdp...
+				if(!isset($_SESSION['id']) AND isset($_COOKIE['pseudo'],$_COOKIE['motdepasse']) AND !empty($_COOKIE['pseudo']) AND !empty($_COOKIE['motdepasse'])) {//si pas de session mais cookies pseudo et mdp...
 					$membre = new MembersManager();//on instancie la class MembersManager...
-					$rem = $membre->remember($pseudo,$mdp);//et on appelle la fonction remember avec les infos rapportés du modèle
+					$rem = $membre->remember($_COOKIE['pseudo'], $_COOKIE['motdepasse']);//et on appelle la fonction remember avec les infos rapportés du modèle
 					return $rem;
 					if($rem == 1) // si cookies pseuso et mdp == à 1
 					{// on ouvre les différentes sessions et rdv à la page d'accueil
@@ -95,16 +95,24 @@ class ControllerUser
 		header("Location: index.php"); 
 	}
 
-	public function displFotoProfil() //affiche page changt photo profil
+	/*public function displFotoProfil() //affiche page changt photo profil
 	{
 		require('views/frontend/profilView.php');
-	}
+	}*/
 
 	public function affProfil()
 	{
-		
-
 		require('views/frontend/afficheProfilView.php');
+	}
+
+	public function updateInfos()
+	{
+		$infosmembre = new MembersManager();
+		$allinfos = $infosmembre->infosProfil();
+		
+		require('views/frontend/profilView.php');
+	
+
 	}
 
 

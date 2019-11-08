@@ -3,8 +3,8 @@
 
 <div class="vuChapComment">
          <div align="center">
-         	<a href="index.php">Accueil </a>
-         	<a href="index.php?action=displFotoProfil">Modifier photo de profil </a>
+         	<a href="index.php">Accueil </a><br>
+         	<a href="index.php?action=updateInfos"> Modifier mes infos perso </a>
             <h2>Connecté!</h2>
             <br/>
             <br/>
