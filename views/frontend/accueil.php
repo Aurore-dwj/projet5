@@ -33,14 +33,15 @@
         <li class="nav-item">
           <a class="nav-link" href="index.php?action=affProfil">Profil</a>
         </li>
+        </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.php?action=deconnexion">Déconnexion</a>
+          </li>
         <?php
         if($_SESSION['droits'] == 1){ ?>
           <li class="nav-item">
             <a class="nav-link" href="index.php?action=adminViewConnect">Admin</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="index.php?action=deconnexion">Déconnexion</a>
-          </li>
+          
           <?php
         }
         ?>
