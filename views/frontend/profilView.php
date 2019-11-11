@@ -12,7 +12,7 @@
 $data = $allinfos;
 
   
- ?>
+?>
 
 
     <form method="POST" action="index.php?action=getAvatar" enctype="multipart/form-data">

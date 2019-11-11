@@ -2,18 +2,14 @@
 <?php ob_start();?>
 
 <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
-  <?php
-  if(isset($_SESSION['pseudo']))
-  {
-    ?>
+  <?php if(isset($_SESSION['pseudo'])) : ?>
+  
     <span id="bonjSession">Bonjour <?= $_SESSION['pseudo'];?></span>
     
-    <?php
-  }else{
-    ?> 
-    <span id="bonjSession">Bonjour</span><?php
-  }
-  ?>
+  <?php else: ?> 
+   
+    <span id="bonjSession">Bonjour</span>
+  <?php endif ?>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -24,10 +20,7 @@
       <li class="nav-item active">
         <a class="nav-link" href="index.php"><span><i class="fa fa-home"></i> Accueil <span class="sr-only">(current)</span></a>
       </li>
-      <?php
-      if(isset($_SESSION['pseudo']))
-      {
-        ?>
+      <?php if(isset($_SESSION['pseudo'])) : ?>
         <li class="nav-item">
           <a class="nav-link" href="#">Météo</a>
         </li>
@@ -38,26 +31,21 @@
           <li class="nav-item">
             <a class="nav-link" href="index.php?action=deconnexion">Déconnexion</a>
           </li>
-        <?php
-        if($_SESSION['droits'] == 1){ ?>
+        <?php if($_SESSION['droits'] == 1) : ?>
           <li class="nav-item">
             <a class="nav-link" href="index.php?action=adminViewConnect">Admin</a>
-          
-          <?php
-        }
-        ?>
-        <?php
-      }else{
-        ?>
+           <?php endif ?> 
+         <?php else: ?> 
+        
+    
         <li class="nav-item">
           <a class="nav-link" href="index.php?action=displConnexion">Connexion</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="index.php?action=displFormulContact">Créer un compte</a>
         </li>
-        <?php
-      }
-      ?> 
+        <?php endif ?> 
+       
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
@@ -68,7 +56,7 @@
 
 <main role="main">
 
-  <!-- Main jumbotron for a primary marketing message or call to action -->
+
   <div class="jumbotron">
     <div class="container">
 
@@ -79,7 +67,7 @@
   </div>
  
   <div class="container">
-    <!-- Example row of columns -->
+  
     <div class="row">
       <div class="col-md-4">
         <h2 >Histoire</h2>
@@ -100,7 +88,7 @@
 
     <hr>
 
-  </div> <!-- /container -->
+  </div>
 
 </main>
 
