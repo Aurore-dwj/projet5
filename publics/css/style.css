@@ -2,6 +2,11 @@ h1, h2{
 	color: #760001;
 }
 
+p{
+	font-size: 20px;
+	color: grey;
+}
+
 #bonjSession{
 	font-size: 18px;
 	color: #760001;

@@ -3,14 +3,18 @@
 
 <div class="vuChapComment">
          <div align="center">
-         	<a href="index.php">Accueil </a><br>
-         	<a href="index.php?action=updateInfos"> Modifier mes infos perso </a>
+            <a href="index.php">Accueil </a><br>
+         	<a href="index.php?action=affInfosUser"> Modifier mes infos perso </a>
             <h2>Connecté!</h2>
             <br/>
             <br/>
+
+            <?php
+            $data = $allinfos;
+            ?>
             <p>
-               Bonjour  
-               <?php echo $_SESSION['pseudo']; ?>
+               Pseudo : <?php echo $data['pseudo']; ?><br>
+               Mail : <?php echo $data['mail']; ?>
             </p>
             
 

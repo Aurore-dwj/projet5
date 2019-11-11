@@ -15,7 +15,7 @@ $data = $allinfos;
  ?>
 
 
-    <form method="POST" action="index.php?action=updateInfos" enctype="multipart/form-data">
+    <form method="POST" action="index.php?action=affInfosUser" enctype="multipart/form-data">
         <table>
             <tr>  
                 <td align="center">
@@ -51,7 +51,7 @@ $data = $allinfos;
                     <input type="password" name="newmdp" placeholder="Mot de passe"/>
                 </td>
             </tr>
-
+        
             <tr>
                 <td></td>
                 <td align="left">

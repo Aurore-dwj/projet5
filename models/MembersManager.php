@@ -80,6 +80,13 @@ class MembersManager extends Manager
      	return $insertmdp;
 	}
 
+	public function infosAvatar()
+	{
+		$db = $this->dbConnect();
+		$upavatar = $bdd->prepare('UPDATE membres SET avatar = :avatar WHERE id = :id');
+        $upavatar->execute(array('avatar' => $_SESSION['id'].".".$extensionUpload,'id' => $_SESSION['id']));
+        return $upavatar;
+	}
 
 
 }

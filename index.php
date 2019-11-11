@@ -79,36 +79,60 @@ try {
       } 
     }
 
-    /*if (isset($_GET['action'])) { 
-      if ($_GET['action'] == 'displFotoProfil') {
-        $display = new ControllerUser();
-        $fotoprofil = $display->displFotoProfil();
-      
-      }       
-    }*/
-
     if (isset($_GET['action'])) {//affiche page édit et update infos (A SECURISER!)
-      if ($_GET['action'] == 'updateInfos') {
+      if ($_GET['action'] == 'affInfosUser') {
        if(isset($_SESSION['id'])) {
         $all = new ControllerUser();
-        $user = $all->updateInfos();
-          if(isset($_POST['newpseudo']) AND !empty($_POST['newpseudo']) AND $_POST['newpseudo'] != $user['pseudo']) {
+        $user = $all->affInfosUser();
+      
+          if(isset($_POST['newpseudo']) AND !empty($_POST['newpseudo']) AND $_POST['newpseudo'] /*!= $user['pseudo']*/) {
             $newpseudo = htmlspecialchars($_POST['newpseudo']);
             $controlleruser = new ControllerUser();
             $userpseudo = $controlleruser->updatePseudo($newpseudo);
             }
-            if(isset($_POST['newmail']) AND !empty($_POST['newmail']) AND $_POST['newmail'] != $user['mail']) {
+            if(isset($_POST['newmail']) AND !empty($_POST['newmail']) AND $_POST['newmail'] /*!= $user['mail']*/){
               $newmail = htmlspecialchars($_POST['newmail']);
               $controlleruser = new ControllerUser();
               $usermail = $controlleruser->updateMail($newmail);
-              }
-              if(isset($_POST['newmdp']) AND !empty($_POST['newmdp']) AND $_POST['newmdp'] != $user['motdepasse']) {
+              } 
+              if(isset($_POST['newmdp']) AND !empty($_POST['newmdp']) AND $_POST['newmdp'] /*!= $user['motdepasse']*/) {
+                $newmdp = password_hash($_POST['newmdp'], PASSWORD_DEFAULT);
                 $controlleruser = new ControllerUser();
                 $usermdp = $controlleruser->updateMdp($newmdp);
               }
             } 
-          }
+         } 
         }
+
+    if (isset($_GET['action'])) { //avatar
+      if ($_GET['action'] == 'getAvatar') {   
+        if(isset($_FILES['avatar']) AND !empty($_FILES['avatar']['name'])) {
+          $tailleMax = 2097152;
+          $extensionsValides = array('jpg', 'jpeg', 'gif', 'png');
+          if($_FILES['avatar']['size'] <= $tailleMax) {
+          $extensionUpload = strtolower(substr(strrchr($_FILES['avatar']['name'], '.'), 1));
+            if(in_array($extensionUpload, $extensionsValides)) {
+              $chemin = "publics/membres/avatars/".$_SESSION['id'].".".$extensionUpload;
+              $resultat = move_uploaded_file($_FILES['avatar']['tmp_name'], $chemin);
+                if($resultat) {
+
+                  $controlleruser = new ControllerUser();
+                  $userAvatar = $controlleruser->getAvatar();
+
+                  
+                    header('Location: profil.php?id='.$_SESSION['id']);
+                  } else {
+                    throw new Exception('Erreur durant l\'importation de votre photo de profil');
+                      }
+                    } else {
+                      throw new Exception('Votre photo de profil doit être au format jpg, jpeg, gif ou png');
+                        }
+                      } else {
+                        throw new Exception('Votre photo de profil ne doit pas dépasser 2Mo');
+                      }
+                    }
+                  }
+                }
 
     if (isset($_GET['action'])) { //affiche profil (A SECURISER!)
       if ($_GET['action'] == 'affProfil') {

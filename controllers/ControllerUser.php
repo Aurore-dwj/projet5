@@ -95,52 +95,55 @@ class ControllerUser
 		header("Location: index.php"); 
 	}
 
-	/*public function displFotoProfil() //affiche page changt photo profil
-	{
-		require('views/frontend/profilView.php');
-	}*/
-
 	public function affProfil()
-	{
-		require('views/frontend/afficheProfilView.php');
-	}
-
-	public function updateInfos()
 	{
 		$infosmembre = new MembersManager();
 		$allinfos = $infosmembre->infosProfil();
-		
-		require('views/frontend/profilView.php');
+		require('views/frontend/afficheProfilView.php');
 	}
 
-	public function updatePseudo($newpseudo)
+
+
+	public function affInfosUser() // affiche les infos user
+	{
+		$infosmembre = new MembersManager();
+		$allinfos = $infosmembre->infosProfil();
+		require('views/frontend/profilView.php');
+		
+		
+	}
+
+	public function updatePseudo($newpseudo) //update le pseudo
 	{
 		$infosmembre = new MembersManager();
 		$pseudoinfos = $infosmembre->infoPseudo($newpseudo);
-		header("Location: index.php");
-
+		header('Location: index.php');
 	}
 
-	public function updateMail($newmail)
+	public function updateMail($newmail)// uptate le mail
 	{
+		
+		$test = new MembersManager();
+		$testOk = $test->testMail($newmail);
+		if($testOk == 0) {// test pour ne pas avoir de mail en doublon
 		$infosmembre = new MembersManager();
 		$mailinfos = $infosmembre->infoMail($newmail);
-		$testOk = $mailinfos->testMail($mail);
-			if($testOk == 0) {// test pour ne pas avoir de mail en doublon
-			header("Location: index.php");
+		header('Location: index.php');
 			}
-
 	}
 
-	public function updateMdp($newmdp)
+	public function updateMdp($newmdp)// update le motdepasse
 	{
 		$infosmembre = new MembersManager();
-        $newmdp = password_hash($_POST['newmdp'], PASSWORD_DEFAULT);
-		$infosmembre = new MembersManager();
 		$mdpinfos = $infosmembre->infoMdp($newmdp);
-	
-		header("Location: index.php");
+		header('Location: index.php');
+	}
 
+	public function getAvatar()// update avatar
+	{
+		$membreManager = new MembersManager();
+		$avatarinfos = $membreManager->infoAvatar();
+		require('views/frontend/profilView.php');
 	}
 
 
