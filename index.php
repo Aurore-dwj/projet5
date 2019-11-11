@@ -40,7 +40,7 @@ try {
             if($pseudolength > 2) {
               if(filter_var($mail, FILTER_VALIDATE_EMAIL)) {
               $inscription = new ControllerUser();
-              $contact = $inscription->addMember($_POST['pseudo'], $_POST['mail'], $_POST['mdp']); 
+              $contact = $inscription->addMember($_POST['pseudo'], $_POST['mail'], $_POST['mdp'], 'default.jpg'); 
               return $contact;
               }else{
                 throw new Exception('Adresse mail non valide !');
@@ -115,12 +115,12 @@ try {
               $chemin = "publics/membres/avatars/".$_SESSION['id'].".".$extensionUpload;
               $resultat = move_uploaded_file($_FILES['avatar']['tmp_name'], $chemin);
                 if($resultat) {
-
+                  $newavatar=$_SESSION['id'].".".$extensionUpload;
                   $controlleruser = new ControllerUser();
-                  $userAvatar = $controlleruser->getAvatar();
+                  $userAvatar = $controlleruser->getAvatar($newavatar);
 
-                  
-                    header('Location: profil.php?id='.$_SESSION['id']);
+                
+                   header('Location: index.php?id='.$_SESSION['id']);
                   } else {
                     throw new Exception('Erreur durant l\'importation de votre photo de profil');
                       }

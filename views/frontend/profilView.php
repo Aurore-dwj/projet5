@@ -15,23 +15,26 @@ $data = $allinfos;
  ?>
 
 
-    <form method="POST" action="index.php?action=affInfosUser" enctype="multipart/form-data">
+    <form method="POST" action="index.php?action=getAvatar" enctype="multipart/form-data">
         <table>
             <tr>  
                 <td align="center">
-                    <label>Ajouter une photo de profil: :</label>
+                    <label>Ajouter une photo de profil : </label>
                 </td>
                 <td>
                     <input type="file" name="avatar"><br>
+                    <a href="index.php?action=getAvatar&amp;id=<?=$_SESSION['id'] ?>"><button type="submit" name="getAvatar"class="btn btn-secondary">Ajouter une photo</button></a><br><br>
                 </td>
             </tr>
 
+    <form method="POST" action="index.php?action=affInfosUser">
+        <table>
             <tr>
                 <td align="right">
                     <label>Pseudo :</label>
                 </td>
                 <td>
-                    <input type="text" name="newpseudo" placeholder="Pseudo" value="<?php  echo $data['pseudo']; ?>" />
+                    <input type="text" name="newpseudo" placeholder="Pseudo" value="<?= $data['pseudo']; ?>" />
                 </td>
             </tr>
 
@@ -39,7 +42,7 @@ $data = $allinfos;
                     <label>Mail :</label>
                 </td>
                 <td>
-                    <input type="text" name="newmail" placeholder="Mail" value="<?php echo $data['mail']; ?>" />
+                    <input type="text" name="newmail" placeholder="Mail" value="<?= $data['mail']; ?>" />
                 </td>
             </tr>
 

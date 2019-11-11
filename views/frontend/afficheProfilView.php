@@ -4,17 +4,29 @@
 <div class="vuChapComment">
          <div align="center">
             <a href="index.php">Accueil </a><br>
-         	<a href="index.php?action=affInfosUser"> Modifier mes infos perso </a>
-            <h2>Connecté!</h2>
-            <br/>
-            <br/>
-
+         	<a href="index.php?action=affInfosUser"> Modifier mes infos perso </a><br><br>
+         
+            
             <?php
             $data = $allinfos;
             ?>
+            <h2>
+               Bonjour  
+               <?= $data['pseudo']; ?>
+            </h2>
+            <br>
+            <?php
+            if(!empty($data['avatar'])){
+               ?>
+            
+            <img class="improfil" src="publics/membres/avatars/<?= $data['avatar']; ?>"/>
+             <?php
+         }
+         ?>
+            <br />
             <p>
-               Pseudo : <?php echo $data['pseudo']; ?><br>
-               Mail : <?php echo $data['mail']; ?>
+               Pseudo : <?= $data['pseudo']; ?><br>
+               Mail : <?= $data['mail']; ?>
             </p>
             
 

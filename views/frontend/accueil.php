@@ -7,6 +7,7 @@
   {
     ?>
     <span id="bonjSession">Bonjour <?= $_SESSION['pseudo'];?></span>
+    
     <?php
   }else{
     ?> 
@@ -31,7 +32,7 @@
           <a class="nav-link" href="#">Météo</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="index.php?action=affProfil">Profil</a>
+          <a class="nav-link" href="index.php?action=affProfil&amp;id=<?=$_SESSION['id'] ?>">Profil</a>
         </li>
         </li>
           <li class="nav-item">

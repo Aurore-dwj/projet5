@@ -9,11 +9,11 @@ use OpenClass\Manager;
 class MembersManager extends Manager
 {
 	
-	public function insertMembre($pseudo, $mail, $mdp)//insertion infos nouveau membre en db
+	public function insertMembre($pseudo, $mail, $mdp, $avatar)//insertion infos nouveau membre en db
 	{
 		$db = $this->dbConnect();
-		$insertmbr = $db->prepare("INSERT INTO membres(pseudo, mail, motdepasse, droits) VALUES(?, ?, ?, 0)");
-        $insertmbr->execute(array($pseudo, $mail, $mdp));
+		$insertmbr = $db->prepare("INSERT INTO membres(pseudo, mail, motdepasse, droits, avatar) VALUES(?, ?, ?, 0, ?)");
+        $insertmbr->execute(array($pseudo, $mail, $mdp, 'default.jpg'));
         return $insertmbr;
 
 	}
@@ -80,11 +80,11 @@ class MembersManager extends Manager
      	return $insertmdp;
 	}
 
-	public function infosAvatar()
+	public function infosAvatar($newavatar)
 	{
 		$db = $this->dbConnect();
-		$upavatar = $bdd->prepare('UPDATE membres SET avatar = :avatar WHERE id = :id');
-        $upavatar->execute(array('avatar' => $_SESSION['id'].".".$extensionUpload,'id' => $_SESSION['id']));
+		$upavatar = $db->prepare("UPDATE membres SET avatar = ? WHERE id = ?");
+        $upavatar->execute(array( $newavatar, $_SESSION['id']));
         return $upavatar;
 	}
 

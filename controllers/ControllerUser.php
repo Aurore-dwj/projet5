@@ -13,7 +13,7 @@ class ControllerUser
 		require('views/frontend/formulaireView.php');
 	}
 
-	public function addMember($pseudo, $mail, $mdp) //ajout membre après divers tests
+	public function addMember($pseudo, $mail, $mdp, $avatar) //ajout membre après divers tests
 	{
 		$membre = new MembersManager();
 		$test = new MembersManager();
@@ -23,7 +23,7 @@ class ControllerUser
 		$testOk = $test->testMail($mail);// test pour ne pas avoir de mail en doublon
 
 		if($testOk == 0) {
-			$newMembre = $membre->insertMembre($pseudo, $mail, $mdp);
+			$newMembre = $membre->insertMembre($pseudo, $mail, $mdp,'default.jpg');
 			header("Location: index.php?action=displConnexion");
 		}else{ 
 			echo '<p style= "border: 1px solid red; text-align: center; font-size: 55px; margin: 90px 90px 90px;">Oups... Adresse email déjà utilisé  !</p>';}
@@ -139,11 +139,12 @@ class ControllerUser
 		header('Location: index.php');
 	}
 
-	public function getAvatar()// update avatar
+	public function getAvatar($newavatar)// update avatar
 	{
 		$membreManager = new MembersManager();
-		$avatarinfos = $membreManager->infoAvatar();
-		require('views/frontend/profilView.php');
+		$avatarinfos = $membreManager->infosAvatar($newavatar);
+
+
 	}
 
 
