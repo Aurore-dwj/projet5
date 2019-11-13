@@ -3,7 +3,7 @@
 session_start();
 
 require 'vendor/autoload.php';
-use Control\{ControllerAccueil, ControllerUser};
+use Control\{ControllerAccueil, ControllerUser, ControllerAdmin};
 use OpenClass\{ArticlesManager, CommentsManager, Manager, MembersManager};
 
 
@@ -134,13 +134,46 @@ try {
                   }
                 }
 
-    if (isset($_GET['action'])) { //affiche profil (A SECURISER!)
+    if (isset($_GET['action'])) { //affiche profil
       if ($_GET['action'] == 'affProfil') {
       $profil = new ControllerUser(); 
       $aff = $profil->affProfil();
     
         
       }       
+    }
+
+    if (isset($_GET['action'])) { //connexion gestion Admin 
+      if ($_GET['action'] == 'adminViewConnect') {
+        if (!isset($_SESSION['droits']) || ($_SESSION['droits'] == 0)) {//CONDITION DE SECURITE POUR EVITER DE POUVOIR ACCEDER A L'ADMIN PAR L'URL
+        header('Location: index.php');
+        }else{
+      if (isset($_SESSION) && $_SESSION['droits'] == '1') {
+          $controlleradmin = new ControllerAdmin(); 
+          $adminconnect= $controlleradmin->adminViewConnect();
+      }else { 
+        throw new Exception("Oups... Vous n\'avez aucun droit administrateur !");
+      }
+    }
+  }
+}
+
+
+    if (isset($_GET['action'])) { // rédation nouvel article
+      if ($_GET['action'] == 'redacArticles') {
+        if (isset($_POST['envoi_article']) AND isset($_POST['title']) AND isset($_POST['content'])) 
+          {
+          $title = ($_POST['title']);
+          $content = ($_POST['content']);
+          if(!empty(trim($_POST['title'])) AND !empty(trim($_POST['content'])))
+          {         
+          $redacArticle = new ControllerAdmin(); 
+          $aff = $redacArticle->redacArticles($title,$content);
+          }else{
+            throw new Exception('Vous n\'avez pas saisi d\'article !');
+          }             
+        }
+      }
     }  
 
 

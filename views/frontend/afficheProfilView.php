@@ -19,7 +19,7 @@
             if(!empty($data['avatar'])){
                ?>
             
-            <img class="improfil" src="publics/membres/avatars/<?= $data['avatar']; ?>"/>
+            <img class="improfil" width="100" src="publics/membres/avatars/<?= $data['avatar']; ?>"/>
              <?php
          }
          ?>
