@@ -15,11 +15,11 @@
 
 				<h3>Modifier ou supprimer un article</h3>
 
-				<form class="form"method="post" action="index.php?action=modifChapitre&amp;id=<?=$data['id'] ?>">
+				<form class="form"method="post" action="index.php?action=modifArticle&amp;id=<?=$data['id'] ?>">
 					<h4><em>Id : </em><?= $data['id'] ?></h4><br>
 					<textarea type="text" name="title" rows="1" placeholder="title"><?=$data['title'] ?></textarea><br><br>
 					<textarea class="mytextarea" name="content"  rows="5" cols="50" placeholder="content"><?=$data['content'] ?></textarea><br><br>
-					<button type="submit" name="modifbillet"class="btn btn-secondary">Modifier article!</button><br>
+					<button type="submit" name="modifArticle"class="btn btn-secondary">Modifier article!</button><br>
 					<a href="index.php?action=supprimArticle&amp;id=<?=$data['id'] ?>"><button type="submit"class="btn btn-secondary">Supprimer article !</button></a>
 				</form>
 

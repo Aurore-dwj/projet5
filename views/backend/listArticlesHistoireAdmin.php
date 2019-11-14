@@ -1,19 +1,19 @@
-<?php $title = 'Liste des articles histoire'; ?>
+<?php $title = 'Liste des articles histoire admin'; ?>
 <?php ob_start();?>
   
   <div class="collapse bg-dark" id="navbarHeader">
     <div class="container">
       <div class="row">
         <div class="col-sm-8 col-md-7 py-4">
-          <h4 class="text-white">About</h4>
-          <p class="text-muted">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
+          <h4 class="text-white">A propos</h4>
+          <p class="text-muted">Site réalisé dans le cadre d'une formation de developeur web junior Openclassrooms</p>
         </div>
         <div class="col-sm-4 offset-md-1 py-4">
-          <h4 class="text-white">Contact</h4>
+          <h4 class="text-white">Catégories</h4>
           <ul class="list-unstyled">
-            <li><a href="#" class="text-white">Follow on Twitter</a></li>
-            <li><a href="#" class="text-white">Like on Facebook</a></li>
-            <li><a href="#" class="text-white">Email me</a></li>
+            <li><a href="#" class="text-white">Histoire</a></li>
+            <li><a href="#" class="text-white">Caractère</a></li>
+            <li><a href="#" class="text-white">Entretien</a></li>
           </ul>
         </div>
       </div>
@@ -25,6 +25,7 @@
         
         <strong>Articles Histoire</strong>
       </a>
+      <a href="index.php?action=adminViewConnect">Retour admin</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -32,22 +33,21 @@
   </div>
 </header>
 
-<main role="main">
+
 
   
-  <div class="album py-5 bg-light">
-    <div class="container">
+  
+  
 <?php
-$data = $articles;
-   while ($data = $articles->fetch())
+$data = $artic;
+   while ($data = $artic->fetch())
    {
 
     ?>  
-
-      <div class="row">
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title><?=($data['title']) ?></title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+      <div class=".row-md-3">
+        <div class=".col-md-3">
+          <div class="card mb-3 shadow-sm">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="75" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>liste articles histoire Admin</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"><?=($data['title']) ?></text></svg>
             <div class="card-body">
               <p class="card-text"> <?= nl2br($data['content']) ?></p>
               <div class="d-flex justify-content-between align-items-center">
@@ -60,14 +60,12 @@ $data = $articles;
             </div>
           </div>
         </div>
-        
-        </div>
       </div>
-    </div>
-  </main>
+    
+       
   <?php
-}
- $articles->closeCursor(); 
+ }
+ $artic->closeCursor(); 
  ?>
 
 <nav aria-label="Page navigation example">
@@ -85,5 +83,5 @@ $data = $articles;
 </nav>
 
 <?php $content = ob_get_clean(); ?>
-<?php require('template.php'); ?>
+<?php require('templateAdmin.php'); ?>
 

@@ -2,7 +2,6 @@
 namespace OpenClass;
 require 'vendor/autoload.php';
 
-
 class Manager
 {
 	protected function dbConnect()// méthode de connexion à la bdd

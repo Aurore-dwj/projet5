@@ -7,9 +7,11 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Control\\ControllerAccueil' => $baseDir . '/controllers/ControllerAccueil.php',
+    'Control\\ControllerAdmin' => $baseDir . '/controllers/ControllerAdmin.php',
     'Control\\ControllerUser' => $baseDir . '/controllers/ControllerUser.php',
     'OpenClass\\ArticlesManager' => $baseDir . '/models/ArticlesManager.php',
     'OpenClass\\CommentsManager' => $baseDir . '/models/CommentsManager.php',
     'OpenClass\\Manager' => $baseDir . '/models/Manager.php',
     'OpenClass\\MembersManager' => $baseDir . '/models/MembersManager.php',
+    'OpenClass\\Pagination' => $baseDir . '/models/Pagination.php',
 );

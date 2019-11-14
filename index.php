@@ -4,7 +4,7 @@ session_start();
 
 require 'vendor/autoload.php';
 use Control\{ControllerAccueil, ControllerUser, ControllerAdmin};
-use OpenClass\{ArticlesManager, CommentsManager, Manager, MembersManager};
+use OpenClass\{ArticlesManager, CommentsManager, Manager, MembersManager, Pagination};
 
 
 try {
@@ -175,6 +175,18 @@ try {
         }
       }
     }  
+
+    if (isset($_GET['action'])) { //affichage liste des chapitres Admin
+      if ($_GET['action'] == 'listArticlesAdmin') {
+        if (!isset($_SESSION['droits']) || ($_SESSION['droits'] == 0)) { //CONDITION DE SECURITE POUR EVITER DE POUVOIR ACCEDER A L'ADMIN PAR L'URL
+        header('Location: index.php');
+        }else{
+         $listarticlesAdmin = new ControllerAdmin(); 
+         $list= $listarticlesAdmin->listArticlesAdmin(); 
+         
+        }
+      }
+    }
 
 
 
