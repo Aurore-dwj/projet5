@@ -39,5 +39,16 @@ class ArticlesManager extends Manager
 		return $article;
 
 	}
+
+	public function getArticlesUser($depart, $articlesparp) // méthode de récupération articles
+	{
+		
+		$db = $this->dbConnect();
+
+		$articles = $db->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM articles ORDER BY creation_date DESC LIMIT 0, 20');
+		
+		
+		return $articles;
+	}
 	
 }

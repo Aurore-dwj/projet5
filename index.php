@@ -195,8 +195,9 @@ try {
       if ($_GET['action'] == 'userViewConnect') {
           $controller = new ControllerUser(); 
           $connect= $controller->userViewConnect();
+        }
       }
-    }
+  
   
 
     if (isset($_GET['action'])) { // rédation nouvel article user
@@ -214,7 +215,18 @@ try {
           }             
         }
       }
-    }  
+    }
+
+    if (isset($_GET['action'])) { //affichage liste des articles Admin
+      if ($_GET['action'] == 'listArticlesUser') {
+        
+         $listarticles = new ControllerUser(); 
+         $list= $listarticles->listArticlesUser(); 
+         
+        }
+      }
+     
+
 
 
 

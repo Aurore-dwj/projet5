@@ -60,7 +60,7 @@
             Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh. 
           </p>
           <p>
-            <a class="btn btn-secondary" href="views/frontend/listArticlesHistoire.php" role="button">Articles</a>
+            <a class="btn btn-secondary" href="index.php?action=listArticlesUser" role="button">Articles</a>
           </p>
         </div>
         <div class="col-md-4">

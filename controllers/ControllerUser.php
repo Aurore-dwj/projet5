@@ -3,7 +3,8 @@ namespace Control;
 require 'vendor/autoload.php';
 
 
-use OpenClass\{ArticlesManager, CommentsManager, Manager, MembersManager};
+use OpenClass\{ArticlesManager, CommentsManager, Manager, MembersManager,Pagination};
+
 
 class ControllerUser
 {
@@ -159,8 +160,28 @@ class ControllerUser
 	if($createarticle === false) {
 		die('<p style= "border: 1px solid red; text-align: center; font-size: 55px; margin: 90px 90px 90px;">Impossible d \'ajouter un article...');
 	}else{
-		header('Location: index.php?action=listArticles');
+		header('Location: index.php?action=listArticlesUser');
 		}
+	}
+
+	public function listArticlesUser() // liste articles admin
+	{
+		$articlesManager = new ArticlesManager();
+		$pagination = new Pagination();
+		$articlesparp = 4;
+		$nombredarticles = $pagination->getArticlesPagination();
+		$totalpages = $pagination->getArticlesPages($nombredarticles, $articlesparp);
+		//die(var_dump($totalpages));
+		if(isset($_GET['page']) AND !empty($_GET['page']) AND $_GET['page'] > 0 AND $_GET['page'] <= $totalpages) {
+   			$_GET['page'] = intval($_GET['page']);
+   			$pageCourante = $_GET['page'];
+			} else {
+   			$pageCourante = 1;
+			}
+			$depart = ($pageCourante-1)*$articlesparp;
+			$artic = $articlesManager->getArticlesUser($depart, $articlesparp);
+			require('views/frontend/listArticlesHistoire.php');
+			//die(var_dump($artic));
 	}
 
 
