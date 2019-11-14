@@ -48,7 +48,7 @@
           Ce gros roaster au catalogue Yamaha depuis plus de 20 ans méritait bien un petit blog...
         </h5>
         <p>
-          <a class="btn btn-secondary btn-lg" href="#" role="button">Dernier article publié</a>
+          <a class="btn btn-secondary btn-lg" href="index.php?action=userViewConnect" role="button">Publier un article</a>
         </p>
       </div>
     </div>

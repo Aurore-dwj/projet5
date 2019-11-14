@@ -32,7 +32,7 @@ class ControllerAdmin
 		$articlesparp = 4;
 		$nombredarticles = $pagination->getArticlesPagination();
 		$totalpages = $pagination->getArticlesPages($nombredarticles, $articlesparp);
-		//die(var_dump($nombredarticles));
+		//die(var_dump($totalpages));
 		if(isset($_GET['page']) AND !empty($_GET['page']) AND $_GET['page'] > 0 AND $_GET['page'] <= $totalpages) {
    			$_GET['page'] = intval($_GET['page']);
    			$pageCourante = $_GET['page'];
@@ -40,30 +40,10 @@ class ControllerAdmin
    			$pageCourante = 1;
 			}
 			$depart = ($pageCourante-1)*$articlesparp;
-
-		
-
-
-
-
-
-
-
-
-
-		/*if (!isset($_GET['page'])) {
-			$pageCourante = 1;
-		} else {
-			if (isset($_GET['page']) && $_GET['page'] > 0 && $_GET['page'] <= $totalPages) {
-				$pageCourante = (intval($_GET['page']) - 1) * $articlesparp;
-				}
-			}*/
-			
 			$artic = $articlesManager->getArticlesAdmin($depart, $articlesparp);
-			//die(var_dump($artic));
-
 			require('views/backend/listArticlesHistoireAdmin.php');
-		}
+			//die(var_dump($artic));
+	}
 
 
 

@@ -143,7 +143,7 @@ try {
       }       
     }
 
-    if (isset($_GET['action'])) { //connexion gestion Admin 
+    if (isset($_GET['action'])) { //connexion gestion et rédac articles Admin 
       if ($_GET['action'] == 'adminViewConnect') {
         if (!isset($_SESSION['droits']) || ($_SESSION['droits'] == 0)) {//CONDITION DE SECURITE POUR EVITER DE POUVOIR ACCEDER A L'ADMIN PAR L'URL
         header('Location: index.php');
@@ -158,8 +158,11 @@ try {
   }
 }
 
+    
 
-    if (isset($_GET['action'])) { // rédation nouvel article
+
+
+    if (isset($_GET['action'])) { // rédation nouvel article admin
       if ($_GET['action'] == 'redacArticles') {
         if (isset($_POST['envoi_article']) AND isset($_POST['title']) AND isset($_POST['content'])) 
           {
@@ -176,7 +179,7 @@ try {
       }
     }  
 
-    if (isset($_GET['action'])) { //affichage liste des chapitres Admin
+    if (isset($_GET['action'])) { //affichage liste des articles Admin
       if ($_GET['action'] == 'listArticlesAdmin') {
         if (!isset($_SESSION['droits']) || ($_SESSION['droits'] == 0)) { //CONDITION DE SECURITE POUR EVITER DE POUVOIR ACCEDER A L'ADMIN PAR L'URL
         header('Location: index.php');
@@ -187,6 +190,30 @@ try {
         }
       }
     }
+
+    if (isset($_GET['action'])) { //connexion rédac article user
+      if ($_GET['action'] == 'userViewConnect') {
+          $controller = new ControllerUser(); 
+          $connect= $controller->userViewConnect();
+      }
+  
+
+    if (isset($_GET['action'])) { // rédation nouvel article user
+      if ($_GET['action'] == 'redacArticlesUser') {
+        if (isset($_POST['envoi_article']) AND isset($_POST['title']) AND isset($_POST['content'])) 
+          {
+          $title = ($_POST['title']);
+          $content = ($_POST['content']);
+          if(!empty(trim($_POST['title'])) AND !empty(trim($_POST['content'])))
+          {         
+          $redacArticle = new ControllerUser(); 
+          $aff = $redacArticle->redacArticlesUser($title,$content);
+          }else{
+            throw new Exception('Vous n\'avez pas saisi d\'article !');
+          }             
+        }
+      }
+    }  
 
 
 

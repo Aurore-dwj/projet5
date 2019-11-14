@@ -144,7 +144,23 @@ class ControllerUser
 		$membreManager = new MembersManager();
 		$avatarinfos = $membreManager->infosAvatar($newavatar);
 
+	}
 
+	public function userViewConnect() //connexion rédac article user
+	{
+	require('views/frontend/redacArticleUser.php');
+	}
+
+	public function redacArticlesUser($title, $content)
+	{
+		$articleEdit = new ArticlesManager();
+		$createarticle = $articleEdit->postArticlesUser($title, $content);
+	
+	if($createarticle === false) {
+		die('<p style= "border: 1px solid red; text-align: center; font-size: 55px; margin: 90px 90px 90px;">Impossible d \'ajouter un article...');
+	}else{
+		header('Location: index.php?action=listArticles');
+		}
 	}
 
 

@@ -29,5 +29,15 @@ class ArticlesManager extends Manager
 		
 		return $articles;
 	}
+
+	public function postArticlesUser($title, $content) // insertion article user à la db
+	{
+		$db = $this->dbConnect();
+		$inserarticle = $db->prepare('INSERT INTO articles(title, content, creation_date) VALUES (?, ?, NOW())');
+        $article = $inserarticle->execute(array($title, $content));
+		
+		return $article;
+
+	}
 	
 }
