@@ -196,6 +196,7 @@ try {
           $controller = new ControllerUser(); 
           $connect= $controller->userViewConnect();
       }
+    }
   
 
     if (isset($_GET['action'])) { // rédation nouvel article user
