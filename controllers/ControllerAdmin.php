@@ -45,6 +45,33 @@ class ControllerAdmin
 			//die(var_dump($artic));
 	}
 
+	public function articAdmin()// get article à modifier
+	{
+		$articleManager = new ArticlesManager();
+		$artic = $articleManager->getArticleAdmin($_GET['id']);
+	
+		require('views/backend/modifierArticleAdmin.php');
+	}
+
+	public function supprimerArticle($dataId)
+	{
+	$supprime = new ArticlesManager();
+	$deletedarticle = $supprime->deletArticle($dataId);
+
+		if($deletedarticle === false) {
+		die('<p style= "border: 1px solid red; text-align: center; font-size: 55px; margin: 90px 90px 90px;"> Impossible de supprimer un article...</p>');
+		}else{
+		header('Location: index.php?action=listArticlesAdmin');
+		}
+	}
+
+	public function modifierArticle($title, $content, $postId)
+	{
+		$modifie = new ArticlesManager();
+		$updatearticle = $modifie->updateArticle($title, $content, $postId);
+		header('Location: index.php?action=listArticlesAdmin');
+	}
+
 
 
 

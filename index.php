@@ -225,6 +225,46 @@ try {
          
         }
       }
+
+      if (isset($_GET['action'])) { //affiche un chapitre à modifier ou à supprimer Admin
+        if ($_GET['action'] == 'articAdmin') {
+          if (!isset($_SESSION['droits']) || ($_SESSION['droits'] == 0)) {
+            header('Location: index.php');
+          }else{
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+              $controlleradmin = new ControllerAdmin(); 
+              $affiche = $controlleradmin->articAdmin(); 
+              
+            }
+          } 
+        }
+      }
+
+      if (isset($_GET['action'])) { //supprime article
+        if ($_GET['action'] == 'supprimerArticle') {
+          if (!isset($_SESSION['droits']) || ($_SESSION['droits'] == 0)) {//CONDITION DE SECURITE POUR EVITER DE POUVOIR ACCEDER A L'ADMIN PAR L'URL
+            header('Location: index.php');
+          }else{
+            if ((isset($_GET['id'])) && (!empty($_GET['id']))) {
+              $controlleradmin = new ControllerAdmin(); 
+              $supprimer = $controlleradmin->supprimerArticle($_GET['id']); 
+          }
+        }
+      }
+    }
+
+      if (isset($_GET['action'])) { //modifie article 
+        if ($_GET['action'] == 'modifierArticle') {
+          if (!isset($_SESSION['droits']) || ($_SESSION['droits'] == 0)) {//CONDITION DE SECURITE POUR EVITER DE POUVOIR ACCEDER A L'ADMIN PAR L'URL
+          header('Location: index.php');
+          }else{
+            if ((isset($_GET['id'])) && (!empty($_GET['id']))) {
+              $controlleradmin = new ControllerAdmin(); 
+              $modifier = $controlleradmin->modifierArticle($_POST['title'], $_POST['content'], $_GET['id']); 
+          }
+        }
+      }
+    }
      
 
 

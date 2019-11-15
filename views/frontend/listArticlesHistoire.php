@@ -25,16 +25,12 @@
         
         <strong>Articles Histoire</strong>
       </a>
-      <?php  if(isset($_SESSION['id'])) { ?> 
+      <?php  if(isset($_SESSION['id'])) : ?> 
       <a href="index.php?action=userViewConnect">Retour rédac</a>
-      <?php
- }else{
-      ?>
-      <a href="index.php">Retour accueil</a>
-<?php
- }
- ?>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+      <?php else: ?>
+       <a href="index.php">Retour accueil</a>
+       <?php endif ?>
+       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
     </div>
