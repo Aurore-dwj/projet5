@@ -7,7 +7,7 @@
 	<div align="center">
     <div><br>
       <h2>Articles signalés :</h2><br>
-      <a href="index.php?action=listArticlesAdmin">Retour vers les chapitres</a>
+      <a href="index.php?action=listArticlesAdmin">Retour liste articles</a>
       
       <?php
       $data = $artic;
@@ -19,8 +19,8 @@
          <p><em>Le : <?= $data['creation_date_fr'] ?></em></p>
           <p><em><?= $data['title'] ?></em></p>
          <p><?= nl2br(($data['content'])) ?></p><br>
-         <a href="index.php?action=supprimerArticle&amp;id=<?=$data['id'] ?>"><button type="submit" name="supprimerArticle"class="btn btn-secondary">Supprime ton commentaire !</button></a>
-         <a href="index.php?action=designalArticle&amp;id=<?=$data['id'] ?>"><button type="submit" name="designalArticle" class="btn btn-secondary">Désignale ce commentaire !</button></a><br><br>
+         <a href="index.php?action=supprimerArticle&amp;id=<?=$data['id'] ?>"><button type="submit" name="supprimerArticle"class="btn btn-secondary">Supprimer article !</button></a>
+         <a href="index.php?action=designalArticle&amp;id=<?=$data['id'] ?>"><button type="submit" name="designalArticle" class="btn btn-secondary">Désignaler article !</button></a><br><br>
        </div>
        <?php
      }

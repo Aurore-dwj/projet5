@@ -45,7 +45,7 @@ class ArticlesManager extends Manager
 		
 	}
 
-	public function getArticleAdmin($dataId) // méthode de récupération article à modifier
+	public function getArticleAdmin($dataId) // méthode de récupération article à modifier (admin)
 	{
 		
 		$db = $this->dbConnect();
@@ -55,7 +55,7 @@ class ArticlesManager extends Manager
     	return $req;
 	}
 
-	public function deletArticle($dataId) //supprime un chapitre et ses commentaires
+	public function deletArticle($dataId) //supprime un chapitre et ses commentaires (admin)
 	{ 
         $db = $this->dbConnect();
         //$comment = $db->prepare('DELETE FROM avis WHERE id_billet = ?');
@@ -65,7 +65,7 @@ class ArticlesManager extends Manager
        	return $req;
     }
 
-    public function updateArticle($title, $content, $postId)
+    public function updateArticle($title, $content, $postId) //modifie article (admin)
     {
     	$db = $this->dbConnect();
 		$updArticle = $db->prepare('UPDATE articles SET title = ?, content = ? WHERE id = ?');
@@ -73,7 +73,7 @@ class ArticlesManager extends Manager
 		return $artOk;
     }
 
-    public function signalement($articId) //requete pour signaler un article
+    public function signalement($articId) //requete pour signaler un article (user)
 	{
 		$db = $this->dbConnect();
 		$req = $db->prepare('UPDATE articles SET signalement = 1 WHERE id = ?');
@@ -82,7 +82,7 @@ class ArticlesManager extends Manager
 		return $req;
 	}
 
-	public function getArticlesSignal($signalement) //récupère les commentaires signalés pour les afficher dans la vue
+	public function getArticlesSignal($signalement) //récupère les commentaires signalés pour les afficher dans la vue (admin)
 	{
 		$db = $this->dbConnect();
 		$artic = $db->prepare('SELECT id, title, content, signalement, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM articles WHERE signalement = 1');

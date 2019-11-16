@@ -53,10 +53,10 @@ class ControllerAdmin
 		require('views/backend/modifierArticleAdmin.php');
 	}
 
-	public function supprimerArticle($dataId)
+	public function supprimerArticle($dataId)// supprimme l'article
 	{
-	$supprime = new ArticlesManager();
-	$deletedarticle = $supprime->deletArticle($dataId);
+		$supprime = new ArticlesManager();
+		$deletedarticle = $supprime->deletArticle($dataId);
 
 		if($deletedarticle === false) {
 		die('<p style= "border: 1px solid red; text-align: center; font-size: 55px; margin: 90px 90px 90px;"> Impossible de supprimer un article...</p>');
@@ -81,15 +81,15 @@ class ControllerAdmin
 		header('Location: index.php?action=listArticlesAdmin');
 	}
 
-	public function designal($articId) //fonction modification commentaires signalés
+	public function designalArticle($articId) //fonction modification commentaires signalés
 	{ 	
-	$articleManager = new ArticleManager();
-	$designale = $articleManager->getArticlesSignal($articId);
+	$articleManager = new ArticlesManager();
+	$designale = $articleManager->deSignal($articId);
 
 	if($designale === false) {
 		die('<p style= "border: 1px solid red; text-align: center; font-size: 55px; margin: 90px 90px 90px;">Oups... Impossible de designaler le commentaire!</p>');
 	}else{ 
-		header('Location: index.php?action=signalArticle&signalement=1');
+		header('Location: index.php?action=getArticlesAdmin&signalement=1');
 	}
 	
 	require('views/backend/signalArticle.php');

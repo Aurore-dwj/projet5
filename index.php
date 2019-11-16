@@ -294,6 +294,22 @@ try {
             }
           }
         }
+
+        if (isset($_GET['action'])) { //désignale article signalé
+          if ($_GET['action'] == 'designalArticle') {
+            if (!isset($_SESSION['droits']) || ($_SESSION['droits'] == 0)) {//CONDITION DE SECURITE POUR EVITER DE POUVOIR ACCEDER A L'ADMIN PAR L'URL
+            header('Location: index.php');
+            }else{
+              if ((isset($_GET['id'])) && (!empty($_GET['id']))){
+                 $controlleradmin = new ControllerAdmin(); 
+                 $designale = $controlleradmin->designalArticle($_GET['id']);
+            
+            }else{ 
+                throw new Exception('Oups....erreur de désignalement !');
+              }
+            }
+          }
+        }
      
 
 
