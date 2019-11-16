@@ -56,6 +56,7 @@ $data = $artic;
                   <a href="index.php?action=supprimerArticle&amp;id=<?= $data['id'] ?>"><button type="button" class="btn btn-sm btn-outline-secondary">Supprimer</button></a>
                 </div>
                 <small class="text-muted"><em>le <?= $data['creation_date_fr'] ?></em></small>
+                <small class="text-muted"><em>De la part de : <?= $data['pseudo'] ?></em></small>
               </div>
             </div>
           </div>

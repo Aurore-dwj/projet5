@@ -152,10 +152,10 @@ class ControllerUser
 	require('views/frontend/redacArticleUser.php');
 	}
 
-	public function redacArticlesUser($title, $content)
+	public function redacArticlesUser($idUser, $title, $content)
 	{
 		$articleEdit = new ArticlesManager();
-		$createarticle = $articleEdit->postArticlesUser($title, $content);
+		$createarticle = $articleEdit->postArticlesUser($idUser, $title, $content);
 	
 	if($createarticle === false) {
 		die('<p style= "border: 1px solid red; text-align: center; font-size: 55px; margin: 90px 90px 90px;">Impossible d \'ajouter un article...');
@@ -182,6 +182,19 @@ class ControllerUser
 			$artic = $articlesManager->getArticlesUser($depart, $articlesparp);
 			require('views/frontend/listArticlesHistoire.php');
 			//die(var_dump($artic));
+	}
+
+	public function signalerArticleUser($articId)// signale un article
+	{
+		$commentManager = new ArticlesManager();
+		$signal = $commentManager->signalement($articId);
+
+	if($signal === false) {
+		die('<p style= "border: 1px solid red; text-align: center; font-size: 55px; margin: 90px 90px 90px;">Oups... Impossible de signaler !</p>');
+	}else{ 
+		header('Location: index.php?action=listArticlesUser');
+
+		}
 	}
 
 

@@ -164,14 +164,15 @@ try {
 
     if (isset($_GET['action'])) { // rédation nouvel article admin
       if ($_GET['action'] == 'redacArticles') {
-        if (isset($_POST['envoi_article']) AND isset($_POST['title']) AND isset($_POST['content'])) 
+        if (isset($_POST['envoi_article']) AND isset($_SESSION['id']) AND isset($_POST['title']) AND isset($_POST['content'])) 
           {
           $title = ($_POST['title']);
           $content = ($_POST['content']);
+          $idUser = ($_SESSION['id']);
           if(!empty(trim($_POST['title'])) AND !empty(trim($_POST['content'])))
           {         
           $redacArticle = new ControllerAdmin(); 
-          $aff = $redacArticle->redacArticles($title,$content);
+          $aff = $redacArticle->redacArticles($idUser,$title,$content);
           }else{
             throw new Exception('Vous n\'avez pas saisi d\'article !');
           }             
@@ -202,14 +203,15 @@ try {
 
     if (isset($_GET['action'])) { // rédation nouvel article user
       if ($_GET['action'] == 'redacArticlesUser') {
-        if (isset($_POST['envoi_article']) AND isset($_POST['title']) AND isset($_POST['content'])) 
+        if (isset($_POST['envoi_article']) AND isset($_SESSION['id']) AND isset($_POST['title']) AND isset($_POST['content'])) 
           {
           $title = ($_POST['title']);
           $content = ($_POST['content']);
+          $idUser = ($_SESSION['id']);
           if(!empty(trim($_POST['title'])) AND !empty(trim($_POST['content'])))
           {         
           $redacArticle = new ControllerUser(); 
-          $aff = $redacArticle->redacArticlesUser($title,$content);
+          $aff = $redacArticle->redacArticlesUser($idUser,$title,$content);
           }else{
             throw new Exception('Vous n\'avez pas saisi d\'article !');
           }             
@@ -217,7 +219,7 @@ try {
       }
     }
 
-    if (isset($_GET['action'])) { //affichage liste des articles Admin
+    if (isset($_GET['action'])) { //affichage liste des articles user
       if ($_GET['action'] == 'listArticlesUser') {
         
          $listarticles = new ControllerUser(); 
@@ -261,10 +263,37 @@ try {
             if ((isset($_GET['id'])) && (!empty($_GET['id']))) {
               $controlleradmin = new ControllerAdmin(); 
               $modifier = $controlleradmin->modifierArticle($_POST['title'], $_POST['content'], $_GET['id']); 
+              }
+            }
+          }
+       }
+
+       if (isset($_GET['action'])) { //signale un article
+        if ($_GET['action'] == 'signalerArticleUser') {
+          if ((isset($_GET['id'])) && (!empty($_GET['id']))){
+            $controlleruser = new ControllerUser(); 
+            $signale = $controlleruser->signalerArticleUser($_GET['id']);
+            
+            }else{
+              throw new Exception('Oups....erreur de signalement !');
+            }
           }
         }
-      }
-    }
+
+        if (isset($_GET['action'])) { //récupère articles signalés
+          if ($_GET['action'] == 'getArticlesAdmin') {
+            if (!isset($_SESSION['droits']) || ($_SESSION['droits'] == 0)) {//CONDITION DE SECURITE POUR EVITER DE POUVOIR ACCEDER A L'ADMIN PAR L'URL
+              header('Location: index.php');
+            }else{
+            if (isset($_GET['signalement']) && $_GET['signalement'] == '1') {
+                $controlleradmin = new ControllerAdmin(); 
+                $designale = $controlleradmin->getArticlesAdmin($_GET['signalement']);
+              }else{ 
+                throw new Exception('Oups....erreur de désignalement !');
+              }
+            }
+          }
+        }
      
 
 
