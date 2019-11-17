@@ -218,7 +218,7 @@ class ControllerUser
 	if ($affectedLines === false){ //si le commentaire n'arrive pas à la bdd...
 		die('<p style= "border: 1px solid red; text-align: center; font-size: 55px; margin: 90px 90px 90px;">Oups... Impossible d\'ajouter le commentaire !</p>');// on arrête le script avec un die
 
-	}else{header('Location: index.php?action=post&id=' . $idArticle); // sinon on peut admirer son joli commentaire :)
+	}else{header('Location: index.php?action=affichArticle&id=' . $idArticle); // sinon on peut admirer son joli commentaire :)
 
 		}
 	}

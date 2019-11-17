@@ -30,17 +30,18 @@
  ?>
 
   <?php  if(isset($_SESSION['id'])) { ?> 
-
+ <div align="center"><br>
   <div class="commentaires" >
+
     <h2>Mon commentaire :</h2><br/>
 
-    <form action="index.php?action=addComment&amp;id=<?=$post['id'] ?>"method="post">
+    <form action="index.php?action=addComment&amp;id=<?=$artic['id'] ?>"method="post">
 
      <div>
        <textarea id="comment" name="content" placeholder="Votre texte"></textarea>
      </div>
      <div><br>
-       <button type="submit"class="btn btn-primary">J'envoie mon commentaire !</button><br>
+       <button type="submit"class="btn btn-secondary">J'envoie mon commentaire !</button><br>
      </div>
    </form>
    <?php 
@@ -61,7 +62,7 @@
                 <p><?= nl2br(htmlspecialchars($comment['content'])) ?></p>
                 <p><em>De la part de : </em><?= $comment['pseudo'] ?></p>
                 <?php  if(isset($_SESSION['id'])) { ?>
-                  <a href="index.php?action=signal&amp;id=<?=$comment['id'] ?>"><button type="submit"class="btn btn-primary">Signaler ce commentaire !</button></a><br><br>
+                  <a href="index.php?action=signal&amp;id=<?=$comment['id'] ?>"><button type="submit"class="btn btn-secondary">Signaler ce commentaire !</button></a><br><br>
                   <?php
                 }else{
                   echo '<p class="error">Pour signaler un commentaire, veuillez vous connecter !</p>
@@ -69,6 +70,7 @@
                 }
                 ?>
               </div>
+            </div>
               <?php
             }
             ?>
@@ -76,5 +78,6 @@
         </div>
       </div>
     </div>
+
     <?php $content = ob_get_clean(); ?>
     <?php require('template.php'); ?> 
