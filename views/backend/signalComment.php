@@ -5,7 +5,7 @@
 ?>
 <div>
 	<div align="center">
-    <div><br>
+    <div><br><br><br>
       <h2>Commentaires signalés :</h2><br>
       <a href="index.php?action=listArticlesAdmin">Retour liste articles</a><br>
       <a href="index.php?action=adminViewConnect">Retour rédac</a>
@@ -20,8 +20,8 @@
          <p><em>Le : <?= $data['comment_date_fr'] ?></em></p>
        
          <p><?= nl2br(($data['content'])) ?></p><br>
-         <a href="index.php?action=supprimerArticle&amp;id=<?=$data['id'] ?>"><button type="submit" name="supprimerArticle"class="btn btn-secondary">Supprimer article !</button></a>
-         <a href="index.php?action=designalArticle&amp;id=<?=$data['id'] ?>"><button type="submit" name="designalArticle" class="btn btn-secondary">Désignaler commentaire !</button></a><br><br>
+         <a href="index.php?action=supprimerArticle&amp;id=<?=$data['id'] ?>"><button type="submit" name="supprimerArticle"class="btn btn-secondary">Supprimer le commentaire</button></a>
+         <a href="index.php?action=designalArticle&amp;id=<?=$data['id'] ?>"><button type="submit" name="designalArticle" class="btn btn-secondary">Désignaler le commentaire</button></a><br><br>
        </div>
        <?php
     }
