@@ -197,6 +197,33 @@ class ControllerUser
 		}
 	}
 
+	public function affichArticle()
+	{
+		$articlesManager = new ArticlesManager();
+		$commentsManager = new CommentsManager();
+
+		$artic = $articlesManager->getArticles($_GET['id']);
+		$comments = $commentsManager->getComments($_GET['id']);
+
+	require('views/frontend/commentView.php');
+
+	}
+
+	public function addComment($idArticle, $idMembre, $content) //ajout commentaire
+	{
+	$commentsManager = new CommentsManager();
+
+	$affectedLines = $commentsManager->postComment($idArticle, $_SESSION['id'], $content);
+	
+	if ($affectedLines === false){ //si le commentaire n'arrive pas à la bdd...
+		die('<p style= "border: 1px solid red; text-align: center; font-size: 55px; margin: 90px 90px 90px;">Oups... Impossible d\'ajouter le commentaire !</p>');// on arrête le script avec un die
+
+	}else{header('Location: index.php?action=post&id=' . $idArticle); // sinon on peut admirer son joli commentaire :)
+
+		}
+	}
+
+
 
 
 }

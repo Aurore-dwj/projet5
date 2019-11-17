@@ -57,7 +57,7 @@ $data = $artic;
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <a href="index.php?action=signalerArticleUser&amp;id=<?= $data['id'] ?>"><button type="button" class="btn btn-sm btn-outline-secondary">Signaler</button></a>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Commentaires</button>
+                  <a href="index.php?action=affichArticle&amp;id=<?= $data['id'] ?>"><button type="button" class="btn btn-sm btn-outline-secondary">Commentaires</button></a>
                 </div>
                 <small class="text-muted"><em>le <?= $data['creation_date_fr'] ?></em></small>
                 <small class="text-muted"><em>De la part de : <?= $data['pseudo'] ?></em></small>

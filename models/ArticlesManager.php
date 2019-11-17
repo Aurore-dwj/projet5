@@ -3,7 +3,7 @@ namespace OpenClass;
 require 'vendor/autoload.php';
 
 use OpenClass\{Manager, Pagination};
-use Control\{ControllerAccueil, ControllerUser, ControllerAdmin};
+use Control\{ControllerUser, ControllerAdmin};
 
 
 
@@ -98,6 +98,19 @@ class ArticlesManager extends Manager
 
 		return $req;
 	}
+
+	public function getArticles($idArticle) // méthode de récupération chapitre par id
+	{
+		
+		$db = $this->dbConnect();
+		$req = $db->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM articles WHERE id = ?');
+		$req->execute(array($idArticle));
+		$post = $req->fetch();
+
+		return $post;
+	
+	}
+
 
 
 
