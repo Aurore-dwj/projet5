@@ -8,7 +8,7 @@
    <h3><a href="index.php">Accueil</a></h3>
    <h3><a href="index.php?action=listArticlesAdmin">Articles</a></h3>
    <h3><a href="index.php?action=getArticlesAdmin&amp;signalement=1">Articles signalés</a></h3>
-   <h3><a href="index.php?action=signalArticle&amp;signalement=1">Commentaires signalés</a></h3>
+   <h3><a href="index.php?action=getCommentAdmin&amp;signalement=1">Commentaires signalés</a></h3>
    <br/>
    <!--formulaire pour taper un nouvel article-->
   <h3>Rédaction Articles : </h3>

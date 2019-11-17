@@ -223,6 +223,19 @@ class ControllerUser
 		}
 	}
 
+	public function signalCommentUser($commentId)// signale un article
+	{
+		$commentManager = new CommentsManager();
+		$signal = $commentManager->signalement($commentId);
+
+	if($signal === false) {
+		die('<p style= "border: 1px solid red; text-align: center; font-size: 55px; margin: 90px 90px 90px;">Oups... Impossible de signaler !</p>');
+	}else{ 
+		header('Location: index.php?action=listArticlesUser');
+
+		}
+	}
+
 
 
 

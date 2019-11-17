@@ -245,9 +245,37 @@ try {
                 }
               }
             }
+
+            if (isset($_GET['action'])) { //récupère commentaires signalés
+              if ($_GET['action'] == 'getCommentAdmin') {
+                if (!isset($_SESSION['droits']) || ($_SESSION['droits'] == 0)) {//CONDITION DE SECURITE POUR EVITER DE POUVOIR ACCEDER A L'ADMIN PAR L'URL
+              header('Location: index.php');
+                }else{
+                  if (isset($_GET['signalement']) && $_GET['signalement'] == '1') {
+                    $controlleradmin = new ControllerAdmin(); 
+                    $comments = $controlleradmin->getCommentAdmin($_GET['signalement']);
+                    }else{ 
+                      throw new Exception('Oups....erreur de désignalement !');
+                      }
+                    }
+                  }
+                }
+
+            if (isset($_GET['action'])) { //signale un commentaire
+              if ($_GET['action'] == 'signalCommentUser') {
+                if ((isset($_GET['id'])) && (!empty($_GET['id']))){
+                  $controlleruser = new ControllerUser(); 
+                  $signale = $controlleruser->signalCommentUser($_GET['id']);
+            
+                  }else{
+                    throw new Exception('Oups....erreur de signalement !');
+                    }
+                  }
+                }
+
           
 
-      if (isset($_GET['action'])) { //affiche un chapitre à modifier ou à supprimer Admin
+      if (isset($_GET['action'])) { //affiche un article à modifier ou à supprimer Admin
         if ($_GET['action'] == 'articAdmin') {
           if (!isset($_SESSION['droits']) || ($_SESSION['droits'] == 0)) {
             header('Location: index.php');

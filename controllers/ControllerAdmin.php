@@ -67,12 +67,12 @@ class ControllerAdmin
 
 
 	public function getArticlesAdmin() //fonction récupère les articles signalés
-{ 	
+	{ 	
 	$articleManager = new ArticlesManager();
 	$artic = $articleManager->getArticlesSignal($_GET['signalement']);
-	
+	//die(var_dump($artic));
 	require('views/backend/signalArticle.php');
-}
+	}
 
 	public function modifierArticle($title, $content, $postId)
 	{
@@ -93,7 +93,15 @@ class ControllerAdmin
 	}
 	
 	require('views/backend/signalArticle.php');
-}
+	}
+
+	public function getCommentAdmin() //fonction récupère les commentaires signalés
+	{ 	
+	$commentsManager = new CommentsManager();
+	$comments = $commentsManager->getCommentSignal($_GET['signalement']);
+	 //die(var_dump($comments));
+	require('views/backend/signalComment.php');
+	}
 
 
 

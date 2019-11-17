@@ -1,12 +1,7 @@
 <?php $title = 'Commentaire histoire'; ?>
 <?php ob_start();?>
 
-<?php
-//$data = $artic;
-  // while ($data = $artic->fetch())
-  //{
-
-    ?>  
+   
       <div class=".row-md-3">
         <div class=".col-md-3">
           <div class="card mb-3 shadow-sm">
@@ -16,19 +11,15 @@
               <div class="d-flex justify-content-between align-items-center">
                 
                 <small class="text-muted"><em>le <?= $artic['creation_date_fr'] ?></em></small>
-              
+      
               </div>
             </div>
           </div>
         </div>
       </div>
-    
+  
        
-  <?php
-//}
- //$artic->closeCursor(); 
- ?>
-
+ 
   <?php  if(isset($_SESSION['id'])) { ?> 
  <div align="center"><br>
   <div class="commentaires" >
@@ -62,17 +53,19 @@
                 <p><?= nl2br(htmlspecialchars($comment['content'])) ?></p>
                 <p><em>De la part de : </em><?= $comment['pseudo'] ?></p>
                 <?php  if(isset($_SESSION['id'])) { ?>
-                  <a href="index.php?action=signal&amp;id=<?=$comment['id'] ?>"><button type="submit"class="btn btn-secondary">Signaler ce commentaire !</button></a><br><br>
+                  <a href="index.php?action=signalCommentUser&amp;id=<?=$comment['id'] ?>"><button type="submit"class="btn btn-secondary">Signaler ce commentaire !</button></a><br><br>
                   <?php
                 }else{
                   echo '<p class="error">Pour signaler un commentaire, veuillez vous connecter !</p>
                   <p><a href="index.php?action=displFormulContact">Pas encore insrit ?</a></p>'; 
                 }
+
                 ?>
               </div>
             </div>
               <?php
             }
+            $comments->closeCursor(); 
             ?>
           </div>
         </div>
