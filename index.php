@@ -210,7 +210,7 @@ try {
           if(!empty(trim($_POST['title'])) AND !empty(trim($_POST['content'])))
           {         
             $redacArticle = new ControllerUser(); 
-            $aff = $redacArticle->redacArticlesUser($idRubrique,$idUser,$title,$content);
+            $aff = $redacArticle->redacArticlesUser($idRubrique, $idUser, $title, $content);
           }else{
             throw new Exception('Vous n\'avez pas saisi d\'article !');
           }             
