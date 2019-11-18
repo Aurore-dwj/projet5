@@ -21,9 +21,9 @@ class ArticlesManager extends Manager
 
 	public function getArticlesAdmin($depart, $articlesparp) // méthode de récupération articles
 	{
-		
+		 
 		$db = $this->dbConnect();
-		$articles = $db->query('SELECT articles.id, membres.pseudo, articles.title, articles.content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM articles INNER JOIN membres ON articles.id_user = membres.id ORDER BY creation_date DESC LIMIT 0, 50');
+		$articles = $db->query('SELECT rubriques.id, rubriques.libele, articles.id, membres.pseudo, articles.title, articles.content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM articles INNER JOIN membres ON articles.id_user = membres.id INNER JOIN rubriques ON articles.id_rubrique = rubriques.id ORDER BY creation_date DESC LIMIT 0, 50');
 		return $articles;
 	}
 
@@ -40,7 +40,7 @@ class ArticlesManager extends Manager
 	public function getArticlesUser($depart, $articlesparp) // méthode de récupération articles user
 	{
 		$db = $this->dbConnect();
-		$articles = $db->query('SELECT articles.id, membres.pseudo, articles.title, articles.content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM articles INNER JOIN membres ON articles.id_user = membres.id WHERE id_rubrique = 1 ORDER BY creation_date DESC LIMIT 0, 50');
+		$articles = $db->query('SELECT rubriques.id, rubriques.libele, articles.id, membres.pseudo, articles.title, articles.content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM articles INNER JOIN membres ON articles.id_user = membres.id INNER JOIN rubriques ON articles.id_rubrique = rubriques.id ORDER BY creation_date DESC LIMIT 0, 50');
 		return $articles;
 		
 	}
