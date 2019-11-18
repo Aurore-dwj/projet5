@@ -14,6 +14,12 @@
   <h3>Rédaction Articles : </h3>
 
   <form class="form"method="post" action="index.php?action=redacArticles&amp;id= ">
+    <p>Choisissez une rubrique :</p>
+    <select name="id_rubrique">
+      <option value="1">Histoire</option>
+      <option value="2">Caractère</option>
+      <option value="3">Entretien</option>
+    </select>
    <input type="text" placeholder="title" id="title" name="title" /><br><br><br>
    <textarea class="mytextarea" name="content"  rows="5" cols="50" placeholder="Votre message"></textarea><br>
    <button type="submit" name="envoi_article"class="btn btn-primary">Envoyer article !</button><br><br>

@@ -8,10 +8,10 @@ use Control\{ControllerAccueil, ControllerUser};
 
 class ControllerAdmin
 {
-	public function redacArticles($idUser, $title, $content)
+	public function redacArticles($idRubrique, $idUser, $title, $content)
 	{
 		$articleEdit = new ArticlesManager();//création objet ArticlesManager
-		$createarticle = $articleEdit->postArticle($idUser, $title, $content);//retour modèle fonction postChapitre
+		$createarticle = $articleEdit->postArticle($idRubrique, $idUser, $title, $content);//retour modèle fonction postChapitre
 	
 	if($createarticle === false) {
 		die('<p style= "border: 1px solid red; text-align: center; font-size: 55px; margin: 90px 90px 90px;">Impossible d \'ajouter un article...');//condition si false on arrête le script

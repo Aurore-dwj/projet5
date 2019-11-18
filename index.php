@@ -162,15 +162,16 @@ try {
 
     if (isset($_GET['action'])) { // rédation nouvel article admin
       if ($_GET['action'] == 'redacArticles') {
-        if (isset($_POST['envoi_article']) AND isset($_SESSION['id']) AND isset($_POST['title']) AND isset($_POST['content'])) 
+        if (isset($_POST['envoi_article']) AND isset($_POST['id_rubrique']) AND isset($_SESSION['id']) AND isset($_POST['title']) AND isset($_POST['content'])) 
         {
           $title = ($_POST['title']);
           $content = ($_POST['content']);
           $idUser = ($_SESSION['id']);
+          $idRubrique = ($_POST['id_rubrique']);
           if(!empty(trim($_POST['title'])) AND !empty(trim($_POST['content'])))
           {         
             $redacArticle = new ControllerAdmin(); 
-            $aff = $redacArticle->redacArticles($idUser,$title,$content);
+            $aff = $redacArticle->redacArticles($idRubrique,$idUser,$title,$content);
           }else{
             throw new Exception('Vous n\'avez pas saisi d\'article !');
           }             

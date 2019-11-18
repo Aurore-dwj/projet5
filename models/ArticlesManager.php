@@ -9,11 +9,11 @@ use Control\{ControllerUser, ControllerAdmin};
 
 class ArticlesManager extends Manager
 {
-	public function postArticle($idUser, $title, $content) // insertion article à la db
+	public function postArticle($idRubrique, $idUser, $title, $content) // insertion article à la db
 	{
 		$db = $this->dbConnect();
-		$inserarticle = $db->prepare('INSERT INTO articles(id_user, title, content, creation_date) VALUES (?, ?, ?, NOW())');
-        $article = $inserarticle->execute(array($idUser, $title, $content));
+		$inserarticle = $db->prepare('INSERT INTO articles(id_rubrique, id_user, title, content, creation_date) VALUES (?, ?, ?, ?, NOW())');
+        $article = $inserarticle->execute(array($idRubrique, $idUser, $title, $content));
 		
 		return $article;
 
