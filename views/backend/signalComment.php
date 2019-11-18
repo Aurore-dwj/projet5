@@ -20,8 +20,8 @@
          <p><em>Le : <?= $data['comment_date_fr'] ?></em></p>
        
          <p><?= nl2br(($data['content'])) ?></p><br>
-         <a href="index.php?action=supprimerArticle&amp;id=<?=$data['id'] ?>"><button type="submit" name="supprimerArticle"class="btn btn-secondary">Supprimer le commentaire</button></a>
-         <a href="index.php?action=designalArticle&amp;id=<?=$data['id'] ?>"><button type="submit" name="designalArticle" class="btn btn-secondary">Désignaler le commentaire</button></a><br><br>
+         <a href="index.php?action=supprimerCommentaire&amp;id=<?=$data['id'] ?>"><button type="submit" name="supprimerCommentaire"class="btn btn-secondary">Supprimer le commentaire</button></a>
+         <a href="index.php?action=designalCommentaire&amp;id=<?=$data['id'] ?>"><button type="submit" name="designalCommentaire" class="btn btn-secondary">Désignaler le commentaire</button></a><br><br>
        </div>
        <?php
     }

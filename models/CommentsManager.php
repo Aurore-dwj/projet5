@@ -42,5 +42,22 @@ class CommentsManager extends Manager
 		$comments->execute(array($signalement));
 		return $comments;
 	}
+
+	public function deSignal($commentId) //désignale un commentaire (admin)
+	{
+		$db = $this->dbConnect();
+		$req = $db->prepare('UPDATE avis SET signalement = 0 WHERE id = ?');
+		$req->execute(array($commentId));
+
+		return $req;
+	}
+
+	public function deleteComment($commentId) //supprime un commentaire (admin)
+	{ 
+        $db = $this->dbConnect();
+        $req = $db->prepare('DELETE FROM avis WHERE id = ?');
+        $req->execute(array($commentId));
+       	return $req;
+    }
 	
 }

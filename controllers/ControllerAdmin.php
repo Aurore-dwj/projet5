@@ -103,6 +103,32 @@ class ControllerAdmin
 	require('views/backend/signalComment.php');
 	}
 
+	public function designalCommentaire($commentId) //fonction modification commentaires signalés
+	{ 	
+	$commentsManager = new CommentsManager();
+	$designale = $commentsManager->deSignal($commentId);
+
+	if($designale === false) {
+		die('<p style= "border: 1px solid red; text-align: center; font-size: 55px; margin: 90px 90px 90px;">Oups... Impossible de designaler le commentaire!</p>');
+	}else{ 
+		header('Location: index.php?action=getCommentAdmin&signalement=1');
+	}
+	
+	require('views/backend/signalComment.php');
+	}
+
+	public function supprimerCommentaire($commentId)// supprimme l'article
+	{
+		$supprime = new CommentsManager();
+		$deletedComment = $supprime->deleteComment($commentId);
+
+		if($deletedComment === false) {
+		die('<p style= "border: 1px solid red; text-align: center; font-size: 55px; margin: 90px 90px 90px;"> Impossible de supprimer un article...</p>');
+		}else{
+		header('Location: index.php?action=listArticlesAdmin');
+		}
+	}
+
 
 
 
