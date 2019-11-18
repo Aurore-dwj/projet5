@@ -152,10 +152,10 @@ class ControllerUser
 	require('views/frontend/redacArticleUser.php');
 	}
 
-	public function redacArticlesUser($idUser, $title, $content)
+	public function redacArticlesUser($idRubrique, $idUser, $title, $content)
 	{
 		$articleEdit = new ArticlesManager();
-		$createarticle = $articleEdit->postArticlesUser($idUser, $title, $content);
+		$createarticle = $articleEdit->postArticlesUser($idRubrique, $idUser, $title, $content);
 	
 	if($createarticle === false) {
 		die('<p style= "border: 1px solid red; text-align: center; font-size: 55px; margin: 90px 90px 90px;">Impossible d \'ajouter un article...');

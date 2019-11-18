@@ -59,7 +59,7 @@ class ControllerAdmin
 		$deletedarticle = $supprime->deletArticle($dataId);
 
 		if($deletedarticle === false) {
-		die('<p style= "border: 1px solid red; text-align: center; font-size: 55px; margin: 90px 90px 90px;"> Impossible de supprimer un article...</p>');
+		die('<p style= "border: 1px solid red; text-align: center; font-size: 55px; margin: 90px 90px 90px;"> Impossible de supprimer cet article...</p>');
 		}else{
 		header('Location: index.php?action=listArticlesAdmin');
 		}
@@ -87,7 +87,7 @@ class ControllerAdmin
 	$designale = $articleManager->deSignal($articId);
 
 	if($designale === false) {
-		die('<p style= "border: 1px solid red; text-align: center; font-size: 55px; margin: 90px 90px 90px;">Oups... Impossible de designaler le commentaire!</p>');
+		die('<p style= "border: 1px solid red; text-align: center; font-size: 55px; margin: 90px 90px 90px;">Oups... Impossible de designaler cet article!</p>');
 	}else{ 
 		header('Location: index.php?action=getArticlesAdmin&signalement=1');
 	}
@@ -123,7 +123,7 @@ class ControllerAdmin
 		$deletedComment = $supprime->deleteComment($commentId);
 
 		if($deletedComment === false) {
-		die('<p style= "border: 1px solid red; text-align: center; font-size: 55px; margin: 90px 90px 90px;"> Impossible de supprimer un article...</p>');
+		die('<p style= "border: 1px solid red; text-align: center; font-size: 55px; margin: 90px 90px 90px;"> Impossible de supprimer ce commentaire...</p>');
 		}else{
 		header('Location: index.php?action=listArticlesAdmin');
 		}

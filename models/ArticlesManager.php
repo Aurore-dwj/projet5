@@ -27,11 +27,11 @@ class ArticlesManager extends Manager
 		return $articles;
 	}
 
-	public function postArticlesUser($idUser, $title, $content) // insertion article user à la db
+	public function postArticlesUser($idRubrique, $idUser, $title, $content) // insertion article user à la db
 	{
 		$db = $this->dbConnect();
-		$inserarticle = $db->prepare('INSERT INTO articles(id_user, title, content, creation_date) VALUES (?, ?, ?, NOW())');
-        $article = $inserarticle->execute(array($idUser, $title, $content));
+		$inserarticle = $db->prepare('INSERT INTO articles(id_rubrique, id_user, title, content, creation_date) VALUES (?, ?, ?, ?, NOW())');
+        $article = $inserarticle->execute(array($idRubrique, $idUser, $title, $content));
 		
 		return $article;
 
@@ -40,7 +40,7 @@ class ArticlesManager extends Manager
 	public function getArticlesUser($depart, $articlesparp) // méthode de récupération articles user
 	{
 		$db = $this->dbConnect();
-		$articles = $db->query('SELECT articles.id, membres.pseudo, articles.title, articles.content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM articles INNER JOIN membres ON articles.id_user = membres.id ORDER BY creation_date DESC LIMIT 0, 50');
+		$articles = $db->query('SELECT articles.id, membres.pseudo, articles.title, articles.content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM articles INNER JOIN membres ON articles.id_user = membres.id WHERE id_rubrique = 1 ORDER BY creation_date DESC LIMIT 0, 50');
 		return $articles;
 		
 	}
