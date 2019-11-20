@@ -11,9 +11,9 @@
         <div class="col-sm-4 offset-md-1 py-4">
           <h4 class="text-white">Catégories</h4>
           <ul class="list-unstyled">
-            <li><a href="#" class="text-white">Histoire</a></li>
-            <li><a href="#" class="text-white">Caractère</a></li>
-            <li><a href="#" class="text-white">Entretien</a></li>
+            <li><a href="index.php?action=listArticlesUser1" class="text-white">Histoire</a></li>
+            <li><a href="index.php?action=listArticlesUser2" class="text-white">Caractère</a></li>
+            <li><a href="index.php?action=listArticlesUser3" class="text-white">Entretien</a></li>
           </ul>
         </div>
       </div>
@@ -22,8 +22,13 @@
   <div class="navbar navbar-dark bg-dark shadow-sm">
     <div class="container d-flex justify-content-between">
       <a href="#" class="navbar-brand d-flex align-items-center">
-        
-        <strong>Articles Histoire</strong>
+        <?php
+$data = $artic;
+   while ($data = $artic->fetch())
+   {
+
+    ?>  
+        <strong>Catégorie : <?= $data['libele'] ?></strong>
       </a>
       <?php  if(isset($_SESSION['id'])) : ?> 
       <a href="index.php?action=userViewConnect">Retour rédac</a>
@@ -37,18 +42,7 @@
   </div>
 </header>
 
-
-
-  
-  
-  
-<?php
-$data = $artic;
-   while ($data = $artic->fetch())
-   {
-
-    ?>  
-      <div class=".row-md-3">
+<div class=".row-md-3">
         <div class=".col-md-3">
           <div class="card mb-3 shadow-sm">
             <svg class="bd-placeholder-img card-img-top" width="100%" height="75" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>liste articles histoire Admin</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"><?=($data['title']) ?></text></svg>
@@ -69,8 +63,8 @@ $data = $artic;
     
        
   <?php
- }
- $artic->closeCursor(); 
+}
+$artic->closeCursor(); 
  ?>
 
 <nav aria-label="Page navigation example">

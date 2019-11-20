@@ -41,7 +41,7 @@ class ControllerAdmin
 			}
 			$depart = ($pageCourante-1)*$articlesparp;
 			$artic = $articlesManager->getArticlesAdmin($depart, $articlesparp);
-			require('views/backend/listArticlesHistoireAdmin.php');
+			require('views/backend/listArticlesAdmin.php');
 			//die(var_dump($artic));
 	}
 

@@ -21,9 +21,7 @@
           </a>
         </li>
         <?php if(isset($_SESSION['pseudo'])) : ?>
-        <li class="nav-item"><a class="nav-link" href="#">Météo</a></li>
-        <li class="nav-item"><a class="nav-link" href="index.php?action=affProfil&amp;id=<?=$_SESSION['id'] ?>">Profil</a></li>
-      </li>
+      <li class="nav-item"><a class="nav-link" href="index.php?action=affProfil&amp;id=<?=$_SESSION['id'] ?>">Profil</a></li>
       <li class="nav-item"><a class="nav-link" href="index.php?action=deconnexion">Déconnexion</a></li>
       <?php if($_SESSION['droits'] == 1) : ?>
       <li class="nav-item">
@@ -43,7 +41,7 @@
   <main role="main">
     <div class="jumbotron">
       <div class="container">
-        <h1 class="titre">Yam 1300XJR une bécane de légende...</h1>
+        <h1 class="titre">Yam 1300XJR une moto de légende...</h1>
         <h5 class="titre">
           Ce gros roaster au catalogue Yamaha depuis plus de 20 ans méritait bien un petit blog...
         </h5>
@@ -60,7 +58,7 @@
             Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh. 
           </p>
           <p>
-            <a class="btn btn-secondary" href="index.php?action=listArticlesUser" role="button">Articles</a>
+            <a class="btn btn-secondary" href="index.php?action=listArticlesUser&amp;idRubrique=1" role="button">Articles</a>
           </p>
         </div>
         <div class="col-md-4">
@@ -69,7 +67,7 @@
             Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh. 
           </p>
           <p>
-            <a class="btn btn-secondary" href="views/frontend/listArticlesCaracteres.php" role="button">Articles</a>
+            <a class="btn btn-secondary" href="index.php?action=listArticlesUser&amp;idRubrique=2" role="button">Articles</a>
           </p>
         </div>
         <div class="col-md-4">
@@ -78,7 +76,7 @@
             Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. 
           </p>
           <p>
-            <a class="btn btn-secondary" href="views/frontend/listArticlesEntretien.php" role="button">Articles</a>
+            <a class="btn btn-secondary" href="index.php?action=listArticlesUser&amp;idRubrique=3" role="button">Articles</a>
           </p>
         </div>
       </div>

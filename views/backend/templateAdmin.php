@@ -33,7 +33,7 @@ language_url: 'https://olli-suutari.github.io/tinyMCE-4-translations/fr_FR.js', 
 <body>
   <header>
    <div class="container">
-      <h1>XJR une bécane de légende...</h1>
+      <h1>XJR une moto de légende...</h1>
    </div>
 </header>
 

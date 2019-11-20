@@ -1,7 +1,9 @@
 h1, h2{
 	color: #760001;
 }
-
+h3{
+	color: grey;
+}
 p{
 	font-size: 20px;
 	color: grey;
@@ -38,3 +40,20 @@ p{
 	 border: 1px solid #181818;
 	 border-radius: 10%;
 }
+
+i.wi {
+	font-size: 5em;
+	line-height: 115px;
+	color: #760001;
+}
+
+.vuChapComment{
+	margin-top: 15px;
+
+}
+#ville{
+	border: 1px solid #760001;
+	border-radius: 5px;
+}
+}
+

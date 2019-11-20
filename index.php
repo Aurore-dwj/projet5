@@ -204,8 +204,8 @@ try {
       if ($_GET['action'] == 'redacArticlesUser') {
         if (isset($_POST['envoi_article']) AND isset($_POST['id_rubrique']) AND isset($_SESSION['id']) AND isset($_POST['title']) AND isset($_POST['content'])) 
         {
-          $title = ($_POST['title']);
-          $content = ($_POST['content']);
+          $title = htmlspecialchars($_POST['title']);
+          $content = htmlspecialchars($_POST['content']);
           $idUser = ($_SESSION['id']);
           $idRubrique = ($_POST['id_rubrique']);
           if(!empty(trim($_POST['title'])) AND !empty(trim($_POST['content'])))
@@ -217,13 +217,18 @@ try {
           }             
         }
       }
-    }
+    } 
 
-    if (isset($_GET['action'])) { //affichage liste des articles user
-      if ($_GET['action'] == 'listArticlesUser') {
-       $listarticles = new ControllerUser(); 
-       $list= $listarticles->listArticlesUser(); 
-         }elseif ($_GET['action'] == 'affichArticle') { //fonction de récupération d'1 articleET ses commentaires
+                                                      
+      if($_GET['action'] == 'listArticlesUser') {//affichage liste des articles user histoire
+       if(isset($_GET['id_rubrique']) AND isset($_POST['depart']) AND isset($_POST['articlesparp'])) {
+        $idRubrique = ($_GET['id_rubrique']);
+        $depart = ($_POST['depart']);
+        $articlesparp = ($_POST['articlesparp']);
+       $listarticles = new ControllerUser();
+       $list= $listarticles->listArticlesUser($idRubrique, $depart, $articlesparp); 
+         }
+         if ($_GET['action'] == 'affichArticle') { //affiche un article 
          if (isset($_GET['id']) && $_GET['id'] > 0) {
           $article = new ControllerUser(); 
           $afficheMoiLarticle = $article->affichArticle(); 
@@ -235,16 +240,19 @@ try {
         elseif ($_GET['action'] == 'addComment') { //ajout d'un commentaire
         if (isset($_GET['id']) && $_GET['id'] > 0) {
          if(!empty($_GET['id']) && ($_POST['content'])) {
+          $content = htmlspecialchars($_POST['content'])
           $controlleruser = new ControllerUser();
           $addcomment = $controlleruser->addComment($_GET['id'], $_SESSION['id'], $_POST['content']);
-        }else{
-          throw new Exception('Oups... Tous les champs ne sont pas remplis !');
+          }else{
+            throw new Exception('Oups... Tous les champs ne sont pas remplis !');
+            }
+          }else{
+            throw new Exception('Oups... Aucun identifiant article !');
         }
-      }else{
-        throw new Exception('Oups... Aucun identifiant article !');
       }
     }
-  }
+  
+   
 
             if (isset($_GET['action'])) { //récupère et affiche les commentaires signalés
               if ($_GET['action'] == 'getCommentAdmin') {

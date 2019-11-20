@@ -164,7 +164,7 @@ class ControllerUser
 		}
 	}
 
-	public function listArticlesUser() // liste articles admin
+	public function listArticlesUser($idRubrique, $depart, $articlesparp) // liste articles admin
 	{
 		$articlesManager = new ArticlesManager();
 		$pagination = new Pagination();
@@ -179,10 +179,12 @@ class ControllerUser
    			$pageCourante = 1;
 			}
 			$depart = ($pageCourante-1)*$articlesparp;
-			$artic = $articlesManager->getArticlesUser($depart, $articlesparp);
-			require('views/frontend/listArticlesHistoire.php');
+			$artic = $articlesManager->getArticlesUser($idRubrique,$depart, $articlesparp);
+			require('views/frontend/listArticlesUser.php');
 			//die(var_dump($artic));
 	}
+
+	
 
 	public function signalerArticleUser($articId)// signale un article
 	{
@@ -192,12 +194,12 @@ class ControllerUser
 	if($signal === false) {
 		die('<p style= "border: 1px solid red; text-align: center; font-size: 55px; margin: 90px 90px 90px;">Oups... Impossible de signaler !</p>');
 	}else{ 
-		header('Location: index.php?action=listArticlesUser');
+		header('Location: index.php');
 
 		}
 	}
 
-	public function affichArticle()
+	public function affichArticle() // affiche un article et ses commentaires rattachés
 	{
 		$articlesManager = new ArticlesManager();
 		$commentsManager = new CommentsManager();
@@ -209,6 +211,7 @@ class ControllerUser
 
 	}
 
+	
 	public function addComment($idArticle, $idMembre, $content) //ajout commentaire
 	{
 	$commentsManager = new CommentsManager();
@@ -231,7 +234,7 @@ class ControllerUser
 	if($signal === false) {
 		die('<p style= "border: 1px solid red; text-align: center; font-size: 55px; margin: 90px 90px 90px;">Oups... Impossible de signaler !</p>');
 	}else{ 
-		header('Location: index.php?action=listArticlesUser');
+		header('Location: index.php');
 
 		}
 	}
