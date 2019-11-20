@@ -240,7 +240,7 @@ try {
         elseif ($_GET['action'] == 'addComment') { //ajout d'un commentaire
         if (isset($_GET['id']) && $_GET['id'] > 0) {
          if(!empty($_GET['id']) && ($_POST['content'])) {
-          $content = htmlspecialchars($_POST['content'])
+         
           $controlleruser = new ControllerUser();
           $addcomment = $controlleruser->addComment($_GET['id'], $_SESSION['id'], $_POST['content']);
           }else{

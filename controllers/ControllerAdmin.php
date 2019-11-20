@@ -27,12 +27,12 @@ class ControllerAdmin
 
 	public function listArticlesAdmin() // liste articles admin
 	{
-		$articlesManager = new ArticlesManager();
+		
 		$pagination = new Pagination();
-		$articlesparp = 4;
+		$articlesparp = 2;
 		$nombredarticles = $pagination->getArticlesPagination();
 		$totalpages = $pagination->getArticlesPages($nombredarticles, $articlesparp);
-		//die(var_dump($totalpages));
+		//die(var_dump($nombredarticles));
 		if(isset($_GET['page']) AND !empty($_GET['page']) AND $_GET['page'] > 0 AND $_GET['page'] <= $totalpages) {
    			$_GET['page'] = intval($_GET['page']);
    			$pageCourante = $_GET['page'];
@@ -40,9 +40,12 @@ class ControllerAdmin
    			$pageCourante = 1;
 			}
 			$depart = ($pageCourante-1)*$articlesparp;
+
+			$articlesManager = new ArticlesManager();
 			$artic = $articlesManager->getArticlesAdmin($depart, $articlesparp);
-			require('views/backend/listArticlesAdmin.php');
 			//die(var_dump($artic));
+			require('views/backend/listArticlesAdmin.php');
+			
 	}
 
 	public function articAdmin()// get article à modifier

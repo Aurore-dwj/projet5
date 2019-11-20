@@ -33,15 +33,10 @@
   </div>
 </header>
 
-
-
-  
-  
-  
 <?php
 $data = $artic;
-   while ($data = $artic->fetch())
-   {
+  while ($data = $artic->fetch())
+ {
 
     ?>  
       <div class=".row-md-3">
@@ -69,20 +64,18 @@ $data = $artic;
  $artic->closeCursor(); 
  ?>
 
-<nav aria-label="Page navigation example">
-  <ul class="pagination justify-content-center">
-    <li class="page-item disabled">
-      <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#">Next</a>
-    </li>
-  </ul>
-</nav>
+<div align="center">
+<?php
+      for($i=1;$i<=$totalpages;$i++) {
+         if($i == $pageCourante) {
+          echo $i.'&nbsp;&nbsp;';
+         } else {
+            echo '<a href="index.php?action=listArticlesAdmin&amp;page='.$i.'"> '.$i.'</a>&nbsp;&nbsp;';
+         }
+      }
+      ?>
+
+</div>
 
 <?php $content = ob_get_clean(); ?>
 <?php require('templateAdmin.php'); ?>
-

@@ -215,7 +215,7 @@ class ControllerUser
 	public function addComment($idArticle, $idMembre, $content) //ajout commentaire
 	{
 	$commentsManager = new CommentsManager();
-
+	$content= htmlspecialchars($content);
 	$affectedLines = $commentsManager->postComment($idArticle, $_SESSION['id'], $content);
 	
 	if ($affectedLines === false){ //si le commentaire n'arrive pas à la bdd...
