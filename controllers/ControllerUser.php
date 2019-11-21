@@ -164,7 +164,7 @@ class ControllerUser
 		}
 	}
 
-	public function listArticlesUser($idRubrique, $depart, $articlesparp) // liste articles admin
+	public function listArticlesUser($idRubrique) // liste articles admin
 	{
 		$articlesManager = new ArticlesManager();
 		$pagination = new Pagination();
@@ -183,8 +183,6 @@ class ControllerUser
 			require('views/frontend/listArticlesUser.php');
 			//die(var_dump($artic));
 	}
-
-	
 
 	public function signalerArticleUser($articId)// signale un article
 	{

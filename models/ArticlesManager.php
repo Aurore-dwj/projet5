@@ -19,13 +19,12 @@ class ArticlesManager extends Manager
 
 	}
 
-	public function getArticlesAdmin($depart, $articlesparp) // méthode de récupération articles
+	public function getArticlesAdmin($depart, $articlesparp) // méthode de récupération articles 
 	{
 		 
 		$db = $this->dbConnect();
 		$artic = $db->query('SELECT rubriques.id, rubriques.libele, articles.id, membres.pseudo, articles.title, articles.content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM articles INNER JOIN membres ON articles.id_user = membres.id INNER JOIN rubriques ON articles.id_rubrique = rubriques.id ORDER BY creation_date DESC LIMIT '. $depart. ',' . $articlesparp);
 		
-	
 		return $artic;
 	}
 
@@ -95,33 +94,27 @@ class ArticlesManager extends Manager
 		return $req;
 	}
 
-	public function getArticles($idArticle, $idCategorie) // méthode de récupération chapitre par id
+	public function getArticles($idArticle) // méthode de récupération chapitre par id
 	{
 		
 		$db = $this->dbConnect();
-		$req = $db->prepare('SELECT id, id_rubrique, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM articles WHERE id = ? WHERE id_rubrique = ?');
-		$req->execute(array($idArticle, $idCategorie));
+		$req = $db->prepare('SELECT id, id_rubrique, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM articles WHERE id = ?');
+		$req->execute(array($idArticle));
 		$post = $req->fetch();
 
 		return $post;
 	
 	}
 
-	public function getArticlesUser($idRubrique, $depart, $articlesparp) // méthode de récupération articles user
+	public function getArticlesUser($idRubrique, $depart, $articlesparp) // méthode de récupération articles
 	{
+		 
 		$db = $this->dbConnect();
-		$articles = $db->prepare('SELECT rubriques.id, rubriques.libele, articles.id, membres.pseudo, articles.title, articles.content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM articles INNER JOIN membres ON articles.id_user = membres.id INNER JOIN rubriques ON articles.id_rubrique = rubriques.id WHERE id_rubrique = ? ORDER BY creation_date DESC LIMIT 0,50');
-		$articles->execute(array($idRubrique, $depart, $articlesparp));
-		
-		return $articles;
-		
-	}
-
+		$artic = $db->prepare('SELECT rubriques.id, rubriques.libele, articles.id, membres.pseudo, articles.title, articles.content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM articles INNER JOIN membres ON articles.id_user = membres.id INNER JOIN rubriques ON articles.id_rubrique = rubriques.id WHERE id_rubrique = ? ORDER BY creation_date DESC LIMIT '. $depart. ',' . $articlesparp);
+		$artic->execute(array($idRubrique));
 	
-
-
-
-
+		return $artic;
+	}
 
 	
 }

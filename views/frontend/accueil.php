@@ -58,7 +58,7 @@
             Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh. 
           </p>
           <p>
-            <a class="btn btn-secondary" href="index.php?action=listArticlesUser&amp;idRubrique=1" role="button">Articles</a>
+            <a class="btn btn-secondary" href="index.php?action=listArticlesUser&amp;id_rubrique=1" role="button">Articles</a>
           </p>
         </div>
         <div class="col-md-4">
@@ -67,7 +67,7 @@
             Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh. 
           </p>
           <p>
-            <a class="btn btn-secondary" href="index.php?action=listArticlesUser&amp;idRubrique=2" role="button">Articles</a>
+            <a class="btn btn-secondary" href="index.php?action=listArticlesUser&amp;id_rubrique=2" role="button">Articles</a>
           </p>
         </div>
         <div class="col-md-4">
@@ -76,7 +76,7 @@
             Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. 
           </p>
           <p>
-            <a class="btn btn-secondary" href="index.php?action=listArticlesUser&amp;idRubrique=3" role="button">Articles</a>
+            <a class="btn btn-secondary" href="index.php?action=listArticlesUser&amp;id_rubrique=3" role="button">Articles</a>
           </p>
         </div>
       </div>
