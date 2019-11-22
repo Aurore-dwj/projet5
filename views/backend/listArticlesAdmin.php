@@ -11,9 +11,9 @@
         <div class="col-sm-4 offset-md-1 py-4">
           <h4 class="text-white">Catégories</h4>
           <ul class="list-unstyled">
-            <li><a href="index.php?action=listArticlesUser1" class="text-white">Histoire</a></li>
-            <li><a href="index.php?action=listArticlesUser2" class="text-white">Caractère</a></li>
-            <li><a href="index.php?action=listArticlesUser3" class="text-white">Entretien</a></li>
+            <li><a href="index.php?action=listArticlesUser&amp;id_rubrique=1" class="text-white">Histoire</a></li>
+            <li><a href="index.php?action=listArticlesUser&amp;id_rubrique=2" class="text-white">Caractère</a></li>
+            <li><a href="index.php?action=listArticlesUser&amp;id_rubrique=3" class="text-white">Entretien</a></li>
           </ul>
         </div>
       </div>
@@ -23,7 +23,7 @@
     <div class="container d-flex justify-content-between">
       <a href="#" class="navbar-brand d-flex align-items-center">
         
-        <strong>Articles exaustifs</strong>
+        <strong>Liste exaustive articles </strong>
       </a>
       <a href="index.php?action=adminViewConnect">Retour admin</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">

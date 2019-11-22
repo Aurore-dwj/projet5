@@ -11,9 +11,9 @@
         <div class="col-sm-4 offset-md-1 py-4">
           <h4 class="text-white">Catégories</h4>
           <ul class="list-unstyled">
-            <li><a href="index.php?action=listArticlesUser1" class="text-white">Histoire</a></li>
-            <li><a href="index.php?action=listArticlesUser2" class="text-white">Caractère</a></li>
-            <li><a href="index.php?action=listArticlesUser3" class="text-white">Entretien</a></li>
+            <li><a href="index.php?action=listArticlesUser&amp;id_rubrique=1" class="text-white">Histoire</a></li>
+            <li><a href="index.php?action=listArticlesUser&amp;id_rubrique=2" class="text-white">Caractère</a></li>
+            <li><a href="index.php?action=listArticlesUser&amp;id_rubrique=3" class="text-white">Entretien</a></li>
           </ul>
         </div>
       </div>
@@ -31,7 +31,8 @@ $data = $artic;
         <strong>Catégorie : <?= $data['libele'] ?></strong>
       </a>
       <?php  if(isset($_SESSION['id'])) : ?> 
-      <a href="index.php?action=userViewConnect">Retour rédac</a>
+      <a href="index.php?action=userViewConnect">Retour rédac</a>&nbsp;&nbsp;
+      <a href="index.php">Retour accueil</a>
       <?php else: ?>
        <a href="index.php">Retour accueil</a>
        <?php endif ?>
@@ -45,13 +46,13 @@ $data = $artic;
 <div class=".row-md-3">
         <div class=".col-md-3">
           <div class="card mb-3 shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="75" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>liste articles histoire Admin</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"><?=($data['title']) ?></text></svg>
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="75" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>liste articles user</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"><?=($data['title']) ?></text></svg>
             <div class="card-body">
               <p class="card-text"> <?= nl2br($data['content']) ?></p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <a href="index.php?action=signalerArticleUser&amp;id=<?= $data['id'] ?>"><button type="button" class="btn btn-sm btn-outline-secondary">Signaler</button></a>
-                  <a href="index.php?action=affichArticle&amp;id=<?= $data['id'] ?>"><button type="button" class="btn btn-sm btn-outline-secondary">Commentaires</button></a>
+                  <a href="index.php?action=affArticle&amp;id=<?= $data['id'] ?>"><button type="button" class="btn btn-sm btn-outline-secondary">Commentaires</button></a>
                 </div>
                 <small class="text-muted"><em>le <?= $data['creation_date_fr'] ?></em></small>
                 <small class="text-muted"><em>De la part de : <?= $data['pseudo'] ?></em></small>

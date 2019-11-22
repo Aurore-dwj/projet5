@@ -17,7 +17,7 @@ class CommentsManager extends Manager
 		return $comments;
 	}
 
-	public function postComment($idArticle, $idMembre, $content)//insertion des commentaires dans la table comments
+	public function postComment($idArticle, $idMembre, $content)//insertion des commentaires dans la table avis
 	{
 		$db = $this->dbConnect();
 		$comments = $db->prepare('INSERT INTO avis(id_article, id_membre, content, comment_date) VALUES( ?, ?, ?, NOW())');

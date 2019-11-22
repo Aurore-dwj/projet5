@@ -55,5 +55,11 @@ i.wi {
 	border: 1px solid #760001;
 	border-radius: 5px;
 }
+
+.error{
+	color: red;
+	text-align: center;
 }
+
+
 

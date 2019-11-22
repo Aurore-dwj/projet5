@@ -197,15 +197,17 @@ class ControllerUser
 		}
 	}
 
-	public function affichArticle() // affiche un article et ses commentaires rattachés
+	public function affArticle() // affiche un article et ses commentaires rattachés
 	{
 		$articlesManager = new ArticlesManager();
 		$commentsManager = new CommentsManager();
 
-		$artic = $articlesManager->getArticles($_GET['id']);
+		$artic = $articlesManager->getArticle($_GET['id']);
+ 
 		$comments = $commentsManager->getComments($_GET['id']);
 
-	require('views/frontend/commentView.php');
+
+		require('views/frontend/commentView.php');
 
 	}
 
@@ -219,7 +221,7 @@ class ControllerUser
 	if ($affectedLines === false){ //si le commentaire n'arrive pas à la bdd...
 		die('<p style= "border: 1px solid red; text-align: center; font-size: 55px; margin: 90px 90px 90px;">Oups... Impossible d\'ajouter le commentaire !</p>');// on arrête le script avec un die
 
-	}else{header('Location: index.php?action=affichArticle&id=' . $idArticle); // sinon on peut admirer son joli commentaire :)
+	}else{header('Location: index.php?action=affArticle&id=' . $idArticle); // sinon on peut admirer son joli commentaire :)
 
 		}
 	}
