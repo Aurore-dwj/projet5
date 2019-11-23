@@ -1,15 +1,18 @@
-const weatherIcon = { // objet liste d'icon
+const weatherIcons = { // objet liste d'icon
     "Rain": "wi wi-day-rain",
     "Clouds": "wi wi-day-cloudy",
     "Clear": "wi wi-day-sunny",
     "Snow": "wi wi-day-snow",
     "Mist": "wi wi-day-fog",
     "Drizzle": "wi wi-day-sleet",
+     
 }
 
 function capitalize(str) { // capitalise la première lettre du texte
     return str[0].toUpperCase() + str.slice(1); //et on rajoute le reste du tableau à partir de la 2ème lettre
 }
+
+
 
 async function main(withIp = true) { // fonction par défaut: on affiche la ville de l'user avec son ip
 
@@ -28,7 +31,8 @@ async function main(withIp = true) { // fonction par défaut: on affiche la vill
 
         .then(resultat => resultat.json())
         .then(json => json)
-    console.log(meteo);
+        console.log(meteo);
+
     displayWeatherInfos(meteo)
 }
 
@@ -37,12 +41,20 @@ function displayWeatherInfos(data) { // appel des différents items de l'objet..
     const temperature = data.main.temp;
     const conditions = data.weather[0].main;
     const description = data.weather[0].description;
+    const vent = data.wind.speed;
 
+function Km(){ // fonction de conversion noeud en Km/h
+   var x = vent;
+   var y = 1.852;
+   var z = x*y;
+   return z
+}
     document.querySelector('#ville').textContent = name; // ...pour pouvoir les afficher
     document.querySelector('#temperature').textContent = Math.round(temperature); // arrondi le chiffre de température
     document.querySelector('#conditions').textContent = capitalize(description); // capitalise la première lettre
     // affiche l'icon selon les conditions grâce à l'ojbet weatherIcon situé en haut du fichier
-    document.querySelector('i.wi').className = weatherIcon[conditions];
+    document.querySelector('i.wi').className = weatherIcons[conditions];
+    document.querySelector('#vent').textContent = Math.round(Km(vent));
 }
 //initialisation au click du contentEditable pour pouvoir taper le nom de la ville
 ville.addEventListener('click', () => {

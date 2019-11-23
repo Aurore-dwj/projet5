@@ -1,23 +1,28 @@
 <?php $title = 'Affiche le profil'; ?>
 <?php ob_start();?>
 
-<div class="vuChapComment">
-
-   <div align="center">
-      <h1>La météo du motard</h1>
-      <i class="wi"></i><br>
-      <a href="index.php">Accueil </a><br>
+<div id= cont align="center"><br><br>
+<a href="index.php">Accueil </a><br>
       <a href="index.php?action=affInfosUser"> Modifier mes infos perso </a><br><br>
+
+   <div id="meteo" align="center">
+      <h1>La météo du motard</h1><br><br><br>
+      <i class="wi"></i><br><br>
+      
       <h3>
          <span id="ville"></span>
       </h3><br>
+         
+   
+      <p>Vent : <span id="vent"></span> Km/h</p>
 
-      <h3>
-         <span id="temperature"></span> C° (<span id="conditions"></span>)
-      </h3>
-      <h2>
+      <p>Température : <span id="temperature"></span> C° </p>
+      <p>Conditions : <span id="conditions"></span></p>
+   </div>
+   <div id="profil" align="center">  
+      <h1>
          Profil
-      </h2> 
+      </h1> 
 
       <?php
       $data = $allinfos;
@@ -41,7 +46,8 @@
          Mail : <?= $data['mail']; ?>
       </p>
 
-
+   </div>
+</div>
 
       <?php $content = ob_get_clean(); ?>
       <?php require('template.php'); ?>

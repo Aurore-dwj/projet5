@@ -36,7 +36,7 @@ p{
 
 .improfil{
  		
- 	 width: 10%;
+ 	 width: 30%;
 	 border: 1px solid #181818;
 	 border-radius: 10%;
 }
@@ -61,5 +61,23 @@ i.wi {
 	text-align: center;
 }
 
+#cont{
+
+}
+#meteo{
+
+	float: left;
+	width: 50%;
+	left: 2px;
+	height: 500px;
+}
+
+#profil{
+	float: right;
+	width: 50%;
+	right: 2px;
+	margin-top: 60px;
+	height: 500px;
+}
 
 
