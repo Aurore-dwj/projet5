@@ -114,5 +114,14 @@ class ArticlesManager extends Manager
 		return $artic;
 	}
 
-	
+	public function getArticleSignale($idArticle) // méthode de récupération article 
+	{
+		 
+		$db = $this->dbConnect();
+		$req = $db->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM articles WHERE id = ?');
+		$req->execute(array($idArticle));
+		$artic = $req->fetch();
+		return $artic;
+	}
+
 }

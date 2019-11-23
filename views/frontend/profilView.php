@@ -26,6 +26,8 @@ $data = $allinfos;
                     <a href="index.php?action=getAvatar&amp;id=<?=$_SESSION['id'] ?>"><button type="submit" name="getAvatar"class="btn btn-secondary">Ajouter une photo</button></a><br><br>
                 </td>
             </tr>
+        </table>
+    </form>
 
     <form method="POST" action="index.php?action=affInfosUser">
         <table>
@@ -59,7 +61,7 @@ $data = $allinfos;
                 <td></td>
                 <td align="left">
                     <br/>     
-                    <button type="submit"value="Mise à jour profil"class="btn btn-secondary">Je mets à jour mes infos !</button>
+                    <button type="submit" name="affInfosUser"value="Mise à jour profil"class="btn btn-secondary">Je mets à jour mes infos !</button>
                 </td>
             </tr>
         </table>

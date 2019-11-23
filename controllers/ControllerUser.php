@@ -171,7 +171,7 @@ class ControllerUser
 		$articlesparp = 4;
 		$nombredarticles = $pagination->getArticlesPagination();
 		$totalpages = $pagination->getArticlesPages($nombredarticles, $articlesparp);
-		//die(var_dump($totalpages));
+		
 		if(isset($_GET['page']) AND !empty($_GET['page']) AND $_GET['page'] > 0 AND $_GET['page'] <= $totalpages) {
    			$_GET['page'] = intval($_GET['page']);
    			$pageCourante = $_GET['page'];
@@ -181,7 +181,16 @@ class ControllerUser
 			$depart = ($pageCourante-1)*$articlesparp;
 			$artic = $articlesManager->getArticlesUser($idRubrique,$depart, $articlesparp);
 			require('views/frontend/listArticlesUser.php');
-			//die(var_dump($artic));
+			
+	}
+
+	public function articleSignale() // liste articles exaustive user
+	{
+		$articlesManager = new ArticlesManager();
+		
+		$artic = $articlesManager->getArticleSignale($_GET['id']);
+		require('views/frontend/articleSignale.php');
+			
 	}
 
 	public function signalerArticleUser($articId)// signale un article
@@ -192,7 +201,7 @@ class ControllerUser
 	if($signal === false) {
 		die('<p style= "border: 1px solid red; text-align: center; font-size: 55px; margin: 90px 90px 90px;">Oups... Impossible de signaler !</p>');
 	}else{ 
-		header('Location: index.php');
+		header('Location: index.php?action=listArticlesUserExaustiv');
 
 		}
 	}
@@ -203,9 +212,7 @@ class ControllerUser
 		$commentsManager = new CommentsManager();
 
 		$artic = $articlesManager->getArticle($_GET['id']);
- 
-		$comments = $commentsManager->getComments($_GET['id']);
-
+ 		$comments = $commentsManager->getComments($_GET['id']);
 
 		require('views/frontend/commentView.php');
 
@@ -238,8 +245,5 @@ class ControllerUser
 
 		}
 	}
-
-
-
 
 }

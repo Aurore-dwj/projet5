@@ -105,19 +105,19 @@ try
                 $all = new ControllerUser();
                 $user = $all->affInfosUser();
 
-                if (isset($_POST['newpseudo']) and !empty($_POST['newpseudo']) and $_POST['newpseudo'] /*!= $user['pseudo']*/)
+                if (isset($_POST['newpseudo']) and !empty($_POST['newpseudo']) and $_POST['newpseudo'] != $user['pseudo'])
                 {
                     $newpseudo = htmlspecialchars($_POST['newpseudo']);
                     $controlleruser = new ControllerUser();
                     $userpseudo = $controlleruser->updatePseudo($newpseudo);
                 }
-                if (isset($_POST['newmail']) and !empty($_POST['newmail']) and $_POST['newmail'] /*!= $user['mail']*/)
+                if (isset($_POST['newmail']) and !empty($_POST['newmail']) and $_POST['newmail'] != $user['mail'])
                 {
                     $newmail = htmlspecialchars($_POST['newmail']);
                     $controlleruser = new ControllerUser();
                     $usermail = $controlleruser->updateMail($newmail);
                 }
-                if (isset($_POST['newmdp']) and !empty($_POST['newmdp']) and $_POST['newmdp'] /*!= $user['motdepasse']*/)
+                if (isset($_POST['newmdp']) and !empty($_POST['newmdp']) and $_POST['newmdp'] != $user['motdepasse'])
                 {
                     $newmdp = password_hash($_POST['newmdp'], PASSWORD_DEFAULT);
                     $controlleruser = new ControllerUser();
@@ -272,6 +272,7 @@ try
                 $listarticles = new ControllerUser();
                 $list = $listarticles->listArticlesUser($_GET['id_rubrique']);
             }
+            
         }
 
         elseif ($_GET['action'] == 'affArticle')
@@ -308,6 +309,16 @@ try
                 throw new Exception('Oups... Aucun identifiant article !');
             }
         }
+
+        //affiche article signalé
+        if( $_GET['action'] == 'articleSignale')
+            {
+                if (isset($_GET['id']) && $_GET['id'] > 0)
+                {
+                    $listarticles = new ControllerUser();
+                    $list = $listarticles->articleSignale();
+                }
+            }
 
         //récupère et affiche les commentaires signalés
         if ($_GET['action'] == 'getCommentAdmin')
