@@ -8,7 +8,7 @@ use Control\{ControllerAccueil, ControllerUser, ControllerAdmin};
 
 class Pagination extends Manager
 { 
-	public function getArticlesPagination() { // comptage total du nombre d'articles dans la bdd
+	public function getArticlesPagination() { // comptage total du nombre d'articles dans la bdd avec la fonction PHP COUNT
         $db = $this->dbConnect();
         $totalarticles = $db->query('SELECT COUNT(id) AS nombredarticles FROM articles');
    

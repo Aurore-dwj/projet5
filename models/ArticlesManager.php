@@ -38,8 +38,6 @@ class ArticlesManager extends Manager
 
 	}
 
-	
-
 	public function getArticleAdmin($dataId) // méthode de récupération article à modifier (admin)
 	{
 		

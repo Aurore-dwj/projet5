@@ -97,7 +97,7 @@ try
 
         }
 
-        //affiche page édit et update infos
+        //affiche les infos du profil à l'ouverture et update infos si besoin
         if ($_GET['action'] == 'affInfosUser')
         {
             if (isset($_SESSION['id']))
@@ -126,7 +126,7 @@ try
             }
         }
 
-        //avatar
+        //chargement du fichier avatar 
         if ($_GET['action'] == 'getAvatar')
         {
             if (isset($_FILES['avatar']) and !empty($_FILES['avatar']['name']))
@@ -177,7 +177,7 @@ try
             $aff = $profil->affProfil();
         }
 
-        //connexion gestion et rédac articles Admin
+        //rédac articles Admin
         if ($_GET['action'] == 'adminViewConnect')
         {
             if (!isset($_SESSION['droits']) || ($_SESSION['droits'] == 0))
@@ -198,7 +198,7 @@ try
             }
         }
 
-        //rédation nouvel article admin
+        //accès dashboard et rédation nouvel article admin
         if ($_GET['action'] == 'redacArticles')
         {
             if (isset($_POST['envoi_article']) and isset($_POST['id_rubrique']) and isset($_SESSION['id']) and isset($_POST['title']) and isset($_POST['content']))
@@ -234,7 +234,7 @@ try
             }
         }
 
-        //connexion rédac article user
+        //dashboard rédac article user
         if ($_GET['action'] == 'userViewConnect')
         {
             $controller = new ControllerUser();
@@ -310,7 +310,7 @@ try
             }
         }
 
-        //affiche article signalé
+        //affiche article signalé après son signalement User
         if( $_GET['action'] == 'articleSignale')
             {
                 if (isset($_GET['id']) && $_GET['id'] > 0)
@@ -320,7 +320,7 @@ try
                 }
             }
 
-        //récupère et affiche les commentaires signalés
+        //récupère et affiche les commentaires signalés Admin
         if ($_GET['action'] == 'getCommentAdmin')
         {
             if (!isset($_SESSION['droits']) || ($_SESSION['droits'] == 0))
@@ -341,7 +341,7 @@ try
             }
         }
 
-        //signale un commentaire
+        //signale un commentaire User
         if ($_GET['action'] == 'signalCommentUser')
         {
             if ((isset($_GET['id'])) && (!empty($_GET['id'])))
@@ -373,7 +373,7 @@ try
             }
         }
 
-        //supprime article
+        //supprime article Admin
         if ($_GET['action'] == 'supprimerArticle')
         {
             if (!isset($_SESSION['droits']) || ($_SESSION['droits'] == 0))
@@ -390,7 +390,7 @@ try
             }
         }
 
-        //modifie article
+        //modifie article Admin
         if ($_GET['action'] == 'modifierArticle')
         {
             if (!isset($_SESSION['droits']) || ($_SESSION['droits'] == 0))
@@ -407,7 +407,7 @@ try
             }
         }
 
-        //signale un article
+        //signale un article User
         if ($_GET['action'] == 'signalerArticleUser')
         {
             if ((isset($_GET['id'])) && (!empty($_GET['id'])))
@@ -422,7 +422,7 @@ try
             }
         }
 
-        //récupère articles signalés
+        //récupère articles signalés Admin
         if ($_GET['action'] == 'getArticlesAdmin')
         {
             if (!isset($_SESSION['droits']) || ($_SESSION['droits'] == 0))
@@ -443,7 +443,7 @@ try
             }
         }
 
-        //désignale article signalé
+        //désignale article signalé Admin
         if ($_GET['action'] == 'designalArticle')
         {
             if (!isset($_SESSION['droits']) || ($_SESSION['droits'] == 0))
@@ -465,7 +465,7 @@ try
             }
         }
 
-        //désignale commentaire signalé
+        //désignale commentaire signalé Admin
         if ($_GET['action'] == 'designalCommentaire')
         {
             if (!isset($_SESSION['droits']) || ($_SESSION['droits'] == 0))
@@ -487,7 +487,7 @@ try
             }
         }
 
-        //supprime commentaire
+        //supprime commentaire Admin
         if ($_GET['action'] == 'supprimerCommentaire')
         {
             if (!isset($_SESSION['droits']) || ($_SESSION['droits'] == 0))

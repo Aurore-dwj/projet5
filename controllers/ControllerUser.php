@@ -19,7 +19,7 @@ class ControllerUser
 		$membre = new MembersManager();
 		$test = new MembersManager();
 
-		$mdp = password_hash($_POST['mdp'], PASSWORD_DEFAULT);
+		$mdp = password_hash($_POST['mdp'], PASSWORD_DEFAULT);//hash mot de passe
 
 		$testOk = $test->testMail($mail);// test pour ne pas avoir de mail en doublon
 
@@ -49,7 +49,7 @@ class ControllerUser
 		else{
 
 			if ($isPasswordCorrect) {
-				if(isset($_POST['rememberme'])){ //chekbox se souvenir de moi
+				if(isset($_POST['rememberme'])){ //checkbox se souvenir de moi
 					setcookie('pseudo',$pseudo,time()+365*24*3600,null,null,false,true);//chargement des cookies pseudo et mdp
 					setcookie('mdp',$mdp,time()+365*24*3600,null,null,false,true);
 				}
@@ -96,7 +96,7 @@ class ControllerUser
 		header("Location: index.php"); 
 	}
 
-	public function affProfil()
+	public function affProfil() // affiche les infos du profil à l'ouverture de la page profil
 	{
 		$infosmembre = new MembersManager();
 		$allinfos = $infosmembre->infosProfil();
@@ -105,7 +105,7 @@ class ControllerUser
 
 
 
-	public function affInfosUser() // affiche les infos user
+	public function affInfosUser() // affiche les infos user dans les champs de la page modifier infos
 	{
 		$infosmembre = new MembersManager();
 		$allinfos = $infosmembre->infosProfil();
@@ -147,12 +147,12 @@ class ControllerUser
 
 	}
 
-	public function userViewConnect() //connexion rédac article user
+	public function userViewConnect() //dashboard rédac article user
 	{
 	require('views/frontend/redacArticleUser.php');
 	}
 
-	public function redacArticlesUser($idRubrique, $idUser, $title, $content)
+	public function redacArticlesUser($idRubrique, $idUser, $title, $content)// rédaction article user
 	{
 		$articleEdit = new ArticlesManager();
 		$createarticle = $articleEdit->postArticlesUser($idRubrique, $idUser, $title, $content);
@@ -164,7 +164,7 @@ class ControllerUser
 		}
 	}
 
-	public function listArticlesUser($idRubrique) // liste articles admin
+	public function listArticlesUser($idRubrique) // liste des articles user + pagination
 	{
 		$articlesManager = new ArticlesManager();
 		$pagination = new Pagination();
@@ -184,7 +184,7 @@ class ControllerUser
 			
 	}
 
-	public function articleSignale() // liste articles exaustive user
+	public function articleSignale() // article signalé user
 	{
 		$articlesManager = new ArticlesManager();
 		

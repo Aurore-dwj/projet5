@@ -12,8 +12,6 @@ function capitalize(str) { // capitalise la première lettre du texte
     return str[0].toUpperCase() + str.slice(1); //et on rajoute le reste du tableau à partir de la 2ème lettre
 }
 
-
-
 async function main(withIp = true) { // fonction par défaut: on affiche la ville de l'user avec son ip
 
     let ville;
@@ -22,7 +20,7 @@ async function main(withIp = true) { // fonction par défaut: on affiche la vill
         ville = await fetch('http://api.ipstack.com/ 176.159.91.31?access_key=91913480e438d4f8cb02499b9389bfe7')
             .then(resultat => resultat.json()) //quand tu as le resultat tu me le donne en json...
             .then(json => json.city) //...et quand tu as le json, va me chercher la ville (city dans json)
-        console.log(ville); // tu m'affiches la ville dans la console
+    
     } else { // on passe la fonction par défaut et on peut récupérer la ville par le texte tapé dans l'id ville
         ville = document.querySelector('#ville').textContent;
     }
@@ -31,7 +29,6 @@ async function main(withIp = true) { // fonction par défaut: on affiche la vill
 
         .then(resultat => resultat.json())
         .then(json => json)
-        console.log(meteo);
 
     displayWeatherInfos(meteo)
 }

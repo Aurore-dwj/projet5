@@ -8,24 +8,24 @@ use Control\{ControllerAccueil, ControllerUser};
 
 class ControllerAdmin
 {
-	public function redacArticles($idRubrique, $idUser, $title, $content)
+	public function redacArticles($idRubrique, $idUser, $title, $content)// rédaction article Admin
 	{
 		$articleEdit = new ArticlesManager();//création objet ArticlesManager
-		$createarticle = $articleEdit->postArticle($idRubrique, $idUser, $title, $content);//retour modèle fonction postChapitre
+		$createarticle = $articleEdit->postArticle($idRubrique, $idUser, $title, $content);//appel de la fonction
 	
 	if($createarticle === false) {
 		die('<p style= "border: 1px solid red; text-align: center; font-size: 55px; margin: 90px 90px 90px;">Impossible d \'ajouter un article...');//condition si false on arrête le script
-	}else{//si true chargement de la page qui affichera la liste des chapitres
+	}else{
 		header('Location: index.php?action=listArticlesAdmin');
 		}
 	}
 
-	public function adminViewConnect() //connexion gestion admin 
+	public function adminViewConnect() //accès dashboard admin 
 	{
 	require('views/backend/redacArticleAdmin.php');
 	}
 
-	public function listArticlesAdmin() // liste articles admin
+	public function listArticlesAdmin() // liste articles admin + pagination
 	{
 		
 		$pagination = new Pagination();
@@ -43,7 +43,7 @@ class ControllerAdmin
 
 			$articlesManager = new ArticlesManager();
 			$artic = $articlesManager->getArticlesAdmin($depart, $articlesparp);
-			//die(var_dump($artic));
+
 			require('views/backend/listArticlesAdmin.php');
 			
 	}
@@ -73,18 +73,18 @@ class ControllerAdmin
 	{ 	
 	$articleManager = new ArticlesManager();
 	$artic = $articleManager->getArticlesSignal($_GET['signalement']);
-	//die(var_dump($artic));
+
 	require('views/backend/signalArticle.php');
 	}
 
-	public function modifierArticle($title, $content, $postId)
+	public function modifierArticle($title, $content, $postId)// modifie article
 	{
 		$modifie = new ArticlesManager();
 		$updatearticle = $modifie->updateArticle($title, $content, $postId);
 		header('Location: index.php?action=listArticlesAdmin');
 	}
 
-	public function designalArticle($articId) //fonction modification commentaires signalés
+	public function designalArticle($articId) //désignale article signalés
 	{ 	
 	$articleManager = new ArticlesManager();
 	$designale = $articleManager->deSignal($articId);
@@ -102,7 +102,7 @@ class ControllerAdmin
 	{ 	
 	$commentsManager = new CommentsManager();
 	$comments = $commentsManager->getCommentSignal($_GET['signalement']);
-	 //die(var_dump($comments));
+
 	require('views/backend/signalComment.php');
 	}
 

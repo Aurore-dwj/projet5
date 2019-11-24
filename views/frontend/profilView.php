@@ -3,7 +3,7 @@
 
 ?>
 
-<div class="vuChapComment">
+<div>
   <div align="center">
     <a href="index.php">Retour à l'acceuil</a>
     <h2>Mettre à jour mes infos</h2><br/><br/>
@@ -69,7 +69,7 @@ $data = $allinfos;
 
 
 
-</div>
+    </div>
 </div>
 
 <?php $content = ob_get_clean(); ?>

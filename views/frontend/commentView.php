@@ -1,4 +1,4 @@
-<?php $title = 'Commentaire histoire'; ?>
+<?php $title = 'affichage Commentaires'; ?>
 <?php ob_start();?>
 
    
@@ -46,7 +46,7 @@
 ?>
 
 <div>
-  <h2 id="ancre bas de page" >Vos commentaires :</h2><br>
+  <h2>Vos commentaires :</h2><br>
   <?php
             while ($comment = $comments->fetch()) //renvoit dans $comment les infos du commentaire
             {

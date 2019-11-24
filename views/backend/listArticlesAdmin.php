@@ -23,7 +23,7 @@
     <div class="container d-flex justify-content-between">
       <a href="#" class="navbar-brand d-flex align-items-center">
         
-        <strong>Liste exaustive articles </strong>
+        <strong>Liste exaustive articles admin</strong>
       </a>
       <a href="index.php?action=adminViewConnect">Retour admin</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">

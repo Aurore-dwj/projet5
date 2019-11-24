@@ -46,7 +46,7 @@ class MembersManager extends Manager
 
 	}
 
-	public function infosProfil()
+	public function infosProfil() // infos user
 	{
 		$db = $this->dbConnect();	
 		$requser = $db->prepare("SELECT * FROM membres WHERE id = ?");
@@ -56,7 +56,7 @@ class MembersManager extends Manager
 	   
 	}
 
-	public function infoPseudo($newpseudo)
+	public function infoPseudo($newpseudo)//modifie le pseudo
 	{
 		$db = $this->dbConnect();
 		$insertpseudo = $db->prepare("UPDATE membres SET pseudo = ? WHERE id = ?");
@@ -64,7 +64,7 @@ class MembersManager extends Manager
      	return $insertpseudo;
 	}
 
-	public function infoMail($newmail)
+	public function infoMail($newmail)//modifie le mail
 	{
 		$db = $this->dbConnect();
 		$insertmail = $db->prepare("UPDATE membres SET mail = ? WHERE id = ?");
@@ -72,7 +72,7 @@ class MembersManager extends Manager
      	return $insertmail;
 	}
 
-	public function infoMdp($newmdp)
+	public function infoMdp($newmdp)//modifie le mot de passe
 	{
 		$db = $this->dbConnect();
 		$insertmdp = $db->prepare("UPDATE membres SET motdepasse = ? WHERE id = ?");
@@ -80,13 +80,12 @@ class MembersManager extends Manager
      	return $insertmdp;
 	}
 
-	public function infosAvatar($newavatar)
+	public function infosAvatar($newavatar)// modifie le fichier avatar
 	{
 		$db = $this->dbConnect();
 		$upavatar = $db->prepare("UPDATE membres SET avatar = ? WHERE id = ?");
         $upavatar->execute(array( $newavatar, $_SESSION['id']));
         return $upavatar;
 	}
-
 
 }
