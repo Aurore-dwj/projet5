@@ -3,7 +3,7 @@
 session_start();
 
 require 'vendor/autoload.php';
-use Control\{ControllerAccueil, ControllerUser, ControllerAdmin};
+use Control\{ControllerAccueil, ControllerUser, ControllerAdmin, Exception};
 use OpenClass\{ArticlesManager, CommentsManager, Manager, MembersManager, Pagination};
 
 try
@@ -84,7 +84,7 @@ try
                 }
                 else
                 {
-                    throw new Exception('Tous les champs doivent être complétés');
+                    throw new Exception('Oups...Tous les champs doivent être complétés !');
                 }
             }
         }
@@ -515,6 +515,7 @@ try
 }
 catch(Exception $e)
 {
-    echo 'Erreur : ' . $e->getMessage();
+    $errorMessage = $e->getMessage();
+    require('views/frontend/errorView.php');
 }
 
