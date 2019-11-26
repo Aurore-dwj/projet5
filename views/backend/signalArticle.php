@@ -17,6 +17,7 @@
     {
         ?> <!--affiche l'id de auteur la date et le commentaire-->
         <div class="news"><br>
+         <p><em>Article signalé par : <?= $data['pseudo'] ?></em></p>
          <p><em>Id : <?= $data['id'] ?></em></p>
          <p><em>Le : <?= $data['creation_date_fr'] ?></em></p>
           <p><em><?= $data['title'] ?></em></p>

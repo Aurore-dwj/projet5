@@ -19,7 +19,7 @@
 					<h4><em>Id : </em><?= $data['id'] ?></h4><br>
 					<textarea type="text" name="title" rows="1" placeholder="title"><?=$data['title'] ?></textarea><br><br>
 					<textarea class="mytextarea" name="content"  rows="5" cols="50" placeholder="content"><?=$data['content'] ?></textarea><br><br>
-					<button type="submit" name="modifierArticle"class="btn btn-primary">Modifier article</button><br>
+					<button type="submit" name="modifierArticle"class="btn btn-secondary">Modifier article</button><br>
 				</form>
 
 			</div>

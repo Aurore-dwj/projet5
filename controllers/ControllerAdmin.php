@@ -14,7 +14,7 @@ class ControllerAdmin
 		$createarticle = $articleEdit->postArticle($idRubrique, $idUser, $title, $content);//appel de la fonction
 	
 	if($createarticle === false) {
-		die('<p style= "border: 1px solid red; text-align: center; font-size: 55px; margin: 90px 90px 90px;">Impossible d \'ajouter un article...');//condition si false on arrête le script
+		throw new \Exception('Impossible d \'ajouter un article...');
 	}else{
 		header('Location: index.php?action=listArticlesAdmin');
 		}
@@ -29,7 +29,7 @@ class ControllerAdmin
 	{
 		
 		$pagination = new Pagination();
-		$articlesparp = 2;
+		$articlesparp = 3;
 		$nombredarticles = $pagination->getArticlesPagination();
 		$totalpages = $pagination->getArticlesPages($nombredarticles, $articlesparp);
 		//die(var_dump($nombredarticles));
@@ -44,8 +44,7 @@ class ControllerAdmin
 			$articlesManager = new ArticlesManager();
 			$artic = $articlesManager->getArticlesAdmin($depart, $articlesparp);
 
-			require('views/backend/listArticlesAdmin.php');
-			
+			require('views/backend/listArticlesAdmin.php');		
 	}
 
 	public function articAdmin()// get article à modifier
@@ -62,12 +61,11 @@ class ControllerAdmin
 		$deletedarticle = $supprime->deletArticle($dataId);
 
 		if($deletedarticle === false) {
-		die('<p style= "border: 1px solid red; text-align: center; font-size: 55px; margin: 90px 90px 90px;"> Impossible de supprimer cet article...</p>');
+		 throw new \Exception('Impossible de supprimer cet article!');
 		}else{
 		header('Location: index.php?action=listArticlesAdmin');
 		}
 	}
-
 
 	public function getArticlesAdmin() //fonction récupère les articles signalés
 	{ 	
@@ -90,7 +88,7 @@ class ControllerAdmin
 	$designale = $articleManager->deSignal($articId);
 
 	if($designale === false) {
-		die('<p style= "border: 1px solid red; text-align: center; font-size: 55px; margin: 90px 90px 90px;">Oups... Impossible de designaler cet article!</p>');
+		throw new \Exception('Impossible de designaler cet article!</p>');
 	}else{ 
 		header('Location: index.php?action=getArticlesAdmin&signalement=1');
 	}
@@ -112,7 +110,7 @@ class ControllerAdmin
 	$designale = $commentsManager->deSignal($commentId);
 
 	if($designale === false) {
-		die('<p style= "border: 1px solid red; text-align: center; font-size: 55px; margin: 90px 90px 90px;">Oups... Impossible de designaler le commentaire!</p>');
+		throw new \Exception('Oups... Impossible de designaler le commentaire!');
 	}else{ 
 		header('Location: index.php?action=getCommentAdmin&signalement=1');
 	}
@@ -126,7 +124,7 @@ class ControllerAdmin
 		$deletedComment = $supprime->deleteComment($commentId);
 
 		if($deletedComment === false) {
-		die('<p style= "border: 1px solid red; text-align: center; font-size: 55px; margin: 90px 90px 90px;"> Impossible de supprimer ce commentaire...</p>');
+		throw new \Exception('Impossible de supprimer ce commentaire !');
 		}else{
 		header('Location: index.php?action=listArticlesAdmin');
 		}

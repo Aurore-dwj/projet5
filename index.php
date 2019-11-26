@@ -3,7 +3,7 @@
 session_start();
 
 require 'vendor/autoload.php';
-use Control\{ControllerAccueil, ControllerUser, ControllerAdmin, Exception};
+use Control\{ControllerAccueil, ControllerUser, ControllerAdmin};
 use OpenClass\{ArticlesManager, CommentsManager, Manager, MembersManager, Pagination};
 
 try
@@ -80,7 +80,6 @@ try
                 {
                     $connex = new ControllerUser();
                     $nouvelconnex = $connex->connexion($_POST['pseudo'], $_POST['mdp']);
-                    return $nouvelconnex;
                 }
                 else
                 {
@@ -105,19 +104,19 @@ try
                 $all = new ControllerUser();
                 $user = $all->affInfosUser();
 
-                if (isset($_POST['newpseudo']) and !empty($_POST['newpseudo']) and $_POST['newpseudo'] != $user['pseudo'])
+                if (isset($_POST['newpseudo']) and !empty($_POST['newpseudo']))
                 {
                     $newpseudo = htmlspecialchars($_POST['newpseudo']);
                     $controlleruser = new ControllerUser();
                     $userpseudo = $controlleruser->updatePseudo($newpseudo);
                 }
-                if (isset($_POST['newmail']) and !empty($_POST['newmail']) and $_POST['newmail'] != $user['mail'])
+                if (isset($_POST['newmail']) and !empty($_POST['newmail']))
                 {
                     $newmail = htmlspecialchars($_POST['newmail']);
                     $controlleruser = new ControllerUser();
                     $usermail = $controlleruser->updateMail($newmail);
                 }
-                if (isset($_POST['newmdp']) and !empty($_POST['newmdp']) and $_POST['newmdp'] != $user['motdepasse'])
+                if (isset($_POST['newmdp']) and !empty($_POST['newmdp']))
                 {
                     $newmdp = password_hash($_POST['newmdp'], PASSWORD_DEFAULT);
                     $controlleruser = new ControllerUser();
@@ -310,16 +309,6 @@ try
             }
         }
 
-        //affiche article signalé après son signalement User
-        if( $_GET['action'] == 'articleSignale')
-            {
-                if (isset($_GET['id']) && $_GET['id'] > 0)
-                {
-                    $listarticles = new ControllerUser();
-                    $list = $listarticles->articleSignale();
-                }
-            }
-
         //récupère et affiche les commentaires signalés Admin
         if ($_GET['action'] == 'getCommentAdmin')
         {
@@ -404,12 +393,21 @@ try
                     $controlleradmin = new ControllerAdmin();
                     $modifier = $controlleradmin->modifierArticle($_POST['title'], $_POST['content'], $_GET['id']);
                 }
+                else
+                {
+                    throw new Exception('Impossible de modifier l\'article !');
+                }                    
             }
         }
 
         //signale un article User
         if ($_GET['action'] == 'signalerArticleUser')
-        {
+        {   
+            if (!isset($_SESSION['id']))
+            {
+                throw new \Exception('Pour signaler un article veuillez vous connecter !');
+            }
+            
             if ((isset($_GET['id'])) && (!empty($_GET['id'])))
             {
                 $controlleruser = new ControllerUser();
@@ -438,7 +436,7 @@ try
                 }
                 else
                 {
-                    throw new Exception('Oups....erreur de désignalement !');
+                    throw new Exception('Oups....erreur de chargement des articles signalés !');
                 }
             }
         }
@@ -460,7 +458,7 @@ try
                 }
                 else
                 {
-                    throw new Exception('Oups....erreur de désignalement !');
+                    throw new Exception('Oups....erreur de désignalement article !');
                 }
             }
         }
@@ -482,7 +480,7 @@ try
                 }
                 else
                 {
-                    throw new Exception('Oups....erreur de désignalement !');
+                    throw new Exception('Oups....erreur de désignalement commentaire !');
                 }
             }
         }
@@ -509,9 +507,7 @@ try
     { //pageAccueil(); //si aucune action, alors affiche moi la page d'accueil ;)
         $vue = new ControllerAccueil();
         $accueil = $vue->pageAccueil();
-
     }
-
 }
 catch(Exception $e)
 {

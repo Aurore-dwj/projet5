@@ -35,12 +35,13 @@ class CommentsManager extends Manager
 		return $req;
 	}
 
-	public function getCommentSignal($signalement) //récupère les commentaires signalés pour les afficher dans la vue (admin)
+	public function getCommentSignal($signalement) //récupère les commentaires signalés pour les afficher avec le signalement signé (admin)
 	{
 		$db = $this->dbConnect();
-		$comments = $db->prepare('SELECT id, id_article, id_membre, content, signalement, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM avis WHERE signalement = 1 ORDER BY comment_date DESC');
+		$comments = $db->prepare('SELECT avis.id, membres.pseudo, avis.id_article, avis.id_membre, avis.content, avis.signalement, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM avis INNER JOIN membres ON avis.id_membre = membres.id WHERE signalement = 1 ORDER BY comment_date DESC');
 		$comments->execute(array($signalement));
 		return $comments;
+
 	}
 
 	public function deSignal($commentId) //désignale un commentaire (admin)
