@@ -70,19 +70,28 @@ $data = $artic;
 }
 $artic->closeCursor(); 
  ?>
-
 <div align="center">
 <?php
-
+  if($pageCourante > 1){ ?>
+      <a href="index.php?action=listArticlesUser&amp;id_rubrique=<?=$_GET['id_rubrique']?>&amp;page=<?php if($pageCourante !='1'){ echo $pageCourante -1; }else{ echo $pageCourante;} ?>" >Précédent</a>&nbsp;&nbsp;
+      <?php
+      }  
+      ?>
+<?php
       for($i=1;$i<=$totalpages;$i++) {
          if($i == $pageCourante) {
-          echo $i.'&nbsp;&nbsp;';
-         } else {
+          echo $i.'&nbsp;&nbsp;';// suppression du lien page courante
+         } else { // liens aux numéros de page
             echo '<a href="index.php?action=listArticlesUser&amp;id_rubrique='.$_GET['id_rubrique'].'&amp;page='.$i.'"> '.$i.'</a>&nbsp;&nbsp;';
          }
       }
       ?>
-
+      <?php
+      if($pageCourante < $totalpages){ ?>
+      <a href="index.php?action=listArticlesUser&amp;id_rubrique=<?=$_GET['id_rubrique']?>&amp;page=<?php if($pageCourante != $totalpages){ echo $pageCourante +1; }else{ echo $pageCourante;} ?>" >Suivant</a>
+      <?php
+      }
+      ?>
 </div>
 
 <?php $content = ob_get_clean(); ?>

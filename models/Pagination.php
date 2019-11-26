@@ -15,7 +15,7 @@ class Pagination extends Manager
         return $totalarticles->fetch()['nombredarticles'];
 
     }
-    public function getArticlesPages($nombredarticles, $articlesparp) { // nb d'article divisé par le nb d'articles par page, arrondi par la fonction PHP ceil
+    public function getArticlesPages($nombredarticles, $articlesparp) { // nb d'article divisé par le nb d'articles par page, arrondi à la virgule supérieur par la fonction PHP ceil
         $totalpages = ceil($nombredarticles/$articlesparp);
         return $totalpages;
     }

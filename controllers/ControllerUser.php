@@ -162,19 +162,19 @@ class ControllerUser
 
 	public function listArticlesUser($idRubrique) // liste des articles user + pagination
 	{
-		$articlesManager = new ArticlesManager();
-		$pagination = new Pagination();
-		$articlesparp = 3;
-		$nombredarticles = $pagination->getArticlesPagination();
-		$totalpages = $pagination->getArticlesPages($nombredarticles, $articlesparp);
-		
+		$articlesManager = new ArticlesManager();// nouvel objet de la class ArticlesManager
+		$pagination = new Pagination();// nouvel objet de la class Pagination
+		$articlesparp = 3; // nombre d'article par page
+		$nombredarticles = $pagination->getArticlesPagination();// appel fonction pour récupérer le nombre d'article
+		$totalpages = $pagination->getArticlesPages($nombredarticles, $articlesparp);// appel fonction pour récupérer le nombre de page
+		//tests url + si utilisateur injecte autre chose qu'un chiffre ou veux mette un chiffre plus grand que le nombre de page, on retourne à la page courante cad la page 1
 		if(isset($_GET['page']) AND !empty($_GET['page']) AND $_GET['page'] > 0 AND $_GET['page'] <= $totalpages) {
    			$_GET['page'] = intval($_GET['page']);
    			$pageCourante = $_GET['page'];
 			} else {
    			$pageCourante = 1;
 			}
-			$depart = ($pageCourante-1)*$articlesparp;
+			$depart = ($pageCourante-1)*$articlesparp; 
 			$artic = $articlesManager->getArticlesUser($idRubrique,$depart, $articlesparp);
 			require('views/frontend/listArticlesUser.php');
 			
