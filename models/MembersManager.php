@@ -20,7 +20,7 @@ class MembersManager extends Manager
 
 	public function testMail($mail)//test pour contrer doublon mail
 	{
-		$db = $this->dbConnect();
+		 $db = $this->dbConnect();
 		 $reqmail = $db->prepare("SELECT * FROM membres WHERE mail = ?");
          $reqmail->execute(array($mail));
          $mailexist = $reqmail->rowCount();

@@ -29,7 +29,7 @@ class ControllerAdmin
 	{
 		
 		$pagination = new Pagination();
-		$articlesparp = 2;
+		$articlesparp = 3;
 		$nombredarticles = $pagination->getArticlesPagination();
 		$totalpages = $pagination->getArticlesPages($nombredarticles, $articlesparp);
 		//die(var_dump($nombredarticles));

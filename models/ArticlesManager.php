@@ -48,7 +48,7 @@ class ArticlesManager extends Manager
     	return $req;
 	}
 
-	public function deletArticle($dataId) //supprime un chapitre et ses commentaires (admin)
+	public function deletArticle($dataId) //supprime un article et ses commentaires (admin)
 	{ 
         $db = $this->dbConnect();
         $comment = $db->prepare('DELETE FROM avis WHERE id_article = ?');
@@ -75,12 +75,13 @@ class ArticlesManager extends Manager
 		return $req;
 	}
 
-	public function getArticlesSignal($signalement) //récupère les commentaires signalés pour les afficher dans la vue (admin)
+	public function getArticlesSignal($signalement) //récupère les articles signalés pour les afficher avec le pseudo du signaleur (admin)
 	{
 		$db = $this->dbConnect();
-		$artic = $db->prepare('SELECT id, title, content, signalement, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM articles WHERE signalement = 1');
+		$artic = $db->prepare('SELECT articles.id, membres.pseudo, articles.title, articles.content, articles.signalement, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM articles INNER JOIN membres ON articles.id_user = membres.id WHERE signalement = 1');
 		$artic->execute(array($signalement));
 		return $artic;
+
 	}
 
 	public function deSignal($articId) //désignale un article (admin)
@@ -106,19 +107,9 @@ class ArticlesManager extends Manager
 	{
 		 
 		$db = $this->dbConnect();
-		$artic = $db->prepare('SELECT rubriques.id, rubriques.libele, articles.id, membres.pseudo, articles.title, articles.content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM articles INNER JOIN membres ON articles.id_user = membres.id INNER JOIN rubriques ON articles.id_rubrique = rubriques.id WHERE id_rubrique = ? ORDER BY creation_date_fr DESC LIMIT '. $depart. ',' . $articlesparp);
+		$artic = $db->prepare('SELECT rubriques.id, rubriques.libele, articles.id, membres.pseudo, articles.title, articles.content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM articles INNER JOIN membres ON articles.id_user = membres.id INNER JOIN rubriques ON articles.id_rubrique = rubriques.id WHERE id_rubrique = ? ORDER BY rubriques.id DESC LIMIT '. $depart. ',' . $articlesparp);
 		$artic->execute(array($idRubrique));
 	
-		return $artic;
-	}
-
-	public function getArticleSignale($idArticle) // méthode de récupération article 
-	{
-		 
-		$db = $this->dbConnect();
-		$req = $db->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM articles WHERE id = ?');
-		$req->execute(array($idArticle));
-		$artic = $req->fetch();
 		return $artic;
 	}
 
