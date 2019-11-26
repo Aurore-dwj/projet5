@@ -27,8 +27,8 @@ class ControllerUser
 			$newMembre = $membre->insertMembre($pseudo, $mail, $mdp,'default.jpg');
 			header("Location: index.php?action=displConnexion");
 		}else{ 
-			echo '<p style= "border: 1px solid red; text-align: center; font-size: 55px; margin: 90px 90px 90px;">Oups... Adresse email déjà utilisé  !</p>';}
-		}
+			throw new \Exception('Oups... Adresse email déjà utilisée');}
+	}
 
 	public function displconnexion() //affichage formulaire connexion
 	{
@@ -41,12 +41,10 @@ class ControllerUser
 		$connect = $membre->getConnect($pseudo);
 		$isPasswordCorrect = password_verify($_POST['mdp'], $connect['motdepasse']);
 		$mdp = $connect['motdepasse'];
-
-		if (!$connect)
-		{
-			echo 'Mauvais identifiant ou mot de passe !';
-		}
-		else{
+	
+		if (!$connect){
+			throw new \Exception('Oups... Mauvais identifiant ou mot de passe !');
+		}else{
 
 			if ($isPasswordCorrect) {
 				if(isset($_POST['rememberme'])){ //checkbox se souvenir de moi
@@ -66,7 +64,7 @@ class ControllerUser
 
 						header("Location: index.php");
 					}else{ //sinon message:
-						echo '<p style= "border: 1px solid red; text-align: center; font-size: 55px; margin: 90px 90px 90px;">Oups... Veuillez vous reconnecter !</p>';
+						throw new \Exception('Oups... Veuillez vous reconnecter !');
 					}
 				}
 				session_start();
@@ -76,9 +74,8 @@ class ControllerUser
 
 				header("Location: index.php");
 
-
 			}else{
-				echo 'Mauvais identifiant ou mot de passe !';
+				throw new \Exception('Mauvais identifiant ou mot de passe !');
 			}
 			if(!empty($_SESSION['droits']) && $_SESSION['droits'] == '1') 
 				header("Location: index.php");
@@ -89,7 +86,7 @@ class ControllerUser
 	public function deconnexion() //déconnexion
 	{
 		session_start();
-		setcookie('pseudo','',time()-3600);
+		 setcookie('pseudo','',time()-3600);
 		setcookie('mdp','',time()-3600);
 		$_SESSION = array();
 		session_destroy();
@@ -106,7 +103,7 @@ class ControllerUser
 
 
 	public function affInfosUser() // affiche les infos user dans les champs de la page modifier infos
-	{
+	{	
 		$infosmembre = new MembersManager();
 		$allinfos = $infosmembre->infosProfil();
 		require('views/frontend/profilView.php');
@@ -123,7 +120,6 @@ class ControllerUser
 
 	public function updateMail($newmail)// uptate le mail
 	{
-		
 		$test = new MembersManager();
 		$testOk = $test->testMail($newmail);
 		if($testOk == 0) {// test pour ne pas avoir de mail en doublon
@@ -144,7 +140,7 @@ class ControllerUser
 	{
 		$membreManager = new MembersManager();
 		$avatarinfos = $membreManager->infosAvatar($newavatar);
-
+		throw new \Exception('Avatar modifié !');
 	}
 
 	public function userViewConnect() //dashboard rédac article user
@@ -158,9 +154,9 @@ class ControllerUser
 		$createarticle = $articleEdit->postArticlesUser($idRubrique, $idUser, $title, $content);
 	
 	if($createarticle === false) {
-		die('<p style= "border: 1px solid red; text-align: center; font-size: 55px; margin: 90px 90px 90px;">Impossible d \'ajouter un article...');
+		throw new \Exception('Impossible d \'ajouter un article...');
 	}else{
-		header('Location: index.php?action=listArticlesUser');
+		throw new \Exception('Article sauvegardé !');
 		}
 	}
 
@@ -168,7 +164,7 @@ class ControllerUser
 	{
 		$articlesManager = new ArticlesManager();
 		$pagination = new Pagination();
-		$articlesparp = 4;
+		$articlesparp = 3;
 		$nombredarticles = $pagination->getArticlesPagination();
 		$totalpages = $pagination->getArticlesPages($nombredarticles, $articlesparp);
 		
@@ -184,24 +180,17 @@ class ControllerUser
 			
 	}
 
-	public function articleSignale() // article signalé user
-	{
-		$articlesManager = new ArticlesManager();
-		
-		$artic = $articlesManager->getArticleSignale($_GET['id']);
-		require('views/frontend/articleSignale.php');
-			
-	}
-
 	public function signalerArticleUser($articId)// signale un article
 	{
 		$commentManager = new ArticlesManager();
 		$signal = $commentManager->signalement($articId);
 
 	if($signal === false) {
-		die('<p style= "border: 1px solid red; text-align: center; font-size: 55px; margin: 90px 90px 90px;">Oups... Impossible de signaler !</p>');
+
+		throw new \Exception('Oups... Impossible de signaler cet article !');
 	}else{ 
-		header('Location: index.php?action=listArticlesUserExaustiv');
+
+		throw new \Exception('Article signalé !<br><em>Un modérateur va controller l\'article que vous nous avez signalé dans les plus brefs délais,<br>merci :)');
 
 		}
 	}
@@ -218,7 +207,6 @@ class ControllerUser
 
 	}
 
-	
 	public function addComment($idArticle, $idMembre, $content) //ajout commentaire
 	{
 	$commentsManager = new CommentsManager();
@@ -226,7 +214,7 @@ class ControllerUser
 	$affectedLines = $commentsManager->postComment($idArticle, $_SESSION['id'], $content);
 	
 	if ($affectedLines === false){ //si le commentaire n'arrive pas à la bdd...
-		die('<p style= "border: 1px solid red; text-align: center; font-size: 55px; margin: 90px 90px 90px;">Oups... Impossible d\'ajouter le commentaire !</p>');// on arrête le script avec un die
+		throw new \Exception('Oups... Impossible d\'ajouter ce commentaire !');// on arrête le script avec un die
 
 	}else{header('Location: index.php?action=affArticle&id=' . $idArticle); // sinon on peut admirer son joli commentaire :)
 
@@ -239,9 +227,9 @@ class ControllerUser
 		$signal = $commentManager->signalement($commentId);
 
 	if($signal === false) {
-		die('<p style= "border: 1px solid red; text-align: center; font-size: 55px; margin: 90px 90px 90px;">Oups... Impossible de signaler !</p>');
+		throw new \Exception('Oups... Impossible de signaler ce commentaire !');
 	}else{ 
-		header('Location: index.php');
+		throw new \Exception('Commentaire signalé !<br><em>Un modérateur va controller le commentaire que vous nous avez signalé dans les plus brefs délais,<br>merci :)');
 
 		}
 	}
