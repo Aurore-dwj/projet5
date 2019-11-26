@@ -88,7 +88,7 @@ class ControllerAdmin
 	$designale = $articleManager->deSignal($articId);
 
 	if($designale === false) {
-		throw new \Exception('Impossible de designaler cet article!</p>');
+		throw new \Exception('Impossible de designaler cet article!');
 	}else{ 
 		header('Location: index.php?action=getArticlesAdmin&signalement=1');
 	}

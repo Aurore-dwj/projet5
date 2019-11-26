@@ -41,12 +41,13 @@
    <?php 
  }else{
   echo '<h3 class="error">Pour l\'ajout d\'un commentaire, veuillez vous connecter !</h3>
-  <p><a href="index.php?action=displFormulContact">Pas encore insrit ?</a></p>'; 
+  <p><a href="index.php?action=displFormulContact">Pas encore insrit ?</a></p>
+  <p><a href="index.php?action=displConnexion">Connexion ?</a></p';
 }
 ?>
 
 <div>
-  <h2>Vos commentaires :</h2><br>
+  <h2>Vos commentaires :</h2>
   <?php
             while ($comment = $comments->fetch()) //renvoit dans $comment les infos du commentaire
             {
@@ -55,16 +56,19 @@
                 <p><em>Envoyé le : </em><?= $comment['comment_date_fr'] ?></p>
                 <p><?= nl2br(htmlspecialchars($comment['content'])) ?></p>
                 <p><em>De la part de : </em><?= $comment['pseudo'] ?></p>
-                <?php  if(isset($_SESSION['id'])) { ?>
-                  <a href="index.php?action=signalCommentUser&amp;id=<?=$comment['id'] ?>"><button type="submit"class="btn btn-secondary">Signaler ce commentaire !</button></a><br><br>
+                <?php  if($comment['signalement'] == '1') {
+                  echo '<p class="error">Commentaire Signalé !</p>'
+                  ; }else{ 
+                  if(isset($_SESSION['id'])) { ?>
+                <a href="index.php?action=signalCommentUser&amp;id=<?=$comment['id'] ?>"><button type="submit"class="btn btn-secondary">Signaler ce commentaire !</button></a><br><br>
                   <?php
                 }else{
-                  echo '<p class="error">Pour signaler un commentaire, veuillez vous connecter !</p>
-                  <p><a href="index.php?action=displFormulContact">Pas encore insrit ?</a></p>'; 
+                  echo '<p class="error">Pour signaler un commentaire, veuillez vous connecter !</p>';
+                  
                 }
-
+                }
                 ?>
-              
+                
               <?php
             }
             $comments->closeCursor(); 

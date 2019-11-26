@@ -26,7 +26,7 @@
   </form>
   <?php 
   }else{
-  echo '<h3 class="error">Pour l\'ajout d\'un commentaire, veuillez vous connecter !</h3><br><br><br><br>
+  echo '<h3 class="error">Pour l\'ajout d\'un article, veuillez vous connecter !</h3><br><br><br><br>
   <p><a href="index.php">Retour accueil ?</a></p>
   <p><a href="index.php?action=displFormulContact">Pas encore insrit ?</a></p>
   <p><a href="index.php?action=displConnexion">Connexion ?</a></p'; 

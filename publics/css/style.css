@@ -59,11 +59,11 @@ i.wi {
 .error{
 	color: red;
 	text-align: center;
+	border: 1px solid red;
+	border-radius: 5px;
+	width: 50%;
 }
 
-#cont{
-
-}
 #meteo{
 
 	float: left;

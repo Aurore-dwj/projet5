@@ -11,7 +11,7 @@ class CommentsManager extends Manager
 	public function getComments($idArticle)//méthode de récupération des commentaire avec une jointure dans la requete pour récupérer le pseudo de l'user
 	{
 		$db = $this->dbConnect();
-		$comments = $db->prepare('SELECT avis.id, membres.pseudo, avis.content, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM avis INNER JOIN membres ON avis.id_membre = membres.id WHERE id_article = ? ORDER BY comment_date DESC');
+		$comments = $db->prepare('SELECT avis.id, membres.pseudo, avis.content, avis.signalement, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM avis INNER JOIN membres ON avis.id_membre = membres.id WHERE id_article = ? ORDER BY comment_date DESC');
 		$comments->execute(array($idArticle));
 
 		return $comments;
@@ -42,14 +42,6 @@ class CommentsManager extends Manager
 		$comments->execute(array($signalement));
 		return $comments;
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-		/*SELECT avis.id, membres.pseudo, avis.content, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM avis INNER JOIN membres ON avis.id_membre = membres.id WHERE id_article = ? ORDER BY comment_date DESC');*/
-
->>>>>>> 4f84ce36a80561c58b0f9548c7f86df787c79a31
->>>>>>> e54f9f01f65ac44471e00d252ce26bf00bea46a4
 	}
 
 	public function deSignal($commentId) //désignale un commentaire (admin)
