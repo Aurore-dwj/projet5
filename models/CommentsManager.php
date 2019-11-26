@@ -42,6 +42,11 @@ class CommentsManager extends Manager
 		$comments->execute(array($signalement));
 		return $comments;
 
+<<<<<<< HEAD
+=======
+		/*SELECT avis.id, membres.pseudo, avis.content, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM avis INNER JOIN membres ON avis.id_membre = membres.id WHERE id_article = ? ORDER BY comment_date DESC');*/
+
+>>>>>>> 4f84ce36a80561c58b0f9548c7f86df787c79a31
 	}
 
 	public function deSignal($commentId) //désignale un commentaire (admin)
