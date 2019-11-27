@@ -39,6 +39,8 @@ function displayWeatherInfos(data) { // appel des différents items de l'objet..
     const conditions = data.weather[0].main;
     const description = data.weather[0].description;
     const vent = data.wind.speed;
+    const humidite = data.main.humidity;
+    const pression = data.main.pressure;
 
 function Km(){ // fonction de conversion noeud en Km/h
    var x = vent;
@@ -52,6 +54,8 @@ function Km(){ // fonction de conversion noeud en Km/h
     // affiche l'icon selon les conditions grâce à l'ojbet weatherIcon situé en haut du fichier
     document.querySelector('i.wi').className = weatherIcons[conditions];
     document.querySelector('#vent').textContent = Math.round(Km(vent));
+    document.querySelector('#humidite').textContent = humidite;
+    document.querySelector('#pression').textContent = pression;
 }
 //initialisation au click du contentEditable pour pouvoir taper le nom de la ville
 ville.addEventListener('click', () => {

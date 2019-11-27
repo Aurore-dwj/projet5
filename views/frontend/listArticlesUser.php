@@ -71,14 +71,14 @@ $data = $artic;
 $artic->closeCursor(); 
  ?>
 <div align="center">
-<?php
+<?php // touche Précédente
   if($pageCourante > 1){ ?>
       <a href="index.php?action=listArticlesUser&amp;id_rubrique=<?=$_GET['id_rubrique']?>&amp;page=<?php if($pageCourante !='1'){ echo $pageCourante -1; }else{ echo $pageCourante;} ?>" >Précédent</a>&nbsp;&nbsp;
       <?php
       }  
       ?>
 <?php
-      for($i=1;$i<=$totalpages;$i++) {
+      for($i=1;$i<=$totalpages;$i++) { // boucle pour passer de pages en pages
          if($i == $pageCourante) {
           echo $i.'&nbsp;&nbsp;';// suppression du lien page courante
          } else { // liens aux numéros de page
@@ -86,7 +86,7 @@ $artic->closeCursor();
          }
       }
       ?>
-      <?php
+      <?php // touche Suivante
       if($pageCourante < $totalpages){ ?>
       <a href="index.php?action=listArticlesUser&amp;id_rubrique=<?=$_GET['id_rubrique']?>&amp;page=<?php if($pageCourante != $totalpages){ echo $pageCourante +1; }else{ echo $pageCourante;} ?>" >Suivant</a>
       <?php

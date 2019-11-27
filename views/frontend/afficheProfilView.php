@@ -6,7 +6,7 @@
       <a href="index.php?action=affInfosUser"> Modifier mes infos perso </a><br><br>
 
    <div id="meteo" align="center">
-      <h1>La météo du motard</h1><br><br><br>
+      <h1>La météo du motard</h1><br><br>
       <i class="wi"></i><br><br>
       
       <h3>
@@ -15,7 +15,8 @@
          
    
       <p>Vent : <span id="vent"></span> Km/h</p>
-
+      <p>Humidité : <span id="humidite"></span> %</p>
+      <p>Pression : <span id="pression"></span> Hectopascal</p>
       <p>Température : <span id="temperature"></span> C° </p>
       <p>Conditions : <span id="conditions"></span></p>
    </div>
