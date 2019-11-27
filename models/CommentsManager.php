@@ -5,7 +5,6 @@ require 'vendor/autoload.php';
 use OpenClass\Manager;
 use Control\{ControllerUser, ControllerAdmin};
 
-
 class CommentsManager extends Manager
 {
 	public function getComments($idArticle)//méthode de récupération des commentaire avec une jointure dans la requete pour récupérer le pseudo de l'user

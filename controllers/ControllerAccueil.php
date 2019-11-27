@@ -8,7 +8,6 @@ class ControllerAccueil
 
 	public function pageAccueil() // affichage page d'accueil
 	{
-		
 		require('views/frontend/accueil.php');
 	}
 		

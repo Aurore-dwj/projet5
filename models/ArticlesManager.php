@@ -5,8 +5,6 @@ require 'vendor/autoload.php';
 use OpenClass\{Manager, Pagination};
 use Control\{ControllerUser, ControllerAdmin};
 
-
-
 class ArticlesManager extends Manager
 {
 	public function postArticle($idRubrique, $idUser, $title, $content) // insertion article à la db
@@ -114,3 +112,5 @@ class ArticlesManager extends Manager
 	}
 
 }
+
+

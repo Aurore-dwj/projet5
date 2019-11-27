@@ -2,13 +2,12 @@
 namespace OpenClass;
 require 'vendor/autoload.php';
 
-
 use OpenClass\{ArticlesManager, CommentsManager, Manager, MembersManager};
 use Control\{ControllerAccueil, ControllerUser, ControllerAdmin};
 
 class Pagination extends Manager
 { 
-	public function getArticlesPagination() { // comptage total du nombre d'articles dans la bdd avec la fonction PHP COUNT
+    public function getArticlesPagination() { // comptage total du nombre de lignes dans la bdd avec la fonction d'agrégation mySql COUNT
         $db = $this->dbConnect();
         $totalarticles = $db->query('SELECT COUNT(*) AS nombredarticles FROM articles');
    
@@ -16,10 +15,10 @@ class Pagination extends Manager
 
     }
 
-    public function getArticlesParRubriq()// comptage des articles par rubrique
+    public function getArticlesParRubriq()// comptage lignes articles par rubrique
     {
-    	$db = $this->dbConnect();
-        $totalarticles = $db->query('SELECT id_rubrique, COUNT(*) AS nb_artic FROM articles GROUP BY id_rubrique');
+        $db = $this->dbConnect();
+        $totalarticles = $db->query('SELECT id_rubrique, COUNT(id_rubrique) AS nb_artic FROM articles GROUP BY id_rubrique');
    
         return $totalarticles->fetch()['nb_artic'];
 

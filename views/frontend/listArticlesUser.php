@@ -52,7 +52,7 @@ $data = $artic;
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <?php  if($data['signalement'] == '1') {
-                  echo '<p class="error">Commentaire Signalé !</p>'
+                  echo '<p class="error">Article Signalé !</p>'
                   ; }else{ ?>
                   <a href="index.php?action=signalerArticleUser&amp;id=<?= $data['id'] ?>"><button type="button" class="btn btn-sm btn-outline-secondary">Signaler</button></a><?php } ?> 
                   <a href="index.php?action=affArticle&amp;id=<?= $data['id'] ?>"><button type="button" class="btn btn-sm btn-outline-secondary">Commentaires</button></a>
