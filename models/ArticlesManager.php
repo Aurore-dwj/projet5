@@ -105,7 +105,7 @@ class ArticlesManager extends Manager
 
 	public function getArticlesUser($idRubrique, $depart, $articlesparp) // méthode de récupération articles
 	{
-		 
+
 		$db = $this->dbConnect();
 		$artic = $db->prepare('SELECT rubriques.id, rubriques.libele, articles.id, membres.pseudo, articles.title, articles.content, articles.signalement, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM articles INNER JOIN membres ON articles.id_user = membres.id INNER JOIN rubriques ON articles.id_rubrique = rubriques.id WHERE id_rubrique = ? ORDER BY creation_date_fr DESC LIMIT '. $depart. ',' . $articlesparp);
 		$artic->execute(array($idRubrique));
