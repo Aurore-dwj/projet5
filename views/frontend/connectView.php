@@ -1,6 +1,5 @@
 <?php $title = 'connexion'; ?>
-<?php ob_start(); 
-?>
+<?php ob_start(); ?>
 
 
 <div align="center">

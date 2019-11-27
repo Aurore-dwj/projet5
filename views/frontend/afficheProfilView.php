@@ -1,5 +1,5 @@
 <?php $title = 'Affiche le profil'; ?>
-<?php ob_start();?>
+<?php ob_start(); ?>
 
 <div id= cont align="center"><br><br>
 <a href="index.php">Accueil </a><br>
@@ -34,13 +34,11 @@
       </p>
       
       <?php
-      if(!empty($data['avatar'])){
-         ?>
+      if(!empty($data['avatar'])): ?>
 
          <img class="improfil" width="100" src="publics/membres/avatars/<?= $data['avatar']; ?>"/>
-         <?php
-      }
-      ?>
+
+      <?php endif ?>
       <br />
       <p>
          Pseudo : <?= $data['pseudo']; ?><br>
@@ -50,5 +48,5 @@
    </div>
 </div>
 
-      <?php $content = ob_get_clean(); ?>
-      <?php require('template.php'); ?>
+<?php $content = ob_get_clean(); ?>
+<?php require('template.php'); ?>
