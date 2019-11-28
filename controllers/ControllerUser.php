@@ -64,7 +64,7 @@ class ControllerUser
                 { //si pas de session mais cookies pseudo et mdp...
                     $membre = new MembersManager(); //on instancie la class MembersManager...
                     $rem = $membre->remember($_COOKIE['pseudo'], $_COOKIE['motdepasse']); //et on appelle la fonction remember avec les infos rapportés du modèle
-                    return $rem;
+                
                     if ($rem == 1) // si cookies pseuso et mdp == à 1
                     
                     { // on ouvre les différentes sessions et rdv à la page d'accueil
