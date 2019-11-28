@@ -32,7 +32,7 @@ class ControllerUser
         }
     }
 
-    public function displconnexion() //affichage formulaire connexion
+    public function displConnexion() //affichage formulaire connexion
     
     {
         require ('views/frontend/connectView.php');
