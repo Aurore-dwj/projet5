@@ -5,7 +5,6 @@
 <div>
    <br><br>
    <div align="center">
-      <div class="encart">
          <br>
          <h2>Commentaires signalés :</h2>
          <br>
@@ -15,7 +14,7 @@
             $data = $comments;
             while ($data = $comments->fetch()): ?> 
          <!--affiche le nom de l'auteur du commentaire, son id, la date et le commentaire-->
-         <div class="news">
+         <div class="encart">
             <br>
             <p><em>Commentaire signalé par : <?= $data['pseudo'] ?></em></p>
             <p><em>Id : <?= $data['id'] ?></em></p>

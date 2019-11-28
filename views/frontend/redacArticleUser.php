@@ -20,7 +20,7 @@
             <option value="3">Entretien</option>
          </select>
          <input type="text" placeholder="title" id="title" name="title" /><br><br><br>
-         <textarea class="mytextarea" name="content"  rows="5" cols="50" placeholder="Votre message"></textarea>
+         <textarea class="mytextarea" name="content"  rows="4" cols="40" placeholder="Votre message"></textarea>
          <br>
          <button type="submit" name="envoi_article"class="btn btn-secondary">Envoyer article !</button><br><br>
       </form>

@@ -33,11 +33,11 @@ class ControllerAdmin
     {
 
         $pagination = new Pagination();// nouvel objet de la class Pagination
-        $articlesparp = 3;// nombre d'article par page
+        $articlesparp = 3;// nombre d'articles par page
         $nombredarticles = $pagination->getArticlesPagination(); //appel fonction pour récupérer le nombres d'articles à paginer
-        $totalpages = $pagination->getArticlesPages($nombredarticles, $articlesparp);// appel fonction pour récupérer le nombre de page
+        $totalpages = $pagination->getArticlesPages($nombredarticles, $articlesparp);// appel fonction pour récupérer le nombre de pages
 
-        //tests url + si utilisateur injecte autre chose qu'un chiffre ou veux mette un chiffre plus grand que le nombre de page, on retourne à la page courante cad la page 1
+        //tests url + si utilisateur injecte autre chose qu'un chiffre ou veux mette un chiffre plus grand que le nombre de pages, on retourne à la page courante cad la page 1
         if (isset($_GET['page']) and !empty($_GET['page']) and $_GET['page'] > 0 and $_GET['page'] <= $totalpages)
         {
             $_GET['page'] = intval($_GET['page']);
