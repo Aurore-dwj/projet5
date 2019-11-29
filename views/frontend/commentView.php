@@ -22,10 +22,10 @@
 </div>
 <div align="center">
    <br>
+   <div class="encart" >
+   <br/>
    <?php if(isset($_SESSION['id'])) : ?> 
-   <div class="commentaires" >
       <h2>Mon commentaire :</h2>
-      <br/>
       <form action="index.php?action=addComment&amp;id=<?=$artic['id'] ?>"method="post">
          <div>
             <textarea id="comment" name="content" placeholder="Votre texte"></textarea>
@@ -39,7 +39,7 @@
          <p><a href="index.php?action=displFormulContact">Pas encore insrit ?</a></p>
          <p><a href="index.php?action=displConnexion">Connexion ?</a></p';
          endif ?>
-      <div class="encart">
+      <div>
          <br>
          <h2>Vos commentaires :</h2>
          <?php

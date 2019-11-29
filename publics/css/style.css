@@ -110,11 +110,6 @@ i.wi
 		margin-top: 160px;
 	}
 
-	.vuChapComment
-	{
-		margin-top: 250px;
-	}
-
 	.improfil
 	{
 		width: 30%;
@@ -128,12 +123,7 @@ i.wi
 		line-height: 115px;
 		color: #760001;
 	}
-
-	.vuChapComment
-	{
-		margin-top: 15px;
-	}
-
+	
 	#ville
 	{
 		border: 1px solid #760001;

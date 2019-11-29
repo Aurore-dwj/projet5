@@ -3,7 +3,7 @@
 
 
 <div align="center">
-   <div class="vuChapComment">
+   <div>
       <a href="index.php">Retour à la page d'accueil</a><br>
       <h2>Connexion</h2>
       <br /><br />

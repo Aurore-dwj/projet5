@@ -2,7 +2,7 @@
 <?php ob_start(); ?>
 
 <div align="center">
-   <div class="vuChapComment">
+   <div>
       <a href="index.php">Retour accueil</a>
       <h2>Inscription</h2>
       <br>
