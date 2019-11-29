@@ -70,7 +70,7 @@ class ControllerUser
                     { // on ouvre les différentes sessions et rdv à la page d'accueil
                         session_start();
                         $_SESSION['id'] = $connect['id'];
-                        $_SESSION['pseudo'] = $pseudo;
+                        $_SESSION['pseudo'] = $pseudo; 
                         $_SESSION['droits'] = $connect['droits'];
 
                         header("Location: index.php");
@@ -92,8 +92,10 @@ class ControllerUser
             {
                 throw new \Exception('Mauvais identifiant ou mot de passe !');
             }
-            if (!empty($_SESSION['droits']) && $_SESSION['droits'] == '1') header("Location: index.php");
-
+            if (!empty($_SESSION['droits']) && $_SESSION['droits'] == '1') {
+                ////CONDITION DE SECURITE POUR EVITER DE POUVOIR ACCEDER A L'ADMIN PAR L'URL
+                header("Location: index.php");
+            }           
         }
     }
 
