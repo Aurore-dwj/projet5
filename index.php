@@ -2,14 +2,9 @@
 session_start();
 
 require 'vendor/autoload.php';
-use Control\
-{
-    ControllerAccueil, ControllerUser, ControllerAdmin
-};
-use OpenClass\
-{
-    ArticlesManager, CommentsManager, Manager, MembersManager, Pagination
-};
+use Control\{
+    ControllerAccueil, ControllerUser, ControllerAdmin};
+use OpenClass\{ArticlesManager, CommentsManager, Manager, MembersManager, Pagination};
 
 try
 {
