@@ -8,17 +8,21 @@ const weatherIcons = { // objet liste d'icon
      
 }
 
-function capitalize(str) { // capitalise la première lettre du texte
+function cap(str) { // capitalise la première lettre du texte
     return str[0].toUpperCase() + str.slice(1); //et on rajoute le reste du tableau à partir de la 2ème lettre
 }
 
-async function main(withIp = true) { // fonction par défaut: on affiche la ville de l'user avec son ip
+async function main(withIp = true) { // fonction par défaut: on affiche la ville de l'user avec son ip : API IPIFY
 
+    const addressIp = await fetch('https://api.ipify.org?format=json')// recherche l'ip de l'utilisateur
+            .then(resultat => resultat.json()) //quand tu as le resultat tu me le donnes en json...
+            .then(json => json.ip) //...
+            
     let ville;
 
-    if (withIp) { // recherche de son ip pour afficher la ville user: API IPSTACK
-        ville = await fetch('http://api.ipstack.com/ 176.159.91.31?access_key=91913480e438d4f8cb02499b9389bfe7')
-            .then(resultat => resultat.json()) //quand tu as le resultat tu me le donne en json...
+    if (withIp) { // recherche de la ville grâce à l'ip user: API IPSTACK
+        ville = await fetch(`http://api.ipstack.com/${addressIp}?access_key=91913480e438d4f8cb02499b9389bfe7`)
+            .then(resultat => resultat.json()) //quand tu as le resultat tu me le donnes en json...
             .then(json => json.city) //...et quand tu as le json, va me chercher la ville (city dans json)
     
     } else { // on passe la fonction par défaut et on peut récupérer la ville par le texte tapé dans l'id ville
@@ -50,7 +54,7 @@ function Km(){ // fonction de conversion noeud en Km/h
 }
     document.querySelector('#ville').textContent = name; // ...pour pouvoir les afficher
     document.querySelector('#temperature').textContent = Math.round(temperature); // arrondi le chiffre de température
-    document.querySelector('#conditions').textContent = capitalize(description); // capitalise la première lettre
+    document.querySelector('#conditions').textContent = cap(description); // capitalise la première lettre
     // affiche l'icon selon les conditions grâce à l'ojbet weatherIcon situé en haut du fichier
     document.querySelector('i.wi').className = weatherIcons[conditions];
     document.querySelector('#vent').textContent = Math.round(Km(vent));
