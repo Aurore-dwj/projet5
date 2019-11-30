@@ -1,4 +1,3 @@
-<!--ROUTEUR-->
 <?php
 session_start();
 
