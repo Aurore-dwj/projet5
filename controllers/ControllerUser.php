@@ -132,7 +132,7 @@ class ControllerUser
     {
         $infosmembre = new MembersManager();
         $pseudoinfos = $infosmembre->infoPseudo($newpseudo);
-        header('Location: index.php');
+        header('Location: index.php?action=affProfil&id='.$_SESSION['id']);
     }
 
     public function updateMail($newmail) // uptate le mail
@@ -144,7 +144,7 @@ class ControllerUser
         { // test pour ne pas avoir de mail en doublon
             $infosmembre = new MembersManager();
             $mailinfos = $infosmembre->infoMail($newmail);
-            header('Location: index.php');
+            header('Location: index.php?action=affProfil&id='.$_SESSION['id']);
         }
     }
 
@@ -153,7 +153,7 @@ class ControllerUser
     {
         $infosmembre = new MembersManager();
         $mdpinfos = $infosmembre->infoMdp($newmdp);
-        header('Location: index.php');
+        header('Location: index.php?action=affProfil&id='.$_SESSION['id']);
     }
 
     public function getAvatar($newavatar) // update avatar

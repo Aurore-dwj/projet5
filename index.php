@@ -149,8 +149,7 @@ try
                             $newavatar = $_SESSION['id'] . "." . $extensionUpload;
                             $controlleruser = new ControllerUser();
                             $userAvatar = $controlleruser->getAvatar($newavatar);
-
-                            header('Location: index.php?id=' . $_SESSION['id']);
+                           
                         }
                         else
                         {
