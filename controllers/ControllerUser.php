@@ -1,4 +1,5 @@
 <?php
+
 namespace Control;
 require 'vendor/autoload.php';
 
@@ -127,7 +128,7 @@ class ControllerUser
 
     }
 
-    public function updatePseudo($newpseudo) //update le pseudo
+    public function updateUserPseudo($newpseudo) //update le pseudo
     
     {
         $infosmembre = new MembersManager();
@@ -135,7 +136,7 @@ class ControllerUser
         header('Location: index.php?action=affProfil&id='.$_SESSION['id']);
     }
 
-    public function updateMail($newmail) // uptate le mail
+    public function updateUserMail($newmail) // uptate le mail
     
     {
         $test = new MembersManager();
@@ -148,7 +149,7 @@ class ControllerUser
         }
     }
 
-    public function updateMdp($newmdp) // update le motdepasse
+    public function updateUserMdp($newmdp) // update le motdepasse
     
     {
         $infosmembre = new MembersManager();

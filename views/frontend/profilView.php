@@ -23,42 +23,48 @@
             </tr>
          </table>
       </form>
-      <form method="POST" action="index.php?action=affInfosUser">
+      <form method="POST" action="index.php?action=updateUserPseudo">
          <table>
             <tr>
                <td align="right">
                   <label>Pseudo :</label>
                </td>
-               <td>
+               <td><br>
                   <input type="text" name="newpseudo" placeholder="Pseudo" value="<?= $data['pseudo']; ?>" />
-               </td>
-            </tr>
-            <td align="right">
-               <label>Mail :</label>
-            </td>
-            <td>
-               <input type="text" name="newmail" placeholder="Mail" value="<?= $data['mail']; ?>" />
-            </td>
-            </tr>
-            <tr>
-               <td align="right">
-                  <label>Mot de passe :</label>
-               </td>
-               <td>
-                  <input type="password" name="newmdp" placeholder="Mot de passe"/>
-               </td>
-            </tr>
-            <tr>
-               <td></td>
-               <td align="left">
-                  <br/>     
-                  <button type="submit" name="affInfosUser"value="Mise à jour profil"class="btn btn-secondary">Je mets à jour mes infos !</button>
+                  <a href="index.php?action=updateUserPseudo&amp;id=<?=$_SESSION['id'] ?>"><button type="submit" name="updateUserPseudo"class="btn btn-secondary">Je modifie mon Pseudo</button></a><br><br>
                </td>
             </tr>
          </table>
       </form>
+      <form method="POST" action="index.php?action=updateUserMail">
+         <table>
+            <td align="right">
+               <label>Mail :</label>
+            </td>
+            <td><br>
+               <input type="text" name="newmail" placeholder="Mail" value="<?= $data['mail']; ?>" />
+               <a href="index.php?action=updateUserMail&amp;id=<?=$_SESSION['id'] ?>"><button type="submit" name="updateUserMail"class="btn btn-secondary">Je modifie mon Mail</button></a><br><br>
+            </td>
+            </tr>
+         </table>
+      </form>
+      <form method="POST" action="index.php?action=updateUserMdp">
+         <table>
+            <tr>
+               <td align="right">
+                  <label>Mot de passe :</label>
+               </td>
+               <td><br>
+                  <input type="password" name="newmdp" placeholder="Mot de passe"/>
+                  <a href="index.php?action=updateUserMdp&amp;id=<?=$_SESSION['id'] ?>"><button type="submit" name="updateUserMdp"class="btn btn-secondary">Je modifie mon Mot de passe</button></a><br><br>
+               </td>
+            </tr>
+            <tr>
+         </table>
+      </form>
    </div>
 </div>
+   
 
 <?php $content = ob_get_clean(); ?>
 <?php require('template.php'); ?>

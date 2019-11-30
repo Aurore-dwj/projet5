@@ -2,8 +2,14 @@
 session_start();
 
 require 'vendor/autoload.php';
-use Control\{ControllerAccueil, ControllerUser, ControllerAdmin};
-use OpenClass\{ArticlesManager, CommentsManager, Manager, MembersManager, Pagination};
+use Control\
+{
+    ControllerAccueil, ControllerUser, ControllerAdmin
+};
+use OpenClass\
+{
+    ArticlesManager, CommentsManager, Manager, MembersManager, Pagination
+};
 
 try
 {
@@ -95,36 +101,45 @@ try
 
         }
 
-        //affiche les infos du profil à l'ouverture et update infos si besoin
+        //affiche les infos du profil à updater
         if ($_GET['action'] == 'affInfosUser')
         {
             if (isset($_SESSION['id']))
             {
                 $all = new ControllerUser();
                 $user = $all->affInfosUser();
-
-                if (isset($_POST['newpseudo']) and !empty($_POST['newpseudo']))
-                {
-                    $newpseudo = htmlspecialchars($_POST['newpseudo']);
-                    $controlleruser = new ControllerUser();
-                    $userpseudo = $controlleruser->updatePseudo($newpseudo);
-                }
-                if (isset($_POST['newmail']) and !empty($_POST['newmail']))
-                {
-                    $newmail = htmlspecialchars($_POST['newmail']);
-                    $controlleruser = new ControllerUser();
-                    $usermail = $controlleruser->updateMail($newmail);
-                }
-                if (isset($_POST['newmdp']) and !empty($_POST['newmdp']))
-                {
-                    $newmdp = password_hash($_POST['newmdp'], PASSWORD_DEFAULT);
-                    $controlleruser = new ControllerUser();
-                    $usermdp = $controlleruser->updateMdp($newmdp);
-                }
             }
         }
 
-        //chargement du fichier avatar 
+        if ($_GET['action'] == 'updateUserPseudo')
+        {
+            if (isset($_POST['newpseudo']) and !empty($_POST['newpseudo']))
+            {
+                $newpseudo = htmlspecialchars($_POST['newpseudo']);
+                $controlleruser = new ControllerUser();
+                $userpseudo = $controlleruser->updateUserPseudo($newpseudo);
+            }
+        }
+        if ($_GET['action'] == 'updateUserMail')
+        {
+            if (isset($_POST['newmail']) and !empty($_POST['newmail']))
+            {
+                $newmail = htmlspecialchars($_POST['newmail']);
+                $controlleruser = new ControllerUser();
+                $usermail = $controlleruser->updateUserMail($newmail);
+            }
+        }
+        if ($_GET['action'] == 'updateUserMdp')
+        {
+            if (isset($_POST['newmdp']) and !empty($_POST['newmdp']))
+            {
+                $newmdp = password_hash($_POST['newmdp'], PASSWORD_DEFAULT);
+                $controlleruser = new ControllerUser();
+                $usermdp = $controlleruser->updateUserMdp($newmdp);
+            }
+        }
+
+        //chargement du fichier avatar
         if ($_GET['action'] == 'getAvatar')
         {
             if (isset($_FILES['avatar']) and !empty($_FILES['avatar']['name']))
@@ -148,7 +163,7 @@ try
                             $newavatar = $_SESSION['id'] . "." . $extensionUpload;
                             $controlleruser = new ControllerUser();
                             $userAvatar = $controlleruser->getAvatar($newavatar);
-                           
+
                         }
                         else
                         {
@@ -269,7 +284,7 @@ try
                 $listarticles = new ControllerUser();
                 $list = $listarticles->listArticlesUser($_GET['id_rubrique']);
             }
-            
+
         }
 
         elseif ($_GET['action'] == 'affArticle')
@@ -394,18 +409,18 @@ try
                 else
                 {
                     throw new Exception('Impossible de modifier l\'article !');
-                }                    
+                }
             }
         }
 
         //signale un article User
         if ($_GET['action'] == 'signalerArticleUser')
-        {   
+        {
             if (!isset($_SESSION['id']))
             {
                 throw new \Exception('Pour signaler un article veuillez vous connecter !');
             }
-            
+
             if ((isset($_GET['id'])) && (!empty($_GET['id'])))
             {
                 $controlleruser = new ControllerUser();
@@ -510,6 +525,6 @@ try
 catch(Exception $e)
 {
     $errorMessage = $e->getMessage();
-    require('views/frontend/errorView.php');
+    require ('views/frontend/errorView.php');
 }
 
