@@ -21,7 +21,7 @@ class ArticlesManager extends Manager
 	{
 		 
 		$db = $this->dbConnect();
-		$artic = $db->query('SELECT rubriques.id, rubriques.libele, articles.id, membres.pseudo, articles.title, articles.content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM articles INNER JOIN membres ON articles.id_user = membres.id INNER JOIN rubriques ON articles.id_rubrique = rubriques.id ORDER BY creation_date_fr DESC LIMIT '. $depart. ',' . $articlesparp);
+		$artic = $db->query('SELECT rubriques.id, rubriques.libele, articles.id, membres.pseudo, articles.title, articles.content, DATE_FORMAT(creation_date, \'%Y/%d/%m à %Hh%imin%ss\') AS creation_date_fr FROM articles INNER JOIN membres ON articles.id_user = membres.id INNER JOIN rubriques ON articles.id_rubrique = rubriques.id ORDER BY creation_date_fr DESC LIMIT '. $depart. ',' . $articlesparp);
 		
 		return $artic;
 	}
@@ -105,7 +105,7 @@ class ArticlesManager extends Manager
 	{
 
 		$db = $this->dbConnect();
-		$artic = $db->prepare('SELECT rubriques.id, rubriques.libele, articles.id, membres.pseudo, articles.title, articles.content, articles.signalement, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM articles INNER JOIN membres ON articles.id_user = membres.id INNER JOIN rubriques ON articles.id_rubrique = rubriques.id WHERE id_rubrique = ? ORDER BY creation_date_fr DESC LIMIT '. $depart. ',' . $articlesparp);
+		$artic = $db->prepare('SELECT rubriques.id, rubriques.libele, articles.id, membres.pseudo, articles.title, articles.content, articles.signalement, DATE_FORMAT(creation_date, \'%Y/%d/%m à %Hh%imin%ss\') AS creation_date_fr FROM articles INNER JOIN membres ON articles.id_user = membres.id INNER JOIN rubriques ON articles.id_rubrique = rubriques.id WHERE id_rubrique = ? ORDER BY creation_date_fr DESC LIMIT '. $depart. ',' . $articlesparp);
 		$artic->execute(array($idRubrique));
 	
 		return $artic;
