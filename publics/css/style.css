@@ -19,17 +19,23 @@ p
 .jumbotron
 {
 	background: url("../images/moto2.png")no-repeat;
-	height: 250px;
+	height: auto;
+	background-color: white !important;
+	
 }
 
-.titre1
+.jumbotron
 {
-	font-size: 17px;
+	margin-top: 50px !important;
 }
 
 .titre2
 {
 	display: none;
+}
+
+.btn-group-lg > .btn, .btn-lg {
+    margin-top: 50px !important;
 }
 
 i.wi
@@ -57,13 +63,24 @@ i.wi
 	width: 60%;
 }
 
-@media only screen and (min-width: 700px) /*tablette*/
+@media only screen and (min-width: 414px) /*iphone*/
+
+{
+	.jumbotron
+	{
+		background: url("../images/moto4.png")no-repeat;
+		height: auto;
+	}
+}
+
+@media only screen and (min-width: 568px) /*tablette*/
 
 {
 	.jumbotron
 	{
 		background: url("../images/moto3.png")no-repeat;
-		height: 478px;
+		background-size: cover;
+		
 	}
 
 	.titre1
@@ -75,28 +92,35 @@ i.wi
 	{
 		display: initial;
 		font-size: 17px;
+
 	}
 }
 
+@media only screen and (min-width: 1020px ) /*large*/
+{
+	.jumbotron
+	{
+		height: 672px;
+
+	}
+}
+
+
 @media only screen and (min-width: 1100px ) /*desktop*/
 {
-	#bonjSession
-	{
-		font-size: 18px;
-		color: #760001;
-	}
 
 	.jumbotron
 	{
 		background: url("../images/moto.jpg")no-repeat;
 		background-size: cover;
-		height: 672px;
+	
+		
 	}
 
-	.titre1
+	#bonjSession
 	{
-		margin-left: -100px;
-		font-size: 40px;
+		font-size: 18px;
+		color: #760001;
 	}
 
 	.titre2
@@ -105,10 +129,7 @@ i.wi
 		margin-left: -150px;
 	}
 
-	.btn-group-lg > .btn, .btn-lg
-	{
-		margin-top: 160px;
-	}
+	
 
 	.improfil
 	{

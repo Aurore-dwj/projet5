@@ -41,7 +41,7 @@
 <main role="main">
    <div class="jumbotron">
       <div class="container">
-         <h1 class="titre1">Yamaha 1300XJR une moto de légende...</h1>
+         <h1>Yamaha 1300XJR une moto de légende...</h1>
          <h5 class="titre2">Ce gros roaster au catalogue depuis plus de 20 ans méritait bien un petit blog...</h5>
          <p>
             <a class="btn btn-secondary btn-lg" href="index.php?action=userViewConnect" role="button">Publier un article</a>
@@ -82,5 +82,5 @@
 </main>
 
 <?php $content = ob_get_clean(); ?>
-<?php require('template.php'); ?>
+<?php require('templateAccueil.php'); ?>
 
